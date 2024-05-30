@@ -1,0 +1,5 @@
+py310env/*
+.*
+!.gitignore
+d0183df5-815d-48c2-bcfe-fbf9b716505c.h5ad
+core.*
