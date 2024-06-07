@@ -3,6 +3,7 @@ py311env/*
 .*
 !.gitignore
 *.h5ad
+*.h5
 core.*
 notebook_state.pkl
 *.error
