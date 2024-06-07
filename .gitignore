@@ -7,3 +7,4 @@ core.*
 notebook_state.pkl
 *.error
 *.out
+*.log
