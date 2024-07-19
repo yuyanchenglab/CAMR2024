@@ -1,0 +1,806 @@
+1
+1 Comprehensive single-cell atlas of the mouse retina
+2
+Jin Li1,2,*, Jongsu Choi3,*, Xuesen Cheng1,2,*, Justin Ma4
+, Shahil Pema1
+, Joshua R. Sanes5 3 , 
+Graeme Mardon1,4,6, Benjamin J. Frankfort6
+, Nicholas M. Tran1
+, Yumei Li1,2
+, Rui Chen1,2,3 4
+5
+6 1. Department of Molecular and Human Genetics, Baylor College of Medicine, Houston, 
+7 Texas 77030, USA.
+8 2. Human Genome Sequencing Center, Baylor College of Medicine, Houston, Texas 77030, 
+9 USA.
+10 3. Department of Biochemistry and Molecular Biology, Baylor College of Medicine, Houston, 
+11 Texas 77030, USA.
+12 4. Department of Pathology and Immunology, Baylor College of Medicine, Houston, Texas 
+13 77030, USA.
+14 5. Center for Brain Science and Department of Molecular and Cellular Biology, Harvard 
+15 University, Cambridge, Massachusetts 02130, USA.
+16 6. Departments of Ophthalmology and Neuroscience, Baylor College of Medicine, Houston, 
+17 Texas 77030, USA.
+18
+19 *These authors contributed equally to this work.
+20 Corresponding author: Rui Chen (ruichen@bcm.edu)
+21
+22 Abstract
+23 Single-cell RNA sequencing (scRNA-seq) has advanced our understanding of cellular 
+24 heterogeneity at the single-cell resolution by classifying and characterizing cell types in 
+25 multiple tissues and species. While several mouse retinal scRNA-seq reference datasets have 
+26 been published, each dataset either has a relatively small number of cells or is focused on 
+27 specific cell classes, and thus is suboptimal for assessing gene expression patterns across all 
+28 retina types at the same time. To establish a unified and comprehensive reference for the 
+29 mouse retina, we first generated the largest retinal scRNA-seq dataset to date, comprising 
+30 approximately 190,000 single cells from C57BL/6J mouse whole retinas. This dataset was 
+31 generated through the targeted enrichment of rare population cells via antibody-based 
+32 magnetic cell sorting. By integrating this new dataset with public datasets, we conducted an
+33 integrated analysis to construct the Mouse Retina Cell Atlas (MRCA) for wild-type mice, which 
+34 encompasses over 330,000 single cells. The MRCA characterizes 12 major classes and 138 cell 
+35 types. It captured consensus cell type characterization from public datasets and identified 
+36 additional new cell types. To facilitate the public use of the MRCA, we have deposited it in
+37 CELLxGENE, UCSC Cell Browser, and the Broad Single Cell Portal for visualization and gene 
+38 expression exploration. The comprehensive MRCA serves as an easy-to-use, one-stop data 
+39 resource for the mouse retina communities.
+40
+41 Introduction
+42 The retina is a highly heterogenous part of the eye that captures and processes the 
+light signal 1-3 43 . The processing is enabled through five classes of retinal neurons: 
+44 photoreceptors (PR), horizonal cells (HC), bipolar cells (BC), amacrine cells (AC), and retinal 
+45 ganglion cells (RGC), which form an intricate circuitry necessary for processing and relaying
+46 the light signal to the visual cortex. Non-neuronal cells such as Müller glia cells(MG), microglia,
+47 astrocytes, and retinal pigment epithelial cells (RPE) provide structural integrity of the tissue 
+48 and carry out various supporting roles such as metabolism and neuronal homeostasis in the 
+retinal microenvironment 4,5 49 . Characterization of distinct retinal cell types is, therefore, critical 
+50 in advancing our understanding of the fine intricacies of cell interactions involved in retinal 
+51 biology and visual disorders.
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+2
+52 Single cell technologies have opened a window into knowledge of cellular 
+53 heterogeneity and intricate cell-to-cell interactions that cannot currently be resolved at the 
+54 tissue level and have allowed exploration of individual cellular expression signatures, which 
+can be mapped to unique molecular cell types 6,7 55 . The resulting cell atlas can serve as a 
+56 foundation for numerous applications, including the annotation of cell types in other scRNAseq experiments 8 57 , the identification of differentially expressed targets for purification or 
+manipulation 9 58 , and the generation of marker panels useful for single-molecule imaging,
+including spatial profiling 10 59 . While studies have demonstrated cell type heterogeneities in 
+60 various tissues, several perplexing issues remain to be addressed in establishing a 
+61 comprehensive cell atlas such as the agreement on cell type definitions across different 
+62 experiments or whether enough cells have been profiled to exhaust all existing cell types.
+63 Integrated analyses of various scRNA-seq datasets from different studies, therefore, can 
+64 provide an important insight that comprehensively addresses such issues.
+65 The mouse retina provides an important model for the study of neurobiology, with
+more than 130 distinct cell types characterized through previous scRNA-seq studies 7,9,11-15 66 .
+However, the scRNA-seq datasets have been generated separately for BC 11, AC 12 67 , and RGC
+9,13,14 68 , with the largest dataset containing just under 36,000 cells, making it difficult to use in 
+69 aggregate. Though most of these datasets are independently browsable on the Broad Single 
+Cell Portal 16 70 and accessible through separate databasessuch as the Gene Expression Omnibus 
+71 (GEO) repository, it can be challenging to assess gene expression patterns across all retinal cell 
+72 types. Ensuring these atlases define a complete set of retinal cell types remains a major 
+73 challenge that can only be addressed by powering studies to sufficiently profile the rarest 
+74 retinal cell types. Here, we generated scRNA-seq data of over 189,000 cellsin the mouse retina
+to complement 141,000 cells from six publicly available scRNA-seq datasets 9,11-15 75 , creating a
+76 unified cell atlas of the wild-type mouse retina containing over 330,000 cells. Our integrated 
+77 analysis presents a comprehensive characterization of all major cell classes in the retina,
+78 including non-neuronal types, as well as a consensus cell type annotation of BCs, ACs, and 
+79 RGCs. Accessible, interactive web browsers have facilitated easy visualization of atlas
+80 characterizations and exploration of gene expression in the MRCA. The comprehensive unified 
+81 MRCA will serve as a valuable resource for the community.
+82
+83 Results
+84
+85 Generation of scRNA-seq dataset for wild-type mouse retina
+86 To establish a comprehensive atlas of the mouse retina, we performed scRNA-seq 
+87 profiling with C57BL/6J mouse retina tissue samples, aged from P14 to 12 months, for over 
+88 189,000 cells (Fig. 1a and Methods). As summarized in Table 1, six samples of varying ages
+89 were dissociated retinal cells without enrichment, and ten samples of eight weeks old were
+90 enriched using surface markers CD73 and CD90.1 to enrich for rare cell population. Depletion 
+91 of rod photoreceptors was achieved by removing cells positive for CD73 using anti-CD73-PE 
+92 antibody and anti-PE magnetic beads, which primarily label photoreceptor precursors and 
+mature rod photoreceptors in mice 12,17 93 . To enrich ACs and RGCs, CD90.1 positive cells are 
+selected 18,19 94 .
+95
+96 Integration of scRNA-seq datasets for the mouse retina
+97 To compile the most comprehensive scRNA-seq data for the MRCA, we curated and 
+98 obtained six publicly available scRNA-seq datasets, each enriched for a specific cell type using 
+99 transgenic labels or immunolabeling combined with FACS. Together, they consisted of over 
+100 141,000 cells. To consolidate the transcript annotation between different datasets, we used 
+101 the Cell Ranger (version 7.0.1) pipeline to align raw FASTQ files from four datasets obtained 
+102 from GEO and Sequence Read Archive (SRA) repositories. Count matrices of these datasets 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+3
+103 were generated using the mm10 reference genome obtained from 10x Genomics 
+104 (https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mm10-2020-A.tar.gz). Five of the 
+105 published studies were sequenced on the 10x Genomics 3’ platform, and one (Shekhar et al.)
+was generated using the Drop-seq protocol 7 106 . The Drop-seq data were aligned against mm10 
+107 and processed into count matrices using the Drop-seq pipeline
+108 (https://github.com/broadinstitute/Drop-seq). The cell type labels of previous annotations
+were obtained from the Broad Single Cell Portal website 16 109 . To remove technical variations 
+introduced across different experiments or studies, scVI 20 110 was applied to integrate all newly
+111 generated and public datasets, generating a low-dimensional representation (Fig. 1b and 
+112 Methods). Putative cell doublets were further removed using the deep learning doublet 
+identification method Solo 21 113 (Supplementary Fig. 1a).
+114 In the integrated data, the public dataset accounts for 43%, while the newly generated 
+115 data accounts for the remaining 57% (Fig. 1c). Within the integrated UMAP, 97 clusters were 
+116 identified (Supplementary Fig. 1b). These clusters were annotated as one of 12 major classes, 
+117 including PR, BC, AC, RGC, HC, MG, RPE, astrocyte, microglial, endothelial, and pericyte, using 
+known marker gene expression 22,23 118 (Supplementary Fig. 1c). Cells from non-enriched retina 
+119 samples showed a distribution across major classes at an expected proportion, with rod 
+photoreceptors as the biggest proportion 2 120 . In contrast, enriched samples from both newly 
+121 generated data and previous studies showed the expected skewed distribution of cell types in 
+122 BCs, ACs, and RGCs (Supplementary Fig. 1d). The two newly generated samples with 
+enrichment methods, CD73- and CD90.1+ 123 samples, were primarily composed of BCs and ACs, 
+124 respectively, contributing to 83% (122.6K out of 147.7K) and 25% (11.2K out of 44K) of all BCs
+125 and ACs in the integrated data, respectively.
+Previous studies have identified 15 distinct types of BCs, 64 ACs, and 46 RGCs 9,11,12 126 . To 
+127 determine the consensus annotation of neuronal types for these subclasses, we performed 
+128 clustering analysis at higher resolution within individual BC, AC, and RGC classes (Fig. 1d and 
+129 Fig. 1e).
+130
+131 15 types of bipolar cells
+132 A total of 147,700 BCs were identified in the integrated datasets, with 122,600 cells 
+from our newly generated CD73- sample and 19,800 cells from the Shekhar et al. study 11 133 . The 
+134 integrated analysis identified 15 BC clusters, corresponding to previously annotated BC types 
+135 (Fig. 2a-b and Methods). The 15 clusters of integrated BCs showed a generally even 
+136 distribution of cells from various samples, with the exception of two types, BC1A and BC1B, 
+137 where more than 90% of populations came from the study by Shekhar et al. possibly due to
+138 differences in enrichment methods (Fig. 2a, 2d and Supplementary Fig. 2d-e). The final 
+139 annotation of BCs revealed consistent expression profiles of previously identified BC type 
+marker genes 11,24 140 (Fig. 2b-c). With a significant addition of BCs in the MRCA, clear separation 
+141 of BC8 and BC9 is observed, which were merged but demonstrated substructure in the 
+142 Shekhar et al. dataset (Fig. 2a-b). The separate clusters showed proper expression patterns of 
+known markers like Cpen9 in BC9 11,25 143 . In addition, additional BC type markers were identified 
+144 via differential gene expression analysis, which showed more specific expressions than
+145 previous marker genes, such as Tafa4 in BC4, Ptprt in BC5A, and Gm13986 in BC8 (Fig. 2e).
+146 Interestingly, despite an almost ten-fold increase in the number of BCs in our analysis, we did 
+147 not observe any sign of a novel cell type, which suggests that the mature mouse retina likely 
+148 only contains 15 BC types.
+149
+150 Amacrine cells
+151 Through CD90.1 positive enrichment, the newly generated samples contributed 
+11,200 ACs, in addition to the 27,600 ACs from Yan et al. 12 152 in the integrated dataset
+153 (Supplementary Fig. 3a-b). Utilizing the collected data, the integrated analysis annotated 63 
+154 AC types, revealing consistent expression profiles of known marker genes (Fig. 3a-b and 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+4
+155 Methods). While a minimal batch effect in each cluster was observed across different sample 
+sources, CD90.1+ 156 and Ma et al. RGC samples showed biased enrichment towards GABAergic 
+157 types except for AC4, AC10, and AC28 (Supplementary Fig. 4e). The bias in cell type population 
+158 appears to be directly tied to the preferential expression of Thy1 (CD90) in sub-populations of
+159 ACs (Supplementary Fig. 4d). In particular, Thy1 is characterized as being expressed primarily 
+in GABAergic AC types 26 160 .
+161 The integrated analysis of ACs demonstrated that four types, AC18, AC20, AC36, and 
+162 AC45, have been previously under-clustered, each splitting into two clusters in the integrated 
+UMAP (Fig. 3c). AC18, which expresses Cck neuropeptide 27 163 , is split into C24 and C27 in our 
+164 clustering and has been labeled as AC18A and AC18B in the final annotation (Fig. 3d).
+165 Interestingly, the cell type marker Cck is highly expressed in AC18A, but not in AC18B
+166 (Supplementary Fig. 5a). AC20, which does not contain any known marker, is divided into C42 
+167 and C60 (AC20A and AC20B), with its marker Sema3a also expressed highly in AC20A, but not 
+168 in AC20B (Supplementary Fig. 5b). A non-GABAergic non-glycinergic (nGnG) type 4, AC36, is 
+169 split into C58 and C61 (AC36A and AC36B), consistent with previous finding of two 
+170 morphologically distinct AC36 types in the INL and displaced in the GCL, stratifying to S3 and 
+S5 sublaminae of the IPL 10,28 171 . By examining the list of differentially expressed genes (DEG) 
+between the two broadly isolated types 28 172 , we annotated AC36A as the S3 type by the 
+173 increased markers such as Gbx2, Tac1, and Pcdh8 and AC36B as the S5 type by Gad1, Gad2, 
+and Id4. (Fig. 3e). Lastly, a catecholaminergic type 1 cell type 29 174 , AC45, is split into C64 and C66
+175 (AC45A and AC45B). The expression of Chl1, which distinguishes catecholaminergic type 1 
+176 from type 2, was increased specifically in AC45A. The DEG analysis between the clusters of the 
+177 previously under-clustered cell type revealed many genes enriched specifically in each cluster, 
+178 with Cck, Sema3a, Chl1 being one of the top-ranked genes in AC18A, AC20A and AC45A, 
+179 respectively (Supplementary Fig. 5b). Out of the four under-clustered cell types, only one,
+180 AC20, showed a biased sample source from Yan et al. data. Furthermore, while cells from Yan
+181 et al. were distributed across both AC45A and AC45B, AC45B contains an increased number of 
+182 cells from the newly generated CD90.1 sample (Supplementary Fig. 4e).
+183 As a result, we have identified 67 AC types that can be grouped into four AC 
+184 subclasses: 49 GABAergic, 10 Glycinergic, 3 Both, and 5 nGnG ACs. Within the final dataset,
+185 GABAergic ACs make up 67.7% of the total AC population, followed by Glycinergic ACs at 
+186 22.5%, GABA/Glycinergic ACs at 1%, and nGnG ACs at 8.7%. However, these distributions are 
+likely biased towards GABAergic ACs due to the inclusion of cells from CD90.1+ and CD90.2+ 187
+188 enriched collections.
+189
+190 Retinal ganglion cells
+191 The integrated data contains 77,900 RGCs, primarily from the three publicly available 
+192 datasets. The integration of the collected data identified all 46 previously identified RGC types
+193 (Fig. 4a and Methods). Examination of known cell type markers in the integrated data with the 
+final annotation showed proper expression profiles in corresponding types 9,18,30 194 (Fig. 4b).
+195 Although no novel cluster was identified, our integrated analysis of RGCs similarly identified 
+196 the division of two cell types, 16_ooDS_DV (ON-OFF direction-selective dorsal and ventral) and 
+197 18_Novel, into distinct clusters (Fig. 4c). The 16_ooDS_DV, which contains both types with 
+dorsal and ventral orientation selective functional roles 31,32 198 , wassplit into C31 and C39,similar 
+to the supervised clustering analysis done in the Tran et al. 9
+, Jacobi et al. 13, and Ma et al. 14 199
+200 studies. Examination of the marker genes Calb1 and Calb2 demonstrated that C39 is the 
+201 ventral selective type with high expression of Calb2, and C31 is the dorsal selective type with 
+Calb1 expression 9 202 . In addition, the 18_Novel type could also be split into C36 and C40.
+203 Interestingly, while C40 contained only cells with 18_Novel labels, C36 contained a mixture of 
+204 18_Novel and 44_Novel labels (Supplementary Fig. 7a-c). The same annotation improvements 
+were also observed in Ma et al.14 205 . Examination of 18_Novel markers Pcdh20 and 
+206 4833424E24Rik revealed increased expression of both markers in C40, yet Pcdh20 expression 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+5
+207 was absent in C36 (Supplementary Fig. 7e). The DEG analysis further demonstrated many 
+208 genes selectively expressed in these two clusters (Supplementary Fig. 7d). In total, we have 
+209 identified 47 RGC types in the MRCA (Fig. 4d).
+210
+211 Non-neuronal retinal cells
+212 To include the comprehensive set of cell types in the retina in the MRCA, 18,500 non213 neuronal cells were integrated for six non-neuronal cell types, including astrocyte, endothelial, 
+214 MG, microglia, pericyte, and RPE (Supplementary Fig. 8a and Fig. 1e). These cells are evenly 
+215 distributed in the collected datasets, except for astrocytessolely from the Benhar et al. dataset 15 216 (Supplementary Fig. 8b). After being combined with neuronal retinal cells, the MRCA 
+217 consisted of 12 major classes and 138 cell types.
+218
+219 Data dissemination at accessible interactive web browsers
+220 The MRCA has been made available for public access using the CELLxGENE platform 
+221 (https://cellxgene.cziscience.com/collections/a0c84e3f-a5ca-4481-b3a5-ccfda0a81ecc and 
+222 https://mouseatlas.research.bcm.edu/) (Fig. 5a-c). The MRCA is also accessible on UCSC Cell 
+223 Browser (https://retina.cells.ucsc.edu) and the Broad Single Cell Portal. Pre-computed gene 
+224 expression profiles of all cells included in the integrated analysis can be examined and 
+225 visualized. Users also have access to the metadata information, including major class and cell 
+226 type labels in the database. The accessible interactive web browsers of the MRCA can aid in 
+227 easy access to the transcriptome profiles of any given mouse retinal cells without the 
+228 bioinformatic burden and provides a valuable tool for the vision community.
+229
+230 Discussion
+231 As part of the central nervous system, the retina contains numerous neuronal types 
+with distinct morphologies and functional roles 1,33 232 . The heterogenous cell type composition
+233 and the stereotypically patterned structure of the tissue makes the retina an ideal model for 
+single-cell sequencing studies in establishing the single-cell atlas 7,22,34 234 . Although several 
+scRNA-seq studies focusing on the retina tissue have been done previously 7,9,11-15 235 , each 
+236 available dataset contains single-cell profiles primarily of one or a few retinal cell classes with 
+237 a limited number of cells. Furthermore, no systematic evaluation or comparison of the 
+238 datasets has been done yet to cross-validate the cell type transcriptomes and address 
+239 annotation consensus.
+240 In this study, we generated scRNA-seq profiles of 189,000 retinal cells from 16 scRNA241 seq experiments to perform an integrated analysis with 141,000 retinal cells from six 
+242 previously reported datasets. Six out of the newly generated collections were done using
+243 endogenous retina tissues with simple dissociation and without enrichment. Photoreceptors 
+constitute over 70% of the cell proportion in the retina 2,35 244 , and there are only two subclasses
+245 of photoreceptors, which are well studied. Therefore, we utilized two methods for rare 
+246 population cell type enrichment. The first way was depleting the rod photoreceptors. To 
+247 achieve this goal, the rod photoreceptor cell surface marker, CD73, was used in seven of the 
+248 16 experiments. Though this marker is generally considered as a specific marker for rod 
+249 photoreceptors, it is also expressed on the surface of a subset of ACs, HCs, and MGs. Depletion
+250 increased the enrichment of BCs from 12% to 90%. Furthermore, CD90.1 was used to enrich 
+251 certain retinal neurons such as ACs and RGCs in three experiments. Enrichment of retinal cells 
+252 with CD90.1 also showed an increased number of ACs with some RGCs.
+253 One of the challenges in integrating and comparing publicly available data is that they 
+are generated using different single-cell experimental platforms and analysis pipelines 36,37 254 .
+One public data enriched with BCs from Shekhar et al. 11 was generated using the Drop-seq 7 255
+256 technology and was processed separately using the Cell Ranger transcript annotation. The four 
+257 other sources of publicly available data were done using the 10x Genomics platform. A minimal
+258 batch effect across data sources was observed in the integrated analysis, with the expected 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+6
+259 distribution and clustering of major classes from corresponding sources. While the newly
+260 generated data without enrichment were primarily composed of rod photoreceptors, cells
+261 from the newly generated data with enrichment and publicly available data showed a proper 
+262 distribution across BCs, AC, and RGCs.
+263 Integrated analysis of various scRNA-seq datasets allowed us to examine AC, BC, and 
+264 RGC types, which together comprise over 100 distinct cell types. Through the integrated 
+265 analysis, we addressed two key questions on the neuronal cell types in the retina: to confirm 
+266 the consensus cell type signatures and to examine whether the total number of cell types of
+267 retinal neurons is exhausted. Following the initial integrated analysis to identify major classes, 
+268 subsets of each major class were subjected to further integration and two-level clustering to
+269 annotate all previously identified cell types, which showed an even distribution of data sources 
+270 in general. The cell type annotation was achieved through examining known marker gene 
+271 expressions and previous annotation labels when available. Although our newly generated 
+272 data resulted in a significantly increased number of cells in the integrated analysis of BCs, ACs, 
+273 and RGCs, we did not observe significant increases of novel cluster. As such, the previously 
+274 reported set of BC types in the adult mouse retina is likely complete, supported by the more 
+275 than 7-fold increase in BCs in the integrated data. On the other hand, our integrated analysis 
+276 updates annotations of AC and RGC types. In particular, we observed several instances of 
+277 previously under-clustered AC and RGC types splitting into distinct clusters in our analysis. For 
+278 example, we confirmed the separation of 16_ooDS_DV types into two distinct clusters in the 
+279 integrated data of RGCs, which was separated into dorsal and ventral selective types only 
+through supervised clustering in the Tran et al. study 9 and later confirmed in Jacobi et al. 13 280
+281 study. Furthermore, we identified the separation of AC36 and assigned its clusters to S3 and 
+S5, stratifying Gbx2+ AC types28 282 , which strengthens our analysis by connecting to biologically 
+283 distinct cell types. The separation of previously merged cell types into distinct clusters can be 
+284 attributed to the increased number of cells in our integrated analysis. Thissuggeststhat, while 
+285 our AC and RGC type annotations are comprehensive, they will likely continue to be refined 
+286 by future studies.
+287 Finally, we have deposited the MRCA into interactive web browsers that are user288 friendly and publicly accessible. This allows for the examination of raw and normalized gene 
+289 expression profiles of all retinal cells, along with their metadata such as major class and cell 
+290 type annotation. The MRCA not only provides the consensus signature of mouse retinal cell 
+291 types by comparing multiple scRNA-seq data but also alleviates the bioinformatics burden for
+292 many vision researchers who wish to examine transcriptome signatures in any cell type of their 
+293 interest.
+294
+295 Methods
+296
+297 Generation of scRNA-seq datasets of the mouse retina
+298 We have generated 16 scRNA-seq samples of the mouse C57BL/6J retina (Table 1). All
+299 mice were male. All procedures were approved by the Institutional Animal Care and Use 
+300 Committee (IACUC) and followed the Association for Research in Vision and Ophthalmology 
+301 (ARVO) Statements for the Use of Animals in Ophthalmic and Vision Research, in addition to 
+302 the guidelines for laboratory animal experiments (Institute of Laboratory Animal Resources, 
+303 Public Health Service Policy on Humane Care and Use of Laboratory Animals). After dissection, 
+304 retinas were dissociated into single cells using papain-based enzyme following the published 
+protocol38 305 . With activated 45U of papain (Worthington, Cat. #LS003126) solution (1mg L306 Cystine, Sigma; 8 KU of DNase I, Affymetrix; in 5 ml DPBS), retina was incubated at 37C for 
+307 ~20min, followed by the replacement of buffer with 2ml ovomucoid solution (15 mg
+308 ovomucoid, Worthington Biochemical; 15 mg BSA Thermo Fisher Scientific; in 10 ml DPBS) and 
+309 500ul deactivated FBS. Following the enzymatic digestion step, the retina tissues were 
+310 carefully triturated and filtered using 20 um plastic meshes. Trituration steps were repeated
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+7
+311 with additional 1ml ovomucoid solution until no tissue was visible. Single-cell suspension was 
+312 spun down at 300g, 4C for 10 min and used in the next step.
+313 To deplete the photoreceptors, cells were resuspended in 0.5% BSA and stained with 
+314 CD73-PE antibody (MACS, Catalog: 130-102-616) for 10min at 4C (for each million cells, add 
+315 98ul 0.5% BSA with 2ul CD73-PE antibody) and washed with 35 ml 0.5% BSA at 4C for 10min.
+316 After being stained with Anti-PE microbeads (MACS, Catalog: 130-105-639) (80ul 0.5% BSA and 
+317 20ul microbeads per each million cells) for 15 min at 4C, cells were washed and resuspended 
+318 in 0.5% BSA. CD73 negative neuronal cells were enriched by autoMACS Pro Separator(Miltenyi 
+319 Biotec) DEPLETES mode. Similarly, CD90.1 positive neuronal cells were enriched with CD90.1
+320 microbeads (MACS, LOT: 130-094-523; 90ul 0.5% BSA and 10ul CD90.1 microbeads per each 
+321 million cells) and autoMACS POSSEL-S mode. Cells viability was 87%-94% when checked using
+322 DAPI staining under microscope.
+323 Guided by 10X manufacturer’s protocols (https://www.10xgenomics.com), single-cell 
+324 cDNA library was prepared and sequenced. Briefly, single-cell suspension was loaded on a 
+325 Chromium controller to obtain single cell GEMS (Gel Beads-In-Emulsions) for the reaction. The 
+326 library was prepared with Chromium Next GEM single cell 3’ kit V2 (10X Genomics) and 
+327 sequenced on Illumina Novaseq 6000 (https://www.illumina.com). Our newly generated 
+328 single cell data was sequenced at the Single Cell Genomics Core at Baylor College of Medicine.
+329
+330 Data collection and preprocessing of the mouse retinal scRNA-seq
+331 To recover high-quality cells, data samples were processed through a quality control 
+332 pipeline (https://github.com/lijinbio/cellqc). In brief, raw sequencing reads of 10x Genomics
+were first analyzed by the 10x Genomics Cell Ranger pipeline (version 7.0.1) 39 333 using the mm10 
+334 genome reference obtained from 10x Genomics (https://cf.10xgenomics.com/supp/cell335 exp/refdata-gex-mm10-2020-A.tar.gz). Potential empty droplets in the filtered feature count 
+matrices were further detected by dropkick 40 336 . Background transcripts contamination in the 
+retained true cells were eliminated using SoupX 41 337 . DoubletFinder then was utilized to estimate 
+and exclude potential doublets with high proportions of simulated artificial doublets 42 338 . In the 
+339 resulting singlets, we extracted high-feature cells that contain ≥ 300 features, ≥ 500
+340 transcript counts, and ≤10% of reads mapped to mitochondrial genes.
+341 In addition to our own data, we have incorporated well-characterized public datasets. 
+342 Specifically, we have integrated cell-type-enhanced profiling data for amacrine cells 
+(accession: GSE149715) 12, bipolar cells (accession: GSE81904) 11 343 , and retinal ganglion cells 
+(accession: GSE133382) 9 344 . Furthermore, we have included four samples from wild-type mice 
+were also collected from GSE201254 to account for retinal ganglion cells 13 345 . To account for 
+non-neuronal retinal cells, nine control samples were collected from GSE199317 15 346 . These cell347 type specific single-cell datasets form the basis for subclass clustering in our mouse retina 
+348 reference. To generate the updated transcriptome measurement of the GSE81904 from 
+349 Shekhar et al., which was derived from the Drop-seq protocol, we applied the Drop-seq 
+350 pipeline using the source code available at https://github.com/broadinstitute/Drop-seq. To 
+351 ensure consistent gene feature annotation with the Cell Ranger pipeline, we used the gene 
+352 annotation GTF file from the 10x Genomics mm10 genome reference package during the 
+353 alignment of Drop-seq reads. In addition, GSE149715, GSE133382, GSE201254, and 
+354 GSE199317 were also processed from scratch using raw sequencing reads using the 10x 
+Genomics Cell Ranger pipeline (version 7.0.1) 39 355 . To incorporate the high-quality cell type 
+356 annotation of four public datasets, released count matrices and cell labeling were downloaded 
+357 for meta-analysis. To further eliminate potential multiples in the integrated analysis, Solo 
+358 doublet detection algorithm was used to identify potential multiples.
+359
+360 Data integration of scRNA-seq datasets
+361 To eliminate technical variations in samples derived from different studies and 
+experiments, 52 samples were integrated to remove the batch effect by scVI 43 362 . scVI explicitly 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+8
+363 formulates the batch effect as a latent variable in the deep generative model of observed 
+364 expressions. Normalized expression was applied to detect highly variable genes (HVGs) using 
+365 the Seurat algorithm (flavor: seurat). The “sampleID” was used as the batch key for calculating 
+366 HVGs and the batch variable in the scVI modeling. The scVI model utilized 2 hidden layers 
+367 (n_layers: 2) and a 30-dimensional latent space (n_latent: 30). The trained low-dimensional 
+representation was used for cluster detection with the Leiden algorithm 44 368 . UMAP of lowdimensional visualization was generated by the Scanpy package 45 369 .
+370
+371 Cell clustering and cell type annotation
+372 To annotate major classes of cell clusters, we incorporated well-annotated cell labels
+373 released from public datasets, i.e., Yan et al. for ACs, Shekhar et al. for BCs, and Tran et al. and 
+374 Jacobi et al. for RGCs. Cells from Yan et al. were annotated into 63 AC types. Cells from Shekhar 
+375 et al. were 15 BC types showing in 14 clusters with small numbers of cells annotated as ACs, 
+376 rod, and cone. Tran et al. cells were identified as 45 RGC types. The cell type labels of these 
+377 well-annotated cells are used to annotate integrated cell clusters. To annotate isolated cell 
+378 clusters that were isolated from existing cell labels of the public datasets, cluster-specific 
+379 markers were examined from the top ranked genes generated by the Wilcoxon rank-sum test 
+using the rank_genes_groups() function in the Scanpy package 45 380 .
+381 To annotate subclass BC, AC, and RGC, subclass-specific cells were isolated and 
+382 integrated using scVI. The generated low-dimensional embeddings were used to detect 
+383 clusters using the Leiden algorithm. To determine the optimal number of clusters for 
+384 subclasses, a two-level clustering approach was applied. In the first level of clustering, various 
+385 resolutions were tested to achieve clustering without over-clustering in UMAP visualization. 
+386 The second-level clustering refines the clusters from the first-level clusters by testing various 
+387 resolutions to achieve optimal clustering without over-clustering on UMAP again. In the first388 level, Leiden clusters containing the majority of one type were annotated. When Leiden 
+389 clusters contained more than one types, cells within the clusters were isolated. Within each 
+390 subset of isolated cells, Leiden clusters were calculated again using the same low-dimensional 
+391 embedding. The second-level Leiden clusters were examined for their cell label to determine 
+392 their cell types.
+393 To construct the BC atlas, data samples for BCs were integrated using scVI. Initially, 33 
+394 clusters were identified, of which 30 could be matched and merged to individual BC types by 
+examining previously generated cell labels and their known marker gene expression 11,24 395 , while 
+396 the remaining 3 clusters (C30, C31, and C32) were excluded from the analysis as they 
+397 contained non-BCs from previous annotation labels or had high UMI counts (Fig. 2a and 
+398 Supplementary Fig. 2a-c). Consequently, 15 BC types were identified and annotated.
+399 To construct the AC atlas, the data integration analysis for ACs using scVI identified a 
+400 total of 71 clusters, of which 62 clusters could be matched and merged to 49 individual AC 
+401 types via previous annotation labels and known marker expression. However, 8 clusters were 
+402 over-clustered that contained two or more previous AC type labels, and one cluster (C70) was 
+403 excluded from the AC reference due to non-AC cells (Supplementary Fig. 3c-d). To further 
+404 address the 8 remaining over-clustered clusters (Supplementary Fig. 4a), we utilized a two405 level annotation approach. This involved isolating cells from each cluster and refining the 
+406 clustering. The two-level annotation allowed the separation of the remaining 14 types: AC11, 
+407 AC16, AC29, AC42, AC47, AC50, AC53, AC54, AC55, AC56, AC60, AC61, AC62, and AC63 
+408 (Supplementary Fig. 4a-c). This revealed clusters that primarily consisted of RGCs, which have 
+409 been removed in the integrated AC map (Supplementary Fig. 4c). As a result, 63 AC types were 
+410 identified and annotated.
+411 Three AC types, AC16, AC53, and AC62, were identified as dual types expressing both 
+412 canonical GABAergic and glycinergic receptors in the study by Yan et al. AC16, however, was 
+413 shown as a suspected doublet in their study, alongside AC60. Similarly, our UMAP showed 
+414 loose cluster formation of AC16 and AC60 in proximity to each other, with relatively high UMI 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+9
+415 counts (Fig. 3a and Supplementary Fig. 4e). In addition, our integrated UMAP showed AC53 
+416 cells spread out in the middle of AC6 cells. Although the AC53 cluster was resolved in the 
+417 second-level annotation, the loose clustering of AC53 cells is quite apparent. The third dual 
+418 type, AC62, was also under-clustered and merged with AC42 and AC55. While AC62 was 
+419 resolved in the second-level annotation, AC62 also appears near its neighboring cluster, AC42, 
+420 in the UMAP. With very few cells being annotated as dual types in CD90.1 and Ma et al.
+421 samples, which express high levels of Thy1 (data not shown), further validations of the dual 
+422 types are required.
+423 To construct the RGC atlas in the MRCA, the integrated analysis identified 54 clusters 
+424 with an even distribution of cells from different data sources in most clusters (Supplementary 
+425 Fig. 6a-d). Out of these clusters, 48 can be mapped and merged into 39 individual RGC types 
+426 previously identified using marker gene expression and previous annotation labels 
+427 (Supplementary Fig. 6a-b), while five clusters were over-clustered that contained multiple 
+428 previous RGC types, and one cluster (C8) contained a mixture of several RGC type labels with 
+429 high UMIs and was excluded from the downstream analysis as multiplets. To annotate the 
+430 remaining seven types found in the five clusters with multiple labels, the second-level 
+431 annotation was performed, which resulted in a clear separation of all 46 previously identified 
+432 RGC types (Fig. 4a and Supplementary Fig.7a-c).
+433
+434 Differentially expressed gene analysis
+435 To identify genes that are differentially expressed between cell types, we generated 
+436 pseudo-bulk transcriptome of each annotated cell type in individual sample id. We used 
+pyDESEQ2 46 437 to compare two clusters or types using the Wald test and identified genes 
+438 specifically expressed in each cluster or type. Differentially expressed genes are identified 
+439 under q-value < 0.05. The Wald statistics (log2FoldChange divided by lfcSE) was used to rank 
+440 and select the top 10 genes expressed in each type.
+441
+442 Data Availability
+443 The raw sequencing reads of sixteen newly generated samples have been deposited 
+444 at NCBI GEO under the accession GSE243413. The landing page for the MRCA data resources 
+445 is accessible at https://rchenlab.github.io/resources/mouse-atlas.html. Processed cell-by446 gene count matrices, along with cell type annotations, are available on Zenodo. Furthermore, 
+447 both raw and normalized count matrices and cell type annotations are publicly accessible on
+448 the CELLxGENE data collection at https://cellxgene.cziscience.com/collections/a0c84e3f449 a5ca-4481-b3a5-ccfda0a81ecc. The MRCA is also hosted on the Baylor College of Medicine 
+450 data portal at https://mouseatlas.research.bcm.edu. Additionally, access to the MRCA is 
+451 provided on the UCSC Cell Browser at https://retina.cells.ucsc.edu and the Broad Single Cell 
+452 Portal.
+453
+454 Code Availability
+455 All code used for the MRCA project can be found in the MRCA reproducibility GitHub 
+456 repository (https://github.com/RCHENLAB/MouseRetinaAtlas_manuscript). The pipeline to 
+457 process the unpublished and collected public datasets is accessible at 
+458 https://github.com/lijinbio/cellqc.
+459
+460 Acknowledgements
+461 We thank Alice Tian for her meticulous proofreading of the manuscript. This project 
+462 was funded by NIH/NEI R01EY022356, R01EY018571, S10OD032189, Chan Zuckerberg 
+463 Initiative (CZI) award CZF2019-002425, RRF to R.C.
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+10
+464
+465 Author contributions
+466 J.L., J.C., X.C., and R.C. conceptualized and designed the study. R.C. supervised the 
+467 study. X.C. and Y.L. generated scRNA-seq data in this study. J.L., J.M., and S.P. compiled dataset 
+468 collection. J.L., J.C. and S.P. developed the integrated analysis pipeline and performed the 
+469 integration and annotation analysis. J.R.S, G.M., and B.J.F. provided public datasets before 
+470 publishing. N.M.T. provided input for various annotation. All authors wrote, reviewed, and 
+471 contributed to the manuscript.
+472
+473 Competing interests
+474 The authors declare no competing interests.
+475
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+11
+476 References
+477 1 Masland, R. H. The neuronal organization of the retina. Neuron 76, 266-280 (2012). 
+478 https://doi.org:10.1016/j.neuron.2012.10.002
+479 2 Jeon, C. J., Strettoi, E. & Masland, R. H. The major cell populations of the mouse retina. 
+480 J Neurosci 18, 8936-8946 (1998). 
+481 3 Grunert, U. & Martin, P. R. Cell types and cell circuits in human and non-human 
+482 primate retina. Prog Retin Eye Res, 100844 (2020). 
+483 https://doi.org:10.1016/j.preteyeres.2020.100844
+484 4 Vecino, E., Rodriguez, F. D., Ruzafa, N., Pereiro, X. & Sharma, S. C. Glia-neuron 
+485 interactions in the mammalian retina. Prog Retin Eye Res 51, 1-40 (2016). 
+486 https://doi.org:10.1016/j.preteyeres.2015.06.003
+487 5 Boulton, M. & Dayhaw-Barker, P. The role of the retinal pigment epithelium: 
+488 topographical variation and ageing changes. Eye (Lond) 15, 384-389 (2001). 
+489 https://doi.org:10.1038/eye.2001.141
+490 6 Tang, F. et al. mRNA-Seq whole-transcriptome analysis of a single cell. Nat Methods 6, 
+491 377-382 (2009). https://doi.org:10.1038/nmeth.1315
+492 7 Macosko, E. Z. et al. Highly Parallel Genome-wide Expression Profiling of Individual 
+493 Cells Using Nanoliter Droplets. Cell 161, 1202-1214 (2015). 
+494 https://doi.org:10.1016/j.cell.2015.05.002
+495 8 Abdelaal, T. et al. A comparison of automatic cell identification methods for single-cell 
+496 RNA sequencing data. Genome Biol 20, 194 (2019). https://doi.org:10.1186/s13059-
+497 019-1795-z
+498 9 Tran, N. M. et al. Single-Cell Profiles of Retinal Ganglion Cells Differing in Resilience to 
+499 Injury Reveal Neuroprotective Genes. Neuron 104, 1039-1055 e1012 (2019). 
+500 https://doi.org:10.1016/j.neuron.2019.11.006
+501 10 Choi, J. et al. Spatial organization of the mouse retina at single cell resolution by 
+502 MERFISH. Nat Commun 14, 4929 (2023). https://doi.org:10.1038/s41467-023-40674-
+503 3
+504 11 Shekhar, K. et al. Comprehensive Classification of Retinal Bipolar Neurons by Single505 Cell Transcriptomics. Cell 166, 1308-1323 e1330 (2016). 
+506 https://doi.org:10.1016/j.cell.2016.07.054
+507 12 Yan, W. et al. Mouse Retinal Cell Atlas: Molecular Identification of over Sixty Amacrine 
+508 Cell Types. J Neurosci 40, 5177-5195 (2020). 
+509 https://doi.org:10.1523/JNEUROSCI.0471-20.2020
+510 13 Jacobi, A. et al. Overlapping transcriptional programs promote survival and axonal 
+511 regeneration of injured retinal ganglion cells. Neuron 110, 2625-2645 e2627 (2022). 
+512 https://doi.org:10.1016/j.neuron.2022.06.002
+513 14 Ma, J. et al. Sample multiplexing for retinal single-cell RNA-sequencing. (in preparation 
+514 for submission) (2024). 
+515 15 Benhar, I. et al. Temporal single-cell atlas of non-neuronal retinal cells reveals 
+516 dynamic, coordinated multicellular responses to central nervous system injury. Nat 
+517 Immunol 24, 700-713 (2023). https://doi.org:10.1038/s41590-023-01437-w
+518 16 Tarhan, L. et al. Single Cell Portal: an interactive home for single-cell genomics data. 
+519 bioRxiv (2023). https://doi.org:10.1101/2023.07.13.548886
+520 17 Koso, H. et al. CD73, a novel cell surface antigen that characterizes retinal 
+521 photoreceptor precursor cells. Invest Ophthalmol Vis Sci 50, 5411-5418 (2009). 
+522 https://doi.org:10.1167/iovs.08-3246
+523 18 Kay, J. N. et al. Retinal ganglion cells with distinct directional preferences differ in 
+524 molecular identity, structure, and central projections. J Neurosci 31, 7753-7762 
+525 (2011). https://doi.org:10.1523/JNEUROSCI.0907-11.2011
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+12
+526 19 Chintalapudi, S. R. et al. Isolation and Molecular Profiling of Primary Mouse Retinal 
+527 Ganglion Cells: Comparison of Phenotypes from Healthy and Glaucomatous Retinas. 
+528 Front Aging Neurosci 8, 93 (2016). https://doi.org:10.3389/fnagi.2016.00093
+529 20 Lopez, R., Regier, J., Cole, M. B., Jordan, M. I. & Yosef, N. Deep generative modeling 
+530 for single-cell transcriptomics. Nat Methods 15, 1053-1058 (2018). 
+531 https://doi.org:10.1038/s41592-018-0229-2
+532 21 Bernstein, N. J. et al. Solo: Doublet Identification in Single-Cell RNA-Seq via Semi533 Supervised Deep Learning. Cell Syst 11, 95-101 e105 (2020). 
+534 https://doi.org:10.1016/j.cels.2020.05.010
+535 22 Liang, Q. et al. Single-nuclei RNA-seq on human retinal tissue provides improved 
+536 transcriptome profiling. Nat Commun 10, 5743 (2019). 
+537 https://doi.org:10.1038/s41467-019-12917-9
+538 23 Peng, Y. R. et al. Molecular Classification and Comparative Taxonomics of Foveal and 
+539 Peripheral Cells in Primate Retina. Cell 176, 1222-1237 e1222 (2019). 
+540 https://doi.org:10.1016/j.cell.2019.01.004
+541 24 Chow, R. L. et al. Control of late off-center cone bipolar cell differentiation and visual 
+542 signaling by the homeobox gene Vsx1. Proc Natl Acad Sci U S A 101, 1754-1759 (2004). 
+543 https://doi.org:10.1073/pnas.0306520101
+544 25 Nadal-Nicolas, F. M. et al. True S-cones are concentrated in the ventral mouse retina 
+545 and wired for color detection in the upper visual field. Elife 9 (2020). 
+546 https://doi.org:10.7554/eLife.56840
+547 26 Raymond, I. D., Vila, A., Huynh, U. C. & Brecha, N. C. Cyan fluorescent protein 
+548 expression in ganglion and amacrine cells in a thy1-CFP transgenic mouse retina. Mol 
+549 Vis 14, 1559-1574 (2008). 
+550 27 Firth, S. I., Varela, C., De la Villa, P. & Marshak, D. W. Cholecystokinin-like 
+551 immunoreactive amacrine cells in the rat retina. Vis Neurosci 19, 531-540 (2002). 
+552 https://doi.org:10.1017/s0952523802194156
+553 28 Kerstein, P. C., Leffler, J., Sivyer, B., Taylor, W. R. & Wright, K. M. Gbx2 Identifies Two 
+554 Amacrine Cell Subtypes with Distinct Molecular, Morphological, and Physiological 
+555 Properties. Cell Rep 33, 108382 (2020). https://doi.org:10.1016/j.celrep.2020.108382
+556 29 Theofilas, P., Steinhauser, C., Theis, M. & Derouiche, A. Morphological study of a 
+557 connexin 43-GFP reporter mouse highlights glial heterogeneity, amacrine cells, and 
+558 olfactory ensheathing cells. J Neurosci Res 95, 2182-2194 (2017). 
+559 https://doi.org:10.1002/jnr.24055
+560 30 Kim, I. J., Zhang, Y., Yamagata, M., Meister, M. & Sanes, J. R. Molecular identification 
+561 of a retinal cell type that responds to upward motion. Nature 452, 478-482 (2008). 
+562 https://doi.org:10.1038/nature06739
+563 31 Vaney, D. I., Sivyer, B. & Taylor, W. R. Direction selectivity in the retina: symmetry and 
+564 asymmetry in structure and function. Nat Rev Neurosci 13, 194-208 (2012). 
+565 https://doi.org:10.1038/nrn3165
+566 32 Rousso, D. L. et al. Two Pairs of ON and OFF Retinal Ganglion Cells Are Defined by 
+567 Intersectional Patterns of Transcription Factor Expression. Cell Rep 15, 1930-1944 
+568 (2016). https://doi.org:10.1016/j.celrep.2016.04.069
+569 33 Kolb, H., Linberg, K. A. & Fisher, S. K. Neurons of the human retina: a Golgi study. J 
+570 Comp Neurol 318, 147-187 (1992). https://doi.org:10.1002/cne.903180204
+571 34 Shekhar, K. & Sanes, J. R. Generating and Using Transcriptomically Based Retinal Cell 
+572 Atlases. Annu Rev Vis Sci 7, 43-72 (2021). https://doi.org:10.1146/annurev-vision573 032621-075200
+574 35 Young, R. W. Cell differentiation in the retina of the mouse. Anat Rec 212, 199-205 
+575 (1985). https://doi.org:10.1002/ar.1092120215
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+13
+576 36 Garg, M. et al. Meta-analysis of COVID-19 single-cell studies confirms eight key 
+577 immune responses. Sci Rep 11, 20833 (2021). https://doi.org:10.1038/s41598-021-
+578 00121-z
+579 37 Prazanowska, K. H. & Lim, S. B. An integrated single-cell transcriptomic dataset for 
+580 non-small cell lung cancer. Sci Data 10, 167 (2023). https://doi.org:10.1038/s41597-
+581 023-02074-6
+582 38 Siegert, S. et al. Transcriptional code and disease map for adult retinal cell types. Nat 
+583 Neurosci 15, 487-495, S481-482 (2012). https://doi.org:10.1038/nn.3032
+584 39 Zheng, G. X. et al. Massively parallel digital transcriptional profiling of single cells. Nat 
+585 Commun 8, 14049 (2017). https://doi.org:10.1038/ncomms14049
+586 40 Heiser, C. N., Wang, V. M., Chen, B., Hughey, J. J. & Lau, K. S. Automated quality control 
+587 and cell identification of droplet-based single-cell data using dropkick. Genome Res
+588 31, 1742-1752 (2021). https://doi.org:10.1101/gr.271908.120
+589 41 Young, M. D. & Behjati, S. SoupX removes ambient RNA contamination from droplet590 based single-cell RNA sequencing data. Gigascience 9 (2020). 
+591 https://doi.org:10.1093/gigascience/giaa151
+592 42 McGinnis, C. S., Murrow, L. M. & Gartner, Z. J. DoubletFinder: Doublet Detection in 
+593 Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors. Cell Syst 8, 329-
+594 337 e324 (2019). https://doi.org:10.1016/j.cels.2019.03.003
+595 43 Lopez, R., Regier, J., Cole, M. B., Jordan, M. I. & Yosef, N. Deep generative modeling 
+596 for single-cell transcriptomics. Nature Methods 15, 1053-1058 (2018). 
+597 https://doi.org:10.1038/s41592-018-0229-2
+598 44 Traag, V. A., Waltman, L. & van Eck, N. J. From Louvain to Leiden: guaranteeing well599 connected communities. Scientific Reports 9, 5233 (2019). 
+600 https://doi.org:10.1038/s41598-019-41695-z
+601 45 Wolf, F. A., Angerer, P. & Theis, F. J. SCANPY: large-scale single-cell gene expression 
+602 data analysis. Genome Biol 19, 15 (2018). https://doi.org:10.1186/s13059-017-1382-
+603 0
+604 46 Muzellec, B., Telenczuk, M., Cabeli, V. & Andreux, M. PyDESeq2: a python package for 
+605 bulk RNA-seq differential expression analysis. Bioinformatics 39 (2023). 
+606 https://doi.org:10.1093/bioinformatics/btad547
+607
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+b
+d
+c
+e
+a
+Figure 1. Overview of single cell atlas of the mouse retina
+Generation of unpublished 
+scRNA-seq datasets
+Curation of public 
+datasets
+Cell Ranger
+CellQC: Empty droplet, 
+ambient RNA, doublet 
+removal
+scVI: data integration
+Leiden clustering
+Major class and subclass cell type annotation
+Consensus cell type annotation
+Accessible interactive web browser: CELLxGENE,
+UCSC Cell Browser, Single Cell Portal
+Cell Ranger
+Drop-seq
+Doublet removal
+Processing
+Data
+collection
+Data
+integration
+Application
+Rpe65
+Pdgfrb
+Pecam1
+Cd74
+Gfap
+Slc1a3
+Onecut1
+Rbpms
+Pax6
+Vsx2
+Arr3
+Pde6a
+Rod
+Cone
+BC
+AC
+RGC
+HC
+MG
+Astrocyte
+Microglia
+Endothelial
+Pericyte
+RPE
+% expressed
+0
+25
+50
+75
+0
+1
+2
+3
+Expression
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 1. Overview of single cell atlas of the mouse retina
+(a) The workflow for generating unpublished scRNA-seq datasets. The data generation process involved 
+using mice aged from P14 to 12 months. Following retina dissection and cell dissociation, single cells were 
+enriched using autoMACS with Anti-CE73-PE antibodies or Anti-CD90.1 beads for specific amacrine, bipolar, 
+and retinal ganglion cells. Subsequently, 10X single-cell RNA sequencing was performed on both the 
+unenriched and enriched single cells. The retained single cells were then utilized in downstream atlas 
+construction. (b) The integrated analysis workflow for constructing the MRCA. To construct a 
+comprehensive unified single-cell reference of the mouse retina, we generated 16 unpublished scRNA-seq 
+samples of the mouse retina and incorporated four curated public datasets to enhance specific amacrine, 
+bipolar and retinal ganglion cells. The collected data were processed using the Cell Ranger and CellQC
+pipeline to produce feature count matrices. Feature counts were then processed to remove estimated 
+empty droplets, ambient RNA, and doublets. The retained cells were integrated using scVI to eliminate 
+batch effects across samples. The trained low-dimensional embeddings were used to calculate cell 
+dissimilarities and identify clustering through a two-level clustering approach. Major class and subclass cell 
+types were annotated using canonical marker genes and public labeling. To facilitate user-friendly access 
+and exploration, the MRCA was deployed on accessible interactive web browsers, including CELLxGENE, 
+UCSC Cell Browser, and Single Cell Portal. (c) Pie chart displaying the percentage of cells contributed by each 
+dataset used in the MRCA. (d) UMAP visualization of the MRCA colored by major classes. (e) Dot plot 
+illustrating the expression of canonical markers for major classes.
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+a b
+c
+Figure 2. Bipolar cells
+d
+e
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 2. Bipolar cells
+(a) UMAP visualization of BCs colored by public cell type labels from Shekhar et al. 2016. The newly 
+discovered cells without public labeling are colored in gray. (b) BCs colored by the 15 annotated annotated 
+cell types. (c) Dot plot of BC type marker gene expression in the 15 types. (d) Pie chart showing the 
+percentage each data source making up BC1A and BC1B population. (e) Dot plot of new markers for three 
+BC types: BC4, BC5A, and BC8. The three new markers exhibit more exclusive expression patterns. 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 3. Amacrine cells
+b
+c
+a
+d
+e
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 3. Amacrine cells
+(a) UMAP visualization of AC cells colored by the annotated types. (b) Dot plot of canonical marker gene 
+expression in AC types. (c) Four previously under-clustered AC types, i.e., AC18, AC20, AC36, and AC45, are 
+split into two distinct clusters at a high resolution of clustering. (d) Visualization of AC cells colored by AC 
+types at a high clustering resolution. (e) Dot plot of DEGs expressed in two split clusters for AC_36, 
+stratifying Gbx2+ AC types in AC_36. 
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 4. Retinal ganglion cells
+a
+c
+b
+d
+c d
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 4. Retinal ganglion cells
+(a) UMAP visualization of RGC cells colored by the annotated types. (b) Dot plot of canonical marker gene 
+expression in RGC types. (c) Two previously under-clustered RGC types, i.e., 16_ooDS_DV and 18_Novel, are 
+split into two distinct clusters at a high resolution of clustering. Dot plot of Calb1 and Calb2 in the two split 
+clusters of 16_ooDS_DV. (d) Visualization of RGC cells colored by RGC types at a high clustering resolution.
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+a
+c
+Figure 5. Visualization of MRCA in accessible interactive browsers
+b
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
+Figure 5. Visualization of MRCA in accessible interactive browsers
+(a) Visualization of the MRCA in the CELLxGENE browser. The homepage depicts three panels to explore the 
+MRCA. The left panel contains the pre-computed features facilitating the selection of cells by interested 
+categories. The middle panel is the UMAP of the MRCA, colored by the annotated major classes. The right 
+panel allows input of quick gene symbols and gene sets. (b) Visualization of the subclass RGC atlas in the 
+CELLxGENE browser. The middle panel depicts RGCs colored by the reclassified names selected in the left 
+panel. (c) Visualization of gene expression for a BC9 marker, Cpne9, in the BC atlas. The left subfigure shows 
+the BC types, and the right subfigure highlights the normalized gene expression values of Cpne9 for BC9 
+type in the middle panel.
+perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+bioRxiv preprint doi: https://doi.org/10.1101/2024.01.24.577060; this version posted January 28, 2024. The copyright holder for this
