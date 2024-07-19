@@ -45,3 +45,11 @@ make_threshold_heatmap <- function(Zthres) {
   ggsave(filename = paste0("figures/zheat_majorclass_threshold.", Zthres, ".png"), zheat)
 }
 make_threshold_heatmap(2.5)
+
+library(data.table)
+
+metadata = fread("spreadsheets/obs.csv")
+
+raw_counts_celltype = ggplot(metadata, aes(x = majorclass, y = nCount_RNA)) +
+  geom_boxplot(outlier.size = 0) + theme_bw()
+ggsave("figures/raw_counts_celltype_boxplot.png", raw_counts_celltype)
