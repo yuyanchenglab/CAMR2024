@@ -22,6 +22,11 @@ spreadsheets/ovr_top_20_genes_by_cell_type_reproduction.csv
 
 models/
 
-
+raw_mean_variable_genes.csv
+raw_subtype_mean_variable_genes.csv
+spreadsheets/normalized_majorclass_mean_expression_sensitive.csv
+spreadsheets/normalized_sub_mean_expression_sensitive.csv
+spreadsheets/raw_majorclass_mean_expression_sensitive.csv
+spreadsheets/raw_sub_mean_expression_sensitive.csv
 
 spreadsheets/obs.csv
