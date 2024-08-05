@@ -9,6 +9,8 @@ library(dplyr) # pipe
 library(data.table) # fast table manip
 library(ggplot2)
 library(stringr)
+library(ggvenn) # venn
+library(ggVennDiagram) # upset plot
 
 cheng_theme = new.env() # Note: Use dollar sign operator to access values
 source("/project/hipaa_ycheng11lab/software/apps/github/figures/theme.cheng.module.R", local = cheng_theme)
@@ -38,6 +40,34 @@ curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath)
 queriedMinor <- fread(queriedMinorPath)
 
+## Check queried genes ----
+
+queried_source_major = fread("spreadsheets/ovr_top_20_genes_by_cell_type_reproduction.csv")
+queried_original_major = fread("spreadsheets/ovr_top_20_genes_by_cell_type.csv")
+queried_source_minor = fread("spreadsheets/ovr_top_20_genes_by_sub_cell_type_reproduction.csv")
+
+all(colnames(queriedMajor)[-1] %in% unique(queried_source_major$Gene))
+unique(queried_source_major$Gene)[!colnames(queriedMajor)[-1] %in% unique(queried_source_major$Gene)]
+
+all(colnames(queriedMajor)[-1] %in% unique(queried_original_major$Gene))
+unique(queried_original_major$Gene)[!colnames(queriedMajor)[-1] %in% unique(queried_original_major$Gene)]
+
+all(colnames(queriedMinor)[-1] %in% unique(queried_source_minor$Gene))
+
+### Pos only?
+
+queried_source_major_pos = queried_source_major[Coefficient > 0, ]
+queried_source_minor_pos =queried_source_minor[Coefficient > 0, ]
+
+qsjp = unique(queried_source_major_pos$Gene)
+all(colnames(queriedMajor)[-1] %in% qsjp)
+colnames(queriedMajor)[-1][!colnames(queriedMajor)[-1] %in% qsjp]
+
+# Just Cd74
+
+all(colnames(queriedMinor)[-1] %in% unique(queried_source_minor_pos$Gene))
+
+
 # Munge ----
 
 # Columns: Name, Parent_Name, Marker, Marker_Function, Marker_Source, Marker_Notes
@@ -54,7 +84,7 @@ queriedMinor <- fread(queriedMinorPath)
 #### Replace empty with NA
 #### Fixed rows with more than 1 gene (338)
 #### Renamed generic subtypes
-### Close and Load
+### Close and Load Here
 
 # Move markers as left as possible
 curated[is.na(`Type within Subclass`) & # The minor type is undefined
@@ -75,7 +105,6 @@ curated[, cbind(gene_cols) := lapply(.SD, str_to_title), .SDcols = gene_cols ]
 major_curated = curated[is.na(`Type-Specific Markers`) & is.na(Markers), ] %>%
   reframe(Name = `Cell Type`,
           Parent_Name = "Root",
-          Level = 1,
           Marker = `Cell Marker`,
           Marker_Function = `Function of Marker`,
           Marker_Source = `Image Link`,
@@ -84,7 +113,6 @@ major_curated = curated[is.na(`Type-Specific Markers`) & is.na(Markers), ] %>%
 middl_curated = curated[is.na(`Type-Specific Markers`) & is.na(`Cell Marker`), ] %>%
   reframe(Name = Subclass,
           Parent_Name = `Cell Type`,
-          Level = 2,
           Marker = Markers,
           Marker_Function = `Function of Marker`,
           Marker_Source = `Image Link`,
@@ -93,7 +121,6 @@ middl_curated = curated[is.na(`Type-Specific Markers`) & is.na(`Cell Marker`), ]
 minor_curated = curated[is.na(Markers) & is.na(`Cell Marker`), ] %>%
   reframe(Name = `Type within Subclass`,
           Parent_Name = Subclass,
-          Level = 3,
           Marker = `Type-Specific Markers`,
           Marker_Function = `Function of Marker`,
           Marker_Source = `Image Link`,
@@ -103,7 +130,8 @@ minor_curated = curated[is.na(Markers) & is.na(`Cell Marker`), ] %>%
 nrow(minor_curated) + nrow(major_curated) + nrow(middl_curated) == nrow(curated) # TRUE
 
 clean_curated = rbind(major_curated, middl_curated, minor_curated)
-clean_curated$Set = "Clean"
+clean_curated$Set = "Curated"
+clean_curated$Original_Marker = clean_curated$Marker
 
 # Next time, I think that only a few changes should be made to the original file
 # to make it human understandable and machine understandable
@@ -126,6 +154,7 @@ clean_queried =
               colnames(queriedMinor)[-1] %>% str_to_title())) %>%
   as.data.frame()
 clean_queried$Set = "Query"
+clean_queried$Original_Marker = clean_queried$Marker
 
 ## Harmonize the datasets ----
 ## It would take longer to do this programmatically than manually, so here's my manual effort.
@@ -133,10 +162,12 @@ clean_queried$Set = "Query"
 ##
 ## At some free time, check whether there was a column with matching names
 ##
-## 1) Remove plurals
-## 2) Group names to title case
-## 3) Written out to shorthand
-##
+## 1) Remove plurals, curate
+## 2) Group names to uppercase, curate
+## 3) Individual manual adjustment -- Written out to shorthand, curate
+## 4) Remove AC underscores, query
+## 5) Put numbers at end, query
+## 6) Add intermediates to tree, curate
 ##
 
 unique(clean_curated$Name) %>% length() # 173 Groups # reduced to 87???
@@ -224,13 +255,13 @@ cbind(from = clean_queried$Name[clean_queried$Name %in% names(QUERY2CURATE)],
 clean_queried$Name[clean_queried$Name %in% names(QUERY2CURATE)] =
   QUERY2CURATE[match(clean_queried$Name, names(QUERY2CURATE)) %>% na.omit()]
 unique(clean_queried$Name) %>% length() # 108 Groups, we lost 1! W3D1 used to be two
-num_matching_groups() # 101 / 108
+num_matching_groups() # 101 / 108, 103/108 when taking the plunge with M1 subclasses
 
 clean_queried$Name %>% unique() %>% setdiff(c(clean_curated$Parent_Name, clean_curated$Name) %>% unique())
-# "RGC"        "NOVEL_10"   "OODS_NT_12" "OODS_DV_16" "NOVEL_30"   "M1_33"      "M1DUP_40"
+# "RGC"        "NOVEL_10"   "OODS_NT_12" "OODS_DV_16" "NOVEL_30"  | also before taking plunge:  "M1_33"      "M1DUP_40"
 # 7 Classes
 
-# Add Original Names?
+# Add Original Names? JM 08/02/2024 ---- later it's just extra, needless work
 
 # Let's add a layer to the tree
 # 1) Add the new node with any of its markers or even none to curated
@@ -238,31 +269,79 @@ clean_queried$Name %>% unique() %>% setdiff(c(clean_curated$Parent_Name, clean_c
 # 3) Update the name in Query
 # 4) Done
 
-# RGC
-## children: grep("RGC")
+new_cells = c("RGC", "NT-OODSGC", "DV-OODSGC")
+new_parents = c("GC","OODSGC","OODSGC")
+clean_curated =
+  lapply(1:length(new_cells), \(i) {
+    clean_curated[clean_curated$Name == new_parents[i], ] %>%
+      # Inherit markers from above, not below though
+      mutate(Parent_Name = Name,
+             Name = new_cells[i],
+             Marker_Source = "JM 08/02/2024 Query", # Override source
+             Marker_Notes = "JM 08/02/2024 Added Manually",
+             Original_Marker = NA) # Override notes
+  }) %>% t() %>%
+  rbindlist() %>%
+  rbind(clean_curated)
 
-# OODS_NT_12
-## OODS_N OODST
+# RGC: except J-RGC that are a subsubtype
+clean_curated$Parent_Name[grep("^[^J]*RGC", clean_curated$Name)] = "RGC" # JM Ran @ 3:17
 
-# OODS_DV_16
-## OODSV OODSD
+# NT-OODSGC: OODS_N but not OODST # They don't express the OODSGC marker
+clean_curated$Parent_Name[clean_curated$Name == "N-OODSGC"] = "NT-OODSGC"
+clean_curated$Parent_Name[clean_curated$Name == "MAYBE T-OODSGC"] = "GC"
 
-# M1_33 M1DUP40
-## Combine into just M1
-
-# "GC"->"Other"-> Novel_10 & Novel_30
-
-# Add Original Names?
+# DV-OODSGC: OODSV OODSD
+clean_curated$Parent_Name[clean_curated$Name %in% c("V-OODSGC", "D-OODSGC")] = "DV-OODSGC"
 
 # Stop and Review ----
+
+# 3:35 -- It all looks good to me now.
+
+fwrite(clean_curated, "spreadsheets/curated_table.txt")
+fwrite(clean_queried, "spreadsheets/queried_table.txt")
 
 # Explore and Compare ----
 # clean_curated, clean_queried
 
-# Query had fewer groups, but more markers...
+clean_curated$Name %>% unique %>% length
+clean_queried$Name %>% unique %>% length
 
-Marker_Intersection = merge(clean_curated, clean_queried, by = c("Name", "Marker"), all = F)
-dplyr::inner_join(clean_curated, clean_queried, by = c("Name", "Marker"))
+clean_curated$Marker %>% unique %>% length
+clean_queried$Marker %>% unique %>% length
+
+gene_list = list(Curated = unique(clean_curated$Marker), Queried = unique(clean_queried$Marker))
+cell_list = list(Curated = unique(clean_curated$Name), Queried = unique(clean_queried$Name))
+
+# ggvenn(gene_list, auto_scale = T, text_size = 5)
+# ggsave(paste0(plotPath, "VD.Genes.png"))
+
+euler_gene = euler(gene_list)
+vd = plot(euler_gene, quantities = list(fontsize = 20), main = list(fontsize = 20, label = "Gene List Overlap", vjust = 1), labels = list(fontsize = 20))
+ggsave(paste0(plotPath, "VD.Genes.png"), vd)
+
+upGene = ggVennDiagram(gene_list, force_upset = TRUE)
+ggsave(paste0(plotPath, "Upset.Genes.png"), upGene, width = 6, height = 3)
+
+# ggvenn(cell_list, auto_scale = T, text_size = 5)
+# ggsave(paste0(plotPath, "VD.Cells.png"))
+
+upName = ggVennDiagram(cell_list, force_upset = TRUE)
+ggsave(paste0(plotPath, "Upset.Cells.png"), upName, width = 6, height = 3)
+
+euler_cell = euler(cell_list)
+vd = plot(euler_cell, quantities = list(fontsize = 20), main = list(fontsize = 20, label = "Cell List Overlap", vjust = 1), labels = list(fontsize = 20))
+ggsave(paste0(plotPath, "VD.Cells.png"), vd)
+
+## Inheritance ----
+
+# Try to cascade the gene
+
+# DFS
+while (nrow(sentinel)) {
+  clean_curated = rbindlist(list(clean_curated, clean_curated$Marker[clean_curated$Parent_Name[sentinel]]))
+}
+
 # Scratch ----
 
 if (FALSE) {
@@ -276,4 +355,14 @@ if (FALSE) {
   missing = curated[, sapply(.SD, is.na) %>% rowSums() %>% {. == 2}, .SDcols = gene_cols]
 
   curated[!missing, .SD, .SDcols = gene_cols]
+
+  # 08/02/2024
+
+  # "GC"->"Other"-> Novel_10 & Novel_30 from query to match curated
+
+  clean_curated$Parent_Name[clean_curated$Name == "NOVEL_30"]  # They don't express the OODSGC marker
+  # library(VennDiagram)
+  #
+  # venn.diagram(gene_list, filename = paste0(plotPath, "VD.Genes.png"), main = "Gene List Overlap", force.unique = TRUE)
+
 }

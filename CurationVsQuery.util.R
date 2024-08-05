@@ -24,24 +24,25 @@ CURATE2QUERY =
 
 # The Other Side ----
 # Written after ACs were fixed
-View(clean_curated %>% reframe(Name, Parent_Name) %>% distinct())
-clean_queried$Name %>% unique() %>%
-  setdiff(c(clean_curated$Parent_Name, clean_curated$Name) %>% unique()) %>%
-  dput()
+# View(clean_curated %>% reframe(Name, Parent_Name) %>% distinct())
+# clean_queried$Name %>% unique() %>%
+#   setdiff(c(clean_curated$Parent_Name, clean_curated$Name) %>% unique()) %>%
+#   dput()
 
 QUERY2CURATE =
-c(#"RGC", "GC", # There is no plain "RGC" weird
-  #"OODS_NT_12", "OODSGC", Many to One
-  #"OODS_DV_16", "OODSGC", Many to One
-  "W3D1.1_1", "W3D1",
+c(#"RGC", # There is no plain "RGC" weird in curated
+  "OODS_NT_12", "NT-OODSGC", # Many to One, not in curated
+  "OODS_DV_16", "DV-OODSGC", # Many to One, not in curated
+  "W3D1.1_1", "W3D1", # Executive Decision to combine
   "TBR1_S2_21", "TBR1-S1",
-  "M5_22", "M3, M5, OR M6",
+  "M5_22", "M3, M5, OR M6", # This one is painful
   "W3D2_23", "W3D2",
   "FMIDIOFF_28", "F-MIDI-OFF",
-  "W3D1.2_2", "W3D1",
+  "W3D1.2_2", "W3D1", # Executive Decision
   "M2_31", "M2",
   "F_NOVEL_32", "F-NOVEL",
-  # "M1_33", Many to One
+  "M1_33", "M1B", # based solely on expression in the query of Opn4 in the other one
+  "M1DUP_40", "M1A", # based solely on expression in the query of Opn4
   "FMINION_3", "F-MIDI-ON",
   "ALPHAONT_41", "ALPHAON-T",
   "ALPHAOFFS_42", "ALPHAOFF-S",
