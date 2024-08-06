@@ -17,11 +17,10 @@ Animate_UMAP/camr_filtered.RDS
 Animate_UMAP/harmony_bastardization_project.html
 Animate_UMAP/harmony_bastardization_project_large.html
 Animate_UMAP/harmony_bastardization_project_small.html
-spreadsheets/csv_same
-spreadsheets/ovr_top_20_genes_by_cell_type_reproduction.csv
 
 models/
-
+data/
+logs/
 raw_mean_variable_genes.csv
 raw_subtype_mean_variable_genes.csv
 spreadsheets/normalized_majorclass_mean_expression_sensitive.csv
