@@ -446,6 +446,21 @@ for (cell_type in unique(clean_merged$Major_Name)) {
     fwrite(paste0("spreadsheets/merged_curated-queried_", cell_type, "_markers.txt"), sep = '\t')
 }
 
+# Wait, how many of the curated genes are in the variable genes in the first place?
+
+variable_genes = fread("data/CAMR_genes.csv")
+clean_curated$Marker %>% unique() %>% length()
+curated_markers = unique(clean_curated$Marker)
+variable_genes_formatted = str_to_title(variable_genes$feature_name)
+curated_markers[curated_markers %in% variable_genes_formatted]
+curated_markers[!curated_markers %in% variable_genes_formatted]
+data.frame(Curated = curated_markers,
+           Highly_Variable = curated_markers %in% variable_genes_formatted) %>%
+  fwrite("spreadsheets/highly_variable_curated_markers.txt", sep = '\t')
+
+sum(major_curated$Marker %>% unique() %>% str_to_title() %in% variable_genes_formatted)
+sum(middl_curated$Marker %>% unique() %>% str_to_title() %in% variable_genes_formatted)
+
 # Scratch ----
 
 if (FALSE) {

@@ -1,0 +1,22 @@
+Name	Marker	Curated	Queried
+ENDOTHELIAL	Adgrl4		Queried
+ENDOTHELIAL	Arl15		Queried
+ENDOTHELIAL	Bsg		Queried
+ENDOTHELIAL	Cldn5	Curated	Queried
+ENDOTHELIAL	Ctla2a		Queried
+ENDOTHELIAL	Flt1		Queried
+ENDOTHELIAL	Id1		Queried
+ENDOTHELIAL	Igfbp7		Queried
+ENDOTHELIAL	Itm2a		Queried
+ENDOTHELIAL	Klf2		Queried
+ENDOTHELIAL	Ly6a		Queried
+ENDOTHELIAL	Ly6c1	Curated	Queried
+ENDOTHELIAL	Mecom		Queried
+ENDOTHELIAL	Pecam1	Curated	
+ENDOTHELIAL	Plcb1		Queried
+ENDOTHELIAL	Pltp		Queried
+ENDOTHELIAL	Ptprb		Queried
+ENDOTHELIAL	Ptprm		Queried
+ENDOTHELIAL	Rbpms	Curated	
+ENDOTHELIAL	Slco1a4		Queried
+ENDOTHELIAL	Tm4sf1		Queried

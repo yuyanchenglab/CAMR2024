@@ -1,0 +1,3 @@
+Name	Marker	Curated	Queried
+EAR2+ MONOCYTE	Ace	Curated	
+EAR2+ MONOCYTE	Ear2	Curated	

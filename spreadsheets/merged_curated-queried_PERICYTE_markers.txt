@@ -1,0 +1,21 @@
+Name	Marker	Curated	Queried
+PERICYTE	Acta2	Curated	
+PERICYTE	Atp1a2		Queried
+PERICYTE	Cald1		Queried
+PERICYTE	Crip1		Queried
+PERICYTE	Dlc1		Queried
+PERICYTE	Ebf1		Queried
+PERICYTE	Igfbp7		Queried
+PERICYTE	Mfge8		Queried
+PERICYTE	Mgp	Curated	Queried
+PERICYTE	Myl9		Queried
+PERICYTE	Mylk		Queried
+PERICYTE	Ndufa4l2		Queried
+PERICYTE	Pde3a		Queried
+PERICYTE	Pdgfrb	Curated	Queried
+PERICYTE	Plcl1		Queried
+PERICYTE	Rbms3		Queried
+PERICYTE	Rbpms	Curated	
+PERICYTE	Rgs5	Curated	Queried
+PERICYTE	Sparcl1		Queried
+PERICYTE	Vtn		Queried

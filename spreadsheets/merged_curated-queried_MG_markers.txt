@@ -1,0 +1,25 @@
+Name	Marker	Curated	Queried
+MG	Abca8a		Queried
+MG	Acsl3		Queried
+MG	Aqp4	Curated	Queried
+IFN-RESPONSE MG	Bst2	Curated	
+MG	Clu		Queried
+MG	Col9a1		Queried
+MG	Dbi		Queried
+MG	Dkk3		Queried
+REACTIVE MG	Gfap	Curated	
+MG	Glul	Curated	Queried
+MG	Gng5		Queried
+MG	Gpr37		Queried
+IFN-RESPONSE MG	Ifit3	Curated	
+MG	Il33		Queried
+IFN-RESPONSE MG	Isg15	Curated	
+MG	Mfge8		Queried
+REACTIVE MG	Mt2	Curated	
+IFN-RESPONSE MG	Oasl2	Curated	
+MG	Pax6	Curated	
+MG	Prdx6		Queried
+MG	Rlbp1	Curated	Queried
+MG	Slc1a3	Curated	
+MG	Spc25		Queried
+REACTIVE MG	Vim	Curated	

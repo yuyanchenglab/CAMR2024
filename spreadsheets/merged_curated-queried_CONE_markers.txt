@@ -1,0 +1,19 @@
+Name	Marker	Curated	Queried
+CONE	Arr3	Curated	Queried
+CONE	Cdh18		Queried
+CONE	Cngb3		Queried
+CONE	Gm32442		Queried
+CONE	Gnat2		Queried
+CONE	Gnb3		Queried
+CONE	Gngt2		Queried
+CONE	Lrfn2		Queried
+CONE	Mylk		Queried
+CONE	Opn1mw		Queried
+CONE	Opn1sw		Queried
+CONE	Pals2		Queried
+CONE	Pcdh15		Queried
+CONE	Pde6c		Queried
+CONE	Pde6h		Queried
+CONE	Rbp3		Queried
+CONE	Rtbdn		Queried
+CONE	Slc24a2		Queried
