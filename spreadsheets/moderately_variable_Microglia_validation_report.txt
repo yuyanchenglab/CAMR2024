@@ -1,0 +1,8 @@
+                    precision    recall  f1-score   support
+
+         Microglia       1.00      1.00      1.00      1205
+Microglia(cycling)       1.00      0.83      0.91        12
+
+          accuracy                           1.00      1217
+         macro avg       1.00      0.92      0.95      1217
+      weighted avg       1.00      1.00      1.00      1217
