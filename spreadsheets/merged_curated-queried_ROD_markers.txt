@@ -11,8 +11,6 @@ ROD	Nefm		Queried
 ROD	Pcp4		Queried
 ROD	Pde6a	Curated	
 ROD	Pde6g		Queried
-ROD	Pex5l		Queried
 ROD	Rho		Queried
 ROD	Rp1		Queried
 ROD	Sag		Queried
-ROD	Tmem108		Queried

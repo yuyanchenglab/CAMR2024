@@ -1,7 +1,6 @@
 Name	Marker	Curated	Queried
 RPE	Col8a1		Queried
 RPE	Ctsd		Queried
-RPE	Gsta4		Queried
 RPE	Mt3		Queried
 RPE	Rbp1		Queried
 RPE	Rdh5	Curated	Queried

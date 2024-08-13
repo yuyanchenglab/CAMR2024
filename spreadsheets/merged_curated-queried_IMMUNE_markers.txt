@@ -1,4 +1,5 @@
 Name	Marker	Curated	Queried
+EAR2+ MONOCYTE	Ace	Curated	
 DENDRITIC CELL	Ccr2	Curated	
 MONOCYTE	Ccr2	Curated	
 DENDRITIC CELL	Cd209a	Curated	
@@ -7,6 +8,7 @@ T CELL	Cd3d	Curated
 DENDRITIC CELL	Cd74	Curated	
 B CELL	Cd79a	Curated	
 SCLERAL FIBROBLAST	Dcn	Curated	
+EAR2+ MONOCYTE	Ear2	Curated	
 SCLERAL FIBROBLAST	Igfbp5	Curated	
 PLASMA B CELL	Igha	Curated	
 PLASMA B CELL	Jchain	Curated	

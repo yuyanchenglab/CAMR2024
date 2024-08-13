@@ -12,7 +12,7 @@ CURATE2QUERY =
     "ROD BCS (RBCS)", "RBC",
     "MULLER GLIA", "MG",
     "ENDOTHELIAL CELL", "ENDOTHELIAL",
-    "GANGLION CELL", "GC"
+    "GANGLION CELL", "RGC"
     # "M3, M5, OR M6", # This needed to be fixed from the %s:/, /,\n/g
 ) %>%
   matrix(nrow = 2) %>% t() %>%
@@ -51,8 +51,8 @@ c(#"RGC", # There is no plain "RGC" weird in curated
   "M1DUP_40", "M1A", # based solely on expression in the query of Opn4
   "FMINION_3", "F-MINI-ON",
   "ALPHAONT_41", "ALPHAON-T",
-  "ALPHAOFF_42", "ALPHAOFF-S", # Process of elimination
-  "ALPHAON_43", "ALPHAON-S", # Process of elimination
+  "ALPHAOFFS_42", "ALPHAOFF-S", # Process of elimination
+  "ALPHAONS_43", "ALPHAON-S", # Process of elimination
   "ALPHAOFFT_45", "ALPHAOFF-T",
   "FMINIOFF_4", "F-MINI-OFF",
   "J-RGC_5", "J-RGC",

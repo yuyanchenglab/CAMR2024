@@ -1,0 +1,3 @@
+Name	Marker	Curated	Queried
+MELANOCYTE	Mlana	Curated	
+MELANOCYTE	Serpina3n	Curated	
