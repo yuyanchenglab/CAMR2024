@@ -29,7 +29,8 @@ spreadsheets/raw_majorclass_mean_expression_sensitive.csv
 spreadsheets/raw_sub_mean_expression_sensitive.csv
 spreadsheets/obs.csv
 *.backup
-
+spreadsheets/majorclass/normalized_majorclass_mean_expression_sensitive.csv
+spreadsheets/majorclass/raw_majorclass_mean_expression_sensitive.csv
 
 
 
