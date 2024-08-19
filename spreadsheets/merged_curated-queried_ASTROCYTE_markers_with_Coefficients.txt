@@ -1,0 +1,36 @@
+Name	Marker	Curated	Queried
+ASTROCYTE	Aldoc		Queried
+ASTROCYTE	Atf3		Queried
+ASTROCYTE	Ccn1		Queried
+ASTROCYTE	Creb5		Queried
+ASTROCYTE	Csrp1		Queried
+ASTROCYTE	Dnajb1		Queried
+ASTROCYTE	Eftud2		Queried
+ASTROCYTE	Egr1		Queried
+ASTROCYTE	Fos		Queried
+ASTROCYTE	Fosb		Queried
+ASTROCYTE	Gfap	Curated	Queried
+ASTROCYTE	Hspa1a		Queried
+ASTROCYTE	Isg15	Curated	
+ASTROCYTE	Junb		Queried
+ASTROCYTE	Mlc1		Queried
+ASTROCYTE	Pdgfra	Curated	
+ASTROCYTE	Ppp1r15a		Queried
+ASTROCYTE	S100b	Curated	Queried
+ASTROCYTE	Slc1a3	Curated	
+ASTROCYTE	Vcl		Queried
+ASTROCYTE	Wwtr1		Queried
+ASTROCYTE	Zswim6		Queried
+CYCLING ASTROCYTE	Cenpa	Curated	
+CYCLING ASTROCYTE	Cks2	Curated	
+CYCLING ASTROCYTE	Mki67	Curated	
+IFN-RESPONSE ASTROCYTE	Ifit1	Curated	
+IFN-RESPONSE ASTROCYTE	Ifit3	Curated	
+IGF2+ ASTROCYTE	Angpt4	Curated	
+IGF2+ ASTROCYTE	Igf2	Curated	
+IGF2+ ASTROCYTE	Vegfa	Curated	
+RARE CYCLING ASTROCYTE	Fabp7	Curated	
+RARE CYCLING ASTROCYTE	Nes	Curated	
+REACTIVE ASTROCYTE	Chil1	Curated	
+REACTIVE ASTROCYTE	Cp	Curated	
+REACTIVE ASTROCYTE	Lcn2	Curated	

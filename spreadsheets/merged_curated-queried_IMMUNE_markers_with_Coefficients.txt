@@ -1,0 +1,30 @@
+Name	Marker	Curated	Queried
+B CELL	Cd79a	Curated	
+B CELL	Ms4a1	Curated	
+BAM	Lyz2	Curated	
+BAM	Ms4a7	Curated	
+DENDRITIC CELL	Ccr2	Curated	
+DENDRITIC CELL	Cd209a	Curated	
+DENDRITIC CELL	Cd74	Curated	
+DENDRITIC CELL	Lsp1	Curated	
+EAR2+ MONOCYTE	Ace	Curated	
+EAR2+ MONOCYTE	Ear2	Curated	
+MACROPHAGE	Ms4a7	Curated	
+MACROPHAGE	Tgfbi	Curated	
+MONOCYTE	Ccr2	Curated	
+MONOCYTE	Cd209a	Curated	
+MONOCYTE	Ms4a6c	Curated	
+MONOCYTE	Ms4a7	Curated	
+MONOCYTE	Tgfbi	Curated	
+NEUTROPHIL	Retnlg	Curated	
+NEUTROPHIL	S100a9	Curated	
+NEUTROPHIL	Slpi	Curated	
+NEUTROPHIL	Srgn	Curated	
+PLASMA B CELL	Igha	Curated	
+PLASMA B CELL	Jchain	Curated	
+SCLERAL FIBROBLAST	Dcn	Curated	
+SCLERAL FIBROBLAST	Igfbp5	Curated	
+T CELL	Cd3d	Curated	
+T CELL	Trbc2	Curated	
+T/NK CELL	Nkg7	Curated	
+T/NK CELL	Trbc2	Curated	

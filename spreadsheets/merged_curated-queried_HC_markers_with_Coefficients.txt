@@ -1,0 +1,23 @@
+Name	Marker	Curated	Queried
+HC	Arhgap15		Queried
+HC	C1ql1		Queried
+HC	Calb1		Queried
+HC	Chgb		Queried
+HC	Dock4		Queried
+HC	Egfem1		Queried
+HC	Frmpd4		Queried
+HC	Galnt18		Queried
+HC	Hs6st3		Queried
+HC	Lhx1	Curated	
+HC	Megf11		Queried
+HC	Ndrg1		Queried
+HC	Nebl		Queried
+HC	Onecut1	Curated	
+HC	Pax6	Curated	
+HC	Rbms3		Queried
+HC	Rgs3		Queried
+HC	Ryr3		Queried
+HC	Thsd7b		Queried
+HC	Utrn		Queried
+HC	Vim		Queried
+HC	Vwc2		Queried
