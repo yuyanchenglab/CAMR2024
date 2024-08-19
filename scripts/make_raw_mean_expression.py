@@ -8,11 +8,10 @@ import os
 
 sc.settings.n_jobs = -1
 
-adata = ad.read_h5ad('camr_modeling_input.h5ad')
+adata = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad')
 
-if not os.path.isfile('raw_mean_variable_genes.csv'):
-  highly_variable = adata.raw.var['feature_name'].isin(adata.var['feature_name'])
-  raw_feature_expression_pd = pd.DataFrame(adata.raw.X[:, highly_variable].toarray(), columns = adata.var["feature_name"].astype(str).tolist())
+fname = 'data/raw_majorclass_meanExpression.csv'
+if not os.path.isfile(fname):
+  raw_feature_expression_pd = pd.DataFrame(adata.raw.X.toarray(), columns = adata.var["feature_name"].astype(str).tolist())
   raw_feature_expression_pd["majorclass"] = adata.obs["majorclass"].tolist()
-  raw_feature_expression_pd_mean = raw_feature_expression_pd.groupby("majorclass").agg("mean")
-  raw_feature_expression_pd_mean.to_csv('raw_mean_variable_genes.csv')
+  raw_feature_expression_pd.groupby("majorclass").agg("mean").to_csv(fname)

@@ -154,7 +154,8 @@ CURATE2QUERY =
     "MULLER GLIA", "MG",
     "ENDOTHELIAL CELL", "ENDOTHELIAL",
     "GANGLION CELL", "RGC",
-    "CYCLING MICROGLIA", "CYCLING_MICROGLIA"
+    "CYCLING MICROGLIA", "CYCLING_MICROGLIA",
+    "PAN-BC", "UNASSIGNED_BC"
     # "M3, M5, OR M6", # This needed to be fixed from the %s:/, /,\n/g
 ) %>%
   matrix(nrow = 2) %>% t() %>%

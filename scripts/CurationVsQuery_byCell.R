@@ -138,7 +138,7 @@ clean_merged = get_major_name(clean_merged, verbose)
 ### Save Results ----
 
 clean_merged = clean_merged %>%
-  reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient) %>%
+  reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
   arrange(Major_Name, Name, Marker) %T>%
   fwrite("spreadsheets/merged_curated-queried_ByCell_markers_with_Coefficients.txt", sep = '\t')
 
@@ -162,6 +162,11 @@ data.frame(Curated = curated_markers,
            All_Genes = curated_markers %in% all_genes_formatted,
            Highly_Variable = curated_markers %in% variable_genes_formatted) %>%
   fwrite("spreadsheets/genes_in_curated_markers.txt", sep = '\t')
+
+# Table to get from Name to Queried_Name
+
+clean_merged[, c("Name", "Queried_Name")] %>% na.omit() %>% distinct() %>%
+  fwrite("spreadsheets/queried_to_name.txt", sep = '\t')
 
 # Scratch ----
 

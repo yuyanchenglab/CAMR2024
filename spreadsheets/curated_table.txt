@@ -37,9 +37,9 @@ RBC,BC,Spock3,"enables glycosaminoglycan binding, involved in peptide cross-link
 RBC,BC,Prkca,"calcium dependent protein kinase C, integrin binding activity; involved in chemical transmission, downregulating signal transduction",Fig C,"",Curated,Prkca/Pkca,Rod BCs (RBCs),Bipolar Cells
 RBC,BC,Car8,"involved in hydro-lyase activity,","","",Curated,Car8,Rod BCs (RBCs),Bipolar Cells
 RBC,BC,Sebox,"DNA binding activity, embruonic development","","",Curated,Sebox,Rod BCs (RBCs),Bipolar Cells
-PAN-BC,BC,Vsx2,"part of the visual system homeobox (Vsx), involved in generating the eye and retinal development","Fig A and Fig C, top row:",Fig A: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9245082/figure/F1/,Curated,Vsx2,Pan-BC,Bipolar Cells
-PAN-BC,BC,Otx2,"homeobox TF, development of the head and choroid plexus","Fig A and Fig C, top row:","",Curated,Otx2,Pan-BC,Bipolar Cells
-PAN-BC,BC,Slc1a2,Protein: EAAT2,"EAAT2 IHC, first image in A","",Curated,Slc1a2,Pan-BC,Bipolar Cells
+UNASSIGNED_BC,BC,Vsx2,"part of the visual system homeobox (Vsx), involved in generating the eye and retinal development","Fig A and Fig C, top row:",Fig A: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9245082/figure/F1/,Curated,Vsx2,Pan-BC,Bipolar Cells
+UNASSIGNED_BC,BC,Otx2,"homeobox TF, development of the head and choroid plexus","Fig A and Fig C, top row:","",Curated,Otx2,Pan-BC,Bipolar Cells
+UNASSIGNED_BC,BC,Slc1a2,Protein: EAAT2,"EAAT2 IHC, first image in A","",Curated,Slc1a2,Pan-BC,Bipolar Cells
 CONE BC,BC,Scgn,enables Ca+ binding,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3855033/figure/F2/,"Fig D, magenta",Curated,Scgn,Cone BCs,Bipolar Cells
 3B,BC,Prkar2b,"cAMP-dependent protein kinase regulator activity, chemical synapse transmission, glutamatergic synapses",Fig G: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9245082/figure/F1/,"",Curated,Prkar2b,3B,Bipolar Cells
 "ON BCS (3-6, 13, 15) (6,7, 5A/B/C, 3A",BC,Isl1,"DNA-binding transcription activator activity, neuron development",Fig B,"",Curated,Isl1,"ON BCs (3-6, 13, 15) (6,7, 5A/B/C, 3A",Bipolar Cells
