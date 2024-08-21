@@ -165,7 +165,7 @@ data.frame(Curated = curated_markers,
 
 clean_merged[, c("Queried_Name", "Name", "Major_Name")] %>%
   na.omit() %>% distinct() %>%
-  fwrite("spreadsheets/4_queried_to_name.txt", sep = '\t')
+  fwrite("spreadsheets/conversion_tables/4_queried_to_name.txt", sep = '\t')
 
 # Scratch ----
 
