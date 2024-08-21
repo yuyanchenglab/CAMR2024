@@ -13,7 +13,7 @@ library(ggvenn) # venn
 library(ggVennDiagram) # upset plot
 library(eulerr)
 library(magrittr)
-source("scripts/CurationVsQuery.util.R")
+source("scripts/4.1_CurationVsQuery.util.R")
 
 analysisName = "CurationVsQueryByCell"
 analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
@@ -39,14 +39,14 @@ set.seed(1)
 
 majorclass = c("AC", "ASTROCYTE", "BC", "CONE", "ENDOTHELIAL", "HC", "MG", "MICROGLIA", "PERICYTE", "RGC", "ROD", "RPE")
 
-needed_major = c("AC", "BC", "Microglia", "RGC")
+majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
 
 curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath,
                       select = c("Gene", "Cell Type", "Coefficient"),
                       col.names = c("Marker", "Name", "Major_Coefficient"))
-queriedMinor <- sapply(needed_major,
-                       \(major) { fread(paste0("spreadsheets/ovr_top_", "complete", "_filtered_markers_", major, "_coefficients_sensitive.csv"), drop = c(1,4),
+queriedMinor <- sapply(majorclass_with_minor,
+                       \(major) { fread(paste0("spreadsheets/ovr_top_", "complete", "_filtered_markers_", major, "_coefficients_sensitive.csv"), drop = c(1,4), # Ensembl and 
                                         col.names = c("Parent_Name", "Name", "Marker", "Minor_Coefficient")) },
                        USE.NAMES = TRUE, simplify = FALSE) %>%
   rbindlist()
