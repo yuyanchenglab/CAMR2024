@@ -22,7 +22,10 @@ is_verbose = True
 count_lowcluster = 4 # Recommended detection limit for cell markers 
 count_highcluster = 100 # Recommended detection ceiling
 
-majorclass_candidates = pd.read_csv('spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt', index_col = 0)
+sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "figures/3_dotplot_"
+sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
+
+majorclass_candidates = pd.read_csv('spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt', index_col = 0) # No need to recalculate
 subtype_to_type = pd.read_csv('spreadsheets/conversion_tables/2_minorToMajorClass.txt', index_col = 0)
 
 adata_full = ad.read_h5ad('data/1_camr_scrublet_batch_filtered.h5ad')
@@ -34,7 +37,7 @@ final_majorclass_candidates_ordered = pd.read_csv(f'spreadsheets/3_ovr_LogReg_ma
 
 ## Subtype Markers
 
-def get_top_coefficient_genes(gene_filter: str, majorclass: str):
+def get_top_coefficient_genes(majorclass: str):
     top_features_log_reg_sub = pd.read_csv(f'spreadsheets/3_ovr_LogReg_minorclass-{majorclass}_xeniumFiltered.txt', sep ='\t')
     if majorclass != 'Microglia':
         top_features_log_reg_sub = top_features_log_reg_sub[top_features_log_reg_sub['Coefficient'] > 0]
@@ -85,44 +88,33 @@ def merge_major_minor_markers(majorclass_candidates, minorclass_candidates, majo
     
     return unique_markers
 
-
-for gene_filter in ['highly_variable', 'moderately_variable', 'complete']:
-
-    print(f'{dt.datetime.now()} Filter Strategy: {gene_filter}')
-
-    if gene_filter == 'highly_variable':
-        adata = adata_full[:, adata_full.var.highly_variable]
-    if gene_filter == 'moderately_variable':
-        adata = adata_full[:, adata_full.var['dispersions'] > min(adata_full.var.loc[adata_full.var['highly_variable'], 'dispersions'])]
-    if gene_filter == 'complete':
-        adata = adata_full
         
-    for majorclass in ["AC", "BC", "Microglia", "RGC"]: # adata.obs['majorclass'].cat.categories, but only ones with subtypes to check
+for majorclass in ["AC", "BC", "Microglia", "RGC"]: # adata.obs['majorclass'].cat.categories, but only ones with subtypes to check
+
+    print(f'{dt.datetime.now()} Major Class: {majorclass}')
+
+    top_coefficient_genes = get_top_coefficient_genes(majorclass)
+    raw_mean_expression = raw_mean_expression_minorclass.loc[subtype_to_type.loc[subtype_to_type["majorclass"].astype(str) == majorclass, "minorclass"]]
+
+    genomics_candidates = filter_gene_by_genomics(adata, top_coefficient_genes, verbose = is_verbose)
+    expression_candidates = filter_gene_by_expression(adata, raw_mean_expression, verbose = is_verbose)
+    final_candidates = np.intersect1d(genomics_candidates, expression_candidates)
+
+    if is_verbose:
+        print(len(final_candidates), final_candidates)
+
+    ordered_markers = top_coefficient_genes.loc[final_candidates.tolist()].sort_values(['Major_Name', 'Name'])
+    ordered_markers.to_csv(f'spreadsheets/3_ovr_LogReg_minorclass-{majorclass}_xeniumFiltered.txt')
     
-        print(f'{dt.datetime.now()} Major Class: {majorclass}')
-
-        top_coefficient_genes = get_top_coefficient_genes(gene_filter, majorclass)
-        raw_mean_expression = raw_mean_expression_minorclass.loc[subtype_to_type.loc[subtype_to_type["majorclass"].astype(str) == majorclass, "minorclass"]]
-
-        genomics_candidates = filter_gene_by_genomics(adata, top_coefficient_genes, verbose = is_verbose)
-        expression_candidates = filter_gene_by_expression(adata, raw_mean_expression, verbose = is_verbose)
-        final_candidates = np.intersect1d(genomics_candidates, expression_candidates)
-
-        if is_verbose:
-            print(len(final_candidates), final_candidates)
-
-        ordered_markers = top_coefficient_genes.loc[final_candidates.tolist()].sort_values(['Major_Name', 'Name'])
-        ordered_markers.to_csv(f'spreadsheets/ovr_top_{gene_filter}_filtered_markers_{majorclass}_coefficients_sensitive.csv')
-        
-        major_minor_markers = merge_major_minor_markers(final_majorclass_candidates_ordered, ordered_markers, majorclass, subtype_to_type)
-
-        # sc.pl.dotplot(
-        #     adata[adata.obs.majorclass == majorclass, major_minor_markers],
-        #     major_minor_markers,
-        #     gene_symbols = "feature_name",
-        #     groupby = 'author_cell_type',
-        #     vmax = count_lowcluster * 3,
-        #     vmin = count_lowcluster - 1,
-        #     show = False,
-        #     save = f"mouseRetina_{gene_filter}_{majorclass}_byClass_filteredCounts." +
-        #            f"{count_lowcluster}-{count_highcluster}.pdf")
+    major_minor_markers = merge_major_minor_markers(final_majorclass_candidates_ordered, ordered_markers, majorclass, subtype_to_type)
+    
+    sc.pl.dotplot(
+        adata[adata.obs.majorclass == majorclass, major_minor_markers],
+        major_minor_markers,
+        gene_symbols = "feature_name",
+        groupby = 'author_cell_type',
+        vmax = count_lowcluster * 3,
+        vmin = count_lowcluster - 1,
+        show = False,
+        save = f"mouseRetina_minorclass-{majorclass}_xeniumFiltered." +
+               f"{count_lowcluster}-{count_highcluster}.pdf")
