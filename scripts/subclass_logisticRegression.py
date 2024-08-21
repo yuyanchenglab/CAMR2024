@@ -28,7 +28,7 @@ sc.settings.n_jobs = -1
 number_of_features = 20
 ncols = 2
 
-adata_full = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad') # 
+adata_full = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad')
 
 print(f'{datetime.datetime.now()} Analysis Time')
 
@@ -46,7 +46,9 @@ for gene_filter in ['highly_variable', 'moderately_variable', 'complete']:
     for majorclass in adata.obs['majorclass'].cat.categories:
     
         print(f'{datetime.datetime.now()} Major Class: {majorclass}')
-
+        
+        # Extract feature matrix (X) and target vector (y)
+        X = adata.X[adata.obs['majorclass'] == majorclass, :]
         y = adata.obs.loc[adata.obs['majorclass'] == majorclass, 'author_cell_type']
         
         if len(y.unique()) < 2:
@@ -55,9 +57,36 @@ for gene_filter in ['highly_variable', 'moderately_variable', 'complete']:
         le = LabelEncoder()
         _ = le.fit_transform(y)
         
-        model_filename = f'models/ovr_logisticRegression_{gene_filter}_{majorclass}_author_cell_type.pkl'
-        ovr_classifier_subclass = joblib.load(model_filename)
-
+        # Split data into training and testing sets
+        X_train, X_test, y_train_subclass, y_test_subclass = train_test_split(X, y_encoded, test_size=0.2, random_state=42)
+        
+        ovr_classifier_subclass = LogisticRegression(multi_class='ovr', max_iter=1000, random_state=42, n_jobs = 16)
+        ovr_classifier_subclass.fit(X_train, y_train_subclass)
+        
+        model_filename = f'models/2_ovr_LogReg_{gene_filter}_minorclass-{majorclass}.pkl'
+        joblib.dump(ovr_classifier_subclass, model_filename)
+        
+        # Validation
+        y_pred_subclass_ovr = ovr_classifier_subclass.predict(X_test)
+        target_names = le.inverse_transform(np.unique(y_test_subclass))
+        validation_report = classification_report(y_test_subclass, y_pred_subclass_ovr, target_names=target_names)
+        print(validation_report)
+        with open(f"spreadsheets/{gene_filter}_{majorclass}_validation_report.txt", "w") as report_file:
+            report_file.write(validation_report)
+        
+        # Generate the confusion matrix
+        cm = confusion_matrix(y_test_subclass, y_pred_subclass_ovr, labels=ovr_classifier_subclass.classes_) # le.classes_
+        cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        plt.figure(figsize=(10, 9))
+        sns.heatmap(cm_normalized, annot=True, fmt='.1%', cmap='Blues',
+                    xticklabels=le.inverse_transform(ovr_classifier_subclass.classes_),
+                    yticklabels=le.inverse_transform(ovr_classifier_subclass.classes_))
+        plt.xlabel('Predicted Label')
+        plt.ylabel('True Label')
+        plt.title(f'{gene_filter} {majorclass}: {100 * cm.diagonal().sum() / cm.sum()}% Accuracy')
+        plt.savefig(f"figures/modeling/confusion_matrix_{gene_filter}_{majorclass}_author_cell_type", bbox_inches='tight')
+        plt.show()
+        
         print(le.inverse_transform(ovr_classifier_subclass.classes_))
         
         # Get class-specific coefficients
@@ -66,26 +95,26 @@ for gene_filter in ['highly_variable', 'moderately_variable', 'complete']:
         nrows = (num_classes // ncols) + (num_classes % ncols)
         
         # Get the top 20 important features for each class for each direction
-        all_top_features_df = pd.DataFrame(columns=['Cell', 'Subclass', 'Ensembl', 'Gene', 'Coefficient'])
+        all_top_features_df = pd.DataFrame(columns=['Name', 'Major_Name', 'Ensembl', 'Marker', 'Coefficient'])
         for idx, class_name in enumerate(le.inverse_transform(ovr_classifier_subclass.classes_)):
             
             print(f'{datetime.datetime.now()} Subclass: {class_name}')
             
             if len(ovr_classifier_subclass.classes_) == 2 and idx == 1:
-                break
+                continue # Binary classifications use only 1 regression equation
             
             coefficients = class_coefficients[idx]
-            feature_importance = pd.DataFrame({
-                'Cell': majorclass,
-                'Subclass': class_name,
+            all_feature_importance = pd.DataFrame({
+                'Name': class_name,
+                'Major_Name': majorclass,
                 'Ensembl': adata.var_names,
-                'Gene': adata.var['feature_name'].astype(str),  # Ensure feature_name is string
+                'Marker': adata.var['feature_name'].astype(str),
                 'Coefficient': coefficients
             })
-            top_features_df = feature_importance.sort_values(by='Coefficient', ascending=False).head(number_of_features)
-            bottom_features_df = feature_importance.sort_values(by='Coefficient', ascending=True).head(number_of_features)
+            top_features_df = all_feature_importance.sort_values(by='Coefficient', ascending=False).head(number_of_features)
+            bottom_features_df = all_feature_importance.sort_values(by='Coefficient', ascending=True).head(number_of_features)
             all_top_features_df = pd.concat([all_top_features_df, top_features_df, bottom_features_df], ignore_index=True)
         # End subclass
-        all_top_features_df.to_csv(f'spreadsheets/ovr_top_20_{gene_filter}_genes_{majorclass}_author_cell_type.csv', index=False)
+        all_top_features_df.to_csv(f'spreadsheets/2_ovr_LogReg_{gene_filter}_minorclass-{majorclass}_AbsTop{number_of_features}Markers.txt', index=False, sep ='\t')
     # End majorclass
 # End of gene_filter
