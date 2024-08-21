@@ -30,6 +30,8 @@ adata_full.var.index = adata_full.var["feature_name"] # subset on genes instead 
 
 raw_mean_expression_minorclass = pd.read_csv(f'data/raw_minorclass_meanExpression.txt', sep = '\t', index_col=0)
 
+final_majorclass_candidates_ordered = pd.read_csv(f'spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t')
+
 ## Subtype Markers
 
 def get_top_coefficient_genes(gene_filter: str, majorclass: str):
@@ -70,7 +72,7 @@ def filter_gene_by_expression(adata, raw_mean_expression, count_lowcluster = 4, 
 
 
 def merge_major_minor_markers(majorclass_candidates, minorclass_candidates, majorclass, subtype_to_type):
-    cell_markers = majorclass_candidates[majorclass_candidates == majorclass].index
+    cell_markers = majorclass_candidates.loc[majorclass_candidates["Name"] == majorclass, "Marker"]
     subtypes = subtype_to_type.loc[subtype_to_type.majorclass == majorclass, "author_cell_type"].tolist()
     subtype_markers = minorclass_candidates[minorclass_candidates.isin(subtypes)].index
     
@@ -112,7 +114,7 @@ for gene_filter in ['highly_variable', 'moderately_variable', 'complete']:
         ordered_markers = top_coefficient_genes.loc[final_candidates.tolist()].sort_values(['Major_Name', 'Name'])
         ordered_markers.to_csv(f'spreadsheets/ovr_top_{gene_filter}_filtered_markers_{majorclass}_coefficients_sensitive.csv')
         
-        # major_minor_markers = merge_major_minor_markers(majorclass_candidates, ordered_markers, majorclass, subtype_to_type)
+        major_minor_markers = merge_major_minor_markers(final_majorclass_candidates_ordered, ordered_markers, majorclass, subtype_to_type)
 
         # sc.pl.dotplot(
         #     adata[adata.obs.majorclass == majorclass, major_minor_markers],
