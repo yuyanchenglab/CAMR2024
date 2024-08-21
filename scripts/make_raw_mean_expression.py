@@ -9,9 +9,16 @@ import os
 sc.settings.n_jobs = -1
 
 adata = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad')
+genes = adata.var["feature_name"].astype(str).tolist()
 
-fname = 'data/raw_majorclass_meanExpression.csv'
+fmajorname = 'data/raw_majorclass_meanExpression.txt'
 if not os.path.isfile(fname):
-  raw_feature_expression_pd = pd.DataFrame(adata.raw.X.toarray(), columns = adata.var["feature_name"].astype(str).tolist())
+  raw_feature_expression_pd = pd.DataFrame(adata.raw.X.toarray(), columns = genes)
   raw_feature_expression_pd["majorclass"] = adata.obs["majorclass"].tolist()
-  raw_feature_expression_pd.groupby("majorclass").agg("mean").to_csv(fname)
+  raw_feature_expression_pd.groupby("majorclass").agg("mean").to_csv(fmajorname, sep = '\t')
+
+fminorname = 'data/raw_subtype_mean_variable_genes.txt'
+if not os.path.isfile(fminorname):
+  raw_feature_expression_pd = pd.DataFrame(adata.raw.X.toarray(), columns = genes)
+  raw_feature_expression_pd["author_cell_type"] = adata.obs["author_cell_type"].tolist()
+  raw_feature_expression_pd.groupby("author_cell_type").agg("mean").to_csv(fminorname, sep = '\t')
