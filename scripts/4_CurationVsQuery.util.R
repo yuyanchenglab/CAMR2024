@@ -240,7 +240,7 @@ query_sub <- function(clean) {
   return(clean)
 }
 
-plot_gene_cell_venn <- function(clean_curated, clean_queried) {
+plot_gene_cell_venn <- function(clean_curated, clean_queried, plotPath) {
   gene_list = list(Curated = unique(clean_curated$Marker), Queried = unique(clean_queried$Marker))
   cell_list = list(Curated = unique(clean_curated$Name), Queried = unique(clean_queried$Name))
 
@@ -259,6 +259,7 @@ plot_gene_cell_venn <- function(clean_curated, clean_queried) {
   ggsave(paste0(plotPath, "Upset.Cells.png"), upName, width = 6, height = 3)
 }
 
+# TODO: Adjust for previous pipeline changes
 get_major_name <- function(clean, verbose = FALSE) {
 
   clean$Major_Name = NA

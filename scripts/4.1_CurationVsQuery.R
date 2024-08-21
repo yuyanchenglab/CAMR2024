@@ -20,7 +20,7 @@ analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
 setwd(analysisPath)
 
 curatedPath = "spreadsheets/CuratedMouseRetinaMarkers.txt"
-queriedMajorPath = "spreadsheets/ovr_top_filtered_genes_majorclass_coefficients_sensitive.csv"
+queriedMajorPath = "spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
 
 plotPath = paste0("figures/", analysisName, '/')
 dir.create(plotPath, showWarnings = FALSE)
@@ -42,13 +42,10 @@ majorclass = c("AC", "ASTROCYTE", "BC", "CONE", "ENDOTHELIAL", "HC", "MG", "MICR
 majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
 
 curated <- fread(curatedPath)
-queriedMajor <- fread(queriedMajorPath,
-                      select = c("Gene", "Cell Type", "Coefficient"),
-                      col.names = c("Marker", "Name", "Major_Coefficient"))
-queriedMinor <- sapply(majorclass_with_minor,
-                       \(major) { fread(paste0("spreadsheets/ovr_top_", "complete", "_filtered_markers_", major, "_coefficients_sensitive.csv"), drop = c(1,4), # Ensembl and 
-                                        col.names = c("Parent_Name", "Name", "Marker", "Minor_Coefficient")) },
-                       USE.NAMES = TRUE, simplify = FALSE) %>%
+queriedMajor <- fread(queriedMajorPath)
+queriedMinor <- majorclass_with_minor %>%
+  sapply(\(major) { fread(paste0("spreadsheets/2_ovr_LogReg_minorclass-", major ,"_AbsTop20Markers.txt")) },
+         USE.NAMES = TRUE, simplify = FALSE) %>%
   rbindlist()
 
 # Munge ----
@@ -61,16 +58,17 @@ clean_curated = munge_curate(curated, verbose)
 
 ## Queried ----
 
+setnames(queriedMinor, "Coefficient", "Minor_Coefficient")
 queriedMinor[Name == "Microglia" & Minor_Coefficient < 0, Name := "CYCLING_MICROGLIA"]
 queriedMinor[toupper(Name) %in% majorclass, Name := paste0("UNASSIGNED_", Name)]
-queriedMinor[, Minor_Coefficient := abs(Minor_Coefficient)]
+queriedMinor[, Minor_Coefficient := abs(Minor_Coefficient)] # Any binary regression should have negative values
 
-queriedMajor[, Parent_Name := Name]
+setnames(queriedMajor, "Coefficient", "Major_Coefficient")
 
 clean_queried =
   rbindlist(list(queriedMajor, queriedMinor), fill = TRUE) %>%
   mutate(Queried = "Queried",
-         Queried_Marker = Marker,
+         Queried_Marker = Marker, # Preserve original names as it was in original data
          Queried_Name = Name,
          Queried_Parent_Name = Parent_Name)
 
@@ -84,7 +82,8 @@ cell_clobber_check() # 173, 140, 16
 
 clean_curated = markers_to_mouse(clean_curated, verbose)
 clean_queried = markers_to_mouse(clean_queried, verbose)
-clean_curated = clean_genes(clean_curated, verbose) # Lost two genes from typos
+
+clean_curated = clean_genes(clean_curated, verbose) # Lost two unique genes from typos
 
 ### Cell Harmony ----
 
@@ -103,7 +102,7 @@ clean_curated = clean_curated %>% filter(!duplicated(paste0(Name, Marker, Parent
 # Back to Query
 
 clean_queried = query_sub(clean_queried)
-cell_clobber_check() # 107 / 140
+cell_clobber_check() # 173, 140, 107
 
 clean_queried = set_cellname_manually(clean_queried, QUERY2CURATE, verbose)
 cell_clobber_check() # 173, 139, 128
@@ -114,12 +113,12 @@ clean_queried$Name %>% unique() %>% # "NOVEL_10","NT-OODSGC","NOVEL_13","OODS_CC
 
 # Stop and Review ----
 
-fwrite(clean_curated, "spreadsheets/curated_table.txt")
-fwrite(clean_queried, "spreadsheets/queried_by_cell_table.txt")
+fwrite(clean_curated, "spreadsheets/4_curated.txt", sep = '\t')
+fwrite(clean_queried, "spreadsheets/4_queried.txt", sep = '\t')
 
 ## Plot Overlap ----
 
-plot_gene_cell_venn(clean_curated, clean_queried)
+plot_gene_cell_venn(clean_curated, clean_queried, plotPath)
 
 ## Merge ----
 
@@ -133,40 +132,40 @@ clean_merged =
 all(unique(clean_merged$Parent_Name) %in% majorclass) # FALSE
 all(majorclass %in% unique(clean_merged$Parent_Name)) # TRUE
 
-clean_merged = get_major_name(clean_merged, verbose)
+clean_merged = get_major_name(clean_merged, verbose) # Check!!
 
-### Save Results ----
+## Save Results ----
 
 clean_merged = clean_merged %>%
   reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
   arrange(Major_Name, Name, Marker) %T>%
-  fwrite("spreadsheets/merged_curated-queried_ByCell_markers_with_Coefficients.txt", sep = '\t')
+  fwrite("spreadsheets/4_merged_curated-queried_markers.txt", sep = '\t')
 
 # break full table into files by major class
 for (cell_type in unique(clean_merged$Major_Name)) {
   clean_merged %>%
     filter(Major_Name == cell_type) %>%
-    reframe(Name, Marker, Curated, Queried) %>%
-    fwrite(paste0("spreadsheets/merged_curated-queried_", cell_type, "_markers_with_Coefficients.txt"), sep = '\t')
+    reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
+    arrange(Major_Name, Name, Marker) %>%
+    fwrite(paste0("spreadsheets/4_merged_curated-queried_majorclass/4_merged_curated-queried_", cell_type, "_markers.txt"), sep = '\t')
 }
 
 ### Search space overlap with curated ----
 
-all_genes = fread("data/CAMR_all_genes.csv")
-all_genes_formatted = str_to_title(all_genes$feature_name)
-variable_genes = fread("data/CAMR_genes.csv")
-variable_genes_formatted = str_to_title(variable_genes$feature_name)
+all_genes = scan("data/1_genes.txt", what = character()) %>% str_to_title()
+variable_genes = scan("data/1_variable_genes.txt", what = character()) %>% str_to_title()
 curated_markers = unique(clean_curated$Marker)
 
 data.frame(Curated = curated_markers,
-           All_Genes = curated_markers %in% all_genes_formatted,
-           Highly_Variable = curated_markers %in% variable_genes_formatted) %>%
-  fwrite("spreadsheets/genes_in_curated_markers.txt", sep = '\t')
+           All_Genes = curated_markers %in% all_genes,
+           Highly_Variable = curated_markers %in% variable_genes) %>%
+  fwrite("spreadsheets/4_curated_markers_in_data.txt", sep = '\t')
 
-# Table to get from Name to Queried_Name
+### Queried_Name to Name for plotting ----
 
-clean_merged[, c("Name", "Queried_Name")] %>% na.omit() %>% distinct() %>%
-  fwrite("spreadsheets/queried_to_name.txt", sep = '\t')
+clean_merged[, c("Queried_Name", "Name", "Major_Name")] %>%
+  na.omit() %>% distinct() %>%
+  fwrite("spreadsheets/4_queried_to_name.txt", sep = '\t')
 
 # Scratch ----
 
