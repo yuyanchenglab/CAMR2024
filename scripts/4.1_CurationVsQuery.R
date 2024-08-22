@@ -13,11 +13,11 @@ library(ggvenn) # venn
 library(ggVennDiagram) # upset plot
 library(eulerr)
 library(magrittr)
-source("scripts/4.1_CurationVsQuery.util.R")
 
 analysisName = "CurationVsQueryByCell"
 analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
 setwd(analysisPath)
+source("scripts/4_CurationVsQuery.util.R")
 
 curatedPath = "spreadsheets/CuratedMouseRetinaMarkers.txt"
 queriedMajorPath = "spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
