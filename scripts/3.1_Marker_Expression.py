@@ -22,7 +22,7 @@ is_verbose = True
 count_lowcluster = 4 # Recommended detection limit for cell markers 
 count_highcluster = 100 # Recommended detection ceiling
 
-sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "figures/3_dotplot_"
+sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "03_Marker_Expression/figures/3_dotplot_"
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
 
 final_majorclass_candidates_ordered = pd.read_csv('03_Marker_Expression/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t', index_col = 0) # No need to recalculate for majorclass, variable genes should be good enough

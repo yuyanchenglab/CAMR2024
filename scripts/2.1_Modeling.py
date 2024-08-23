@@ -71,7 +71,7 @@ for majorclass in adata.obs['majorclass'].cat.categories:
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
     plt.title(f'{majorclass}: {100 * cm.diagonal().sum() / cm.sum()}% Accuracy')
-    plt.savefig(f"02_Modeling/confusion_matrix_minorclass-{majorclass}.pdf", bbox_inches='tight')
+    plt.savefig(f"02_Modeling/figures/confusion_matrix_minorclass-{majorclass}.pdf", bbox_inches='tight')
     plt.show()
     
     print(f"{majorclass} Minorclass:", le.inverse_transform(ovr_classifier_subclass.classes_))
