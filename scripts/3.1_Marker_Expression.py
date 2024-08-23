@@ -25,7 +25,7 @@ count_highcluster = 100 # Recommended detection ceiling
 sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "03_Marker_Expression/figures/3_dotplot_"
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
 
-final_majorclass_candidates_ordered = pd.read_csv('03_Marker_Expression/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t', index_col = 0) # No need to recalculate for majorclass, variable genes should be good enough
+final_majorclass_candidates_ordered = pd.read_csv('03_Marker_Expression/majorclass/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t', index_col = 0) # No need to recalculate for majorclass, variable genes should be good enough
 subtype_to_type = pd.read_csv('02_Modeling/2_minorToMajorClass.txt', index_col = 0)
 
 adata_full = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
