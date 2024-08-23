@@ -14,16 +14,16 @@ library(ggVennDiagram) # upset plot
 library(eulerr)
 library(magrittr)
 
-analysisName = "CurationVsQueryByCell"
+analysisName = "4_Merge_Curated_Markers"
 analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
 setwd(analysisPath)
-source("scripts/4_CurationVsQuery.util.R")
+source("scripts/4_Merge_Curated_Markers.util.R")
 
-curatedPath = "spreadsheets/CuratedMouseRetinaMarkers.txt"
-queriedMajorPath = "spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
+curatedPath = "data/CuratedMouseRetinaMarkers.txt"
+queriedMajorPath = "03_Marker_Expression/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
 
-plotPath = paste0("figures/", analysisName, '/')
-dir.create(plotPath, showWarnings = FALSE)
+outPath = paste0(analysisPath, "04_Merge_Curated_Markers/")
+dir.create(outPath, showWarnings = FALSE)
 
 verbose = TRUE
 
@@ -44,7 +44,7 @@ majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
 curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath)
 queriedMinor <- majorclass_with_minor %>%
-  sapply(\(major) { fread(paste0("spreadsheets/2_ovr_LogReg_minorclass-", major ,"_AbsTop20Markers.txt")) },
+  sapply(\(major) { fread(paste0("03_Marker_Expression/3_ovr_LogReg_minorclass-", major, "_xeniumFiltered.txt")) },
          USE.NAMES = TRUE, simplify = FALSE) %>%
   rbindlist()
 
@@ -113,12 +113,12 @@ clean_queried$Name %>% unique() %>% # "NOVEL_10","NT-OODSGC","NOVEL_13","OODS_CC
 
 # Stop and Review ----
 
-fwrite(clean_curated, "spreadsheets/4_curated.txt", sep = '\t')
-fwrite(clean_queried, "spreadsheets/4_queried.txt", sep = '\t')
+fwrite(clean_curated, paste0(outPath, "/4_curated.txt"), sep = '\t')
+fwrite(clean_queried, paste0(outPath, "/4_queried.txt"), sep = '\t')
 
 ## Plot Overlap ----
 
-plot_gene_cell_venn(clean_curated, clean_queried, plotPath)
+plot_gene_cell_venn(clean_curated, clean_queried, outPath)
 
 ## Merge ----
 
@@ -139,33 +139,35 @@ clean_merged = get_major_name(clean_merged, verbose) # Check!!
 clean_merged = clean_merged %>%
   reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
   arrange(Major_Name, Name, Marker) %T>%
-  fwrite("spreadsheets/4_merged_curated-queried_markers.txt", sep = '\t')
+  fwrite(paste0(outPath, "4_merged_curated-queried_markers.txt", sep = '\t')
 
 # break full table into files by major class
+cell_outpath = paste0(outPath, "4_merged_curated-queried_majorclass/")
+dir.create(cell_outpath, showWarnings = FALSE)
 for (cell_type in unique(clean_merged$Major_Name)) {
   clean_merged %>%
     filter(Major_Name == cell_type) %>%
     reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
     arrange(Major_Name, Name, Marker) %>%
-    fwrite(paste0("spreadsheets/4_merged_curated-queried_majorclass/4_merged_curated-queried_", cell_type, "_markers.txt"), sep = '\t')
+    fwrite(paste0(cell_outpath, "/4_merged_curated-queried_", cell_type, "_markers.txt"), sep = '\t')
 }
 
 ### Search space overlap with curated ----
 
-all_genes = scan("data/1_genes.txt", what = character()) %>% str_to_title()
-variable_genes = scan("data/1_variable_genes.txt", what = character()) %>% str_to_title()
+all_genes = scan("01_QualityControl/1_genes.txt", what = character()) %>% str_to_title()
+variable_genes = scan("01_QualityControl/1_variable_genes.txt", what = character()) %>% str_to_title()
 curated_markers = unique(clean_curated$Marker)
 
 data.frame(Curated = curated_markers,
            All_Genes = curated_markers %in% all_genes,
            Highly_Variable = curated_markers %in% variable_genes) %>%
-  fwrite("spreadsheets/4_curated_markers_in_data.txt", sep = '\t')
+  fwrite(paste0(outPath, "4_curated_markers_in_data.txt"), sep = '\t')
 
 ### Queried_Name to Name for plotting ----
 
 clean_merged[, c("Queried_Name", "Name", "Major_Name")] %>%
   na.omit() %>% distinct() %>%
-  fwrite("spreadsheets/conversion_tables/4_queried_to_name.txt", sep = '\t')
+  fwrite(paste0(outPath, "4_queried_to_name.txt"), sep = '\t')
 
 # Scratch ----
 

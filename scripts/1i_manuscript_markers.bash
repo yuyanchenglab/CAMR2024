@@ -2,8 +2,8 @@
 
 cd /project/hipaa_ycheng11lab/atlas/CAMR2024/
 
-rm -f data/mentioned_genes.txt
+rm -f 01_QualityControl/mentioned_genes.txt
 
 while read gene; do
-  grep -o -m 1 $gene data/CAMR_paper_text.txt >> data/mentioned_genes.txt
-done < data/1_genes.txt
+  grep -o -m 1 $gene data/CAMR_paper_text.txt >> 01_QualityControl/mentioned_genes.txt
+done < 01_QualityControl/1_genes.txt

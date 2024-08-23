@@ -25,20 +25,18 @@ count_highcluster = 100 # Recommended detection ceiling
 sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "figures/3_dotplot_"
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
 
-majorclass_candidates = pd.read_csv('spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt', index_col = 0) # No need to recalculate
-subtype_to_type = pd.read_csv('spreadsheets/conversion_tables/2_minorToMajorClass.txt', index_col = 0)
+final_majorclass_candidates_ordered = pd.read_csv('03_Marker_Expression/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t', index_col = 0) # No need to recalculate for majorclass, variable genes should be good enough
+subtype_to_type = pd.read_csv('02_Modeling/2_minorToMajorClass.txt', index_col = 0)
 
-adata_full = ad.read_h5ad('data/1_camr_scrublet_batch_filtered.h5ad')
+adata_full = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
 adata_full.var.index = adata_full.var["feature_name"] # subset on genes instead of booleans for dotplots
 
 raw_mean_expression_minorclass = pd.read_csv(f'data/raw_minorclass_meanExpression.txt', sep = '\t', index_col=0)
 
-final_majorclass_candidates_ordered = pd.read_csv(f'spreadsheets/3_ovr_LogReg_majorclass_xeniumFiltered.txt', sep = '\t')
-
 ## Subtype Markers
 
 def get_top_coefficient_genes(majorclass: str):
-    top_features_log_reg_sub = pd.read_csv(f'spreadsheets/3_ovr_LogReg_minorclass-{majorclass}_xeniumFiltered.txt', sep ='\t')
+    top_features_log_reg_sub = pd.read_csv(f'02_Modeling/2_ovr_LogReg_minorclass-{majorclass}_AbsTop20Markers.txt', sep ='\t')
     if majorclass != 'Microglia':
         top_features_log_reg_sub = top_features_log_reg_sub[top_features_log_reg_sub['Coefficient'] > 0]
     top_features_log_reg_sub.index = top_features_log_reg_sub.Gene
@@ -104,7 +102,7 @@ for majorclass in ["AC", "BC", "Microglia", "RGC"]: # adata.obs['majorclass'].ca
         print(len(final_candidates), final_candidates)
 
     ordered_markers = top_coefficient_genes.loc[final_candidates.tolist()].sort_values(['Major_Name', 'Name'])
-    ordered_markers.to_csv(f'spreadsheets/3_ovr_LogReg_minorclass-{majorclass}_xeniumFiltered.txt')
+    ordered_markers.to_csv(f'03_Marker_Expression/3_ovr_LogReg_minorclass-{majorclass}_xeniumFiltered.txt')
     
     major_minor_markers = merge_major_minor_markers(final_majorclass_candidates_ordered, ordered_markers, majorclass, subtype_to_type)
     

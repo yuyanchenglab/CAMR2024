@@ -13,9 +13,6 @@ library(ggvenn) # venn
 library(ggVennDiagram) # upset plot
 library(eulerr)
 
-cheng_theme = new.env() # Note: Use dollar sign operator to access values
-source("/project/hipaa_ycheng11lab/software/apps/github/figures/theme.cheng.module.R", local = cheng_theme)
-
 analysisName = "CurationVsQuery"
 analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
 setwd(analysisPath)

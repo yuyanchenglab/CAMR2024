@@ -28,7 +28,7 @@ sc.settings.n_jobs = -1
 number_of_features = 20
 ncols = 2
 
-adata = ad.read_h5ad('data/1_camr_scrublet_batch_filtered.h5ad')
+adata = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
 
 for majorclass in adata.obs['majorclass'].cat.categories:
 
@@ -50,7 +50,7 @@ for majorclass in adata.obs['majorclass'].cat.categories:
     ovr_classifier_subclass = LogisticRegression(multi_class='ovr', max_iter=1000, random_state=42, n_jobs = 16)
     ovr_classifier_subclass.fit(X_train, y_train_subclass)
     
-    model_filename = f'models/2_ovr_LogReg_minorclass-{majorclass}.pkl'
+    model_filename = f'02_Modeling/2_ovr_LogReg_minorclass-{majorclass}.pkl'
     joblib.dump(ovr_classifier_subclass, model_filename)
     
     # Validation
@@ -58,7 +58,7 @@ for majorclass in adata.obs['majorclass'].cat.categories:
     target_names = le.inverse_transform(np.unique(y_test_subclass))
     validation_report = classification_report(y_test_subclass, y_pred_subclass_ovr, target_names=target_names)
     print(validation_report)
-    with open(f"spreadsheets/2_minorclass-{majorclass}_validation_report.txt", "w") as report_file:
+    with open(f"02_Modeling/2_minorclass-{majorclass}_validation_report.txt", "w") as report_file:
         report_file.write(validation_report)
     
     # Generate the confusion matrix
@@ -71,7 +71,7 @@ for majorclass in adata.obs['majorclass'].cat.categories:
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
     plt.title(f'{majorclass}: {100 * cm.diagonal().sum() / cm.sum()}% Accuracy')
-    plt.savefig(f"figures/modeling/confusion_matrix_minorclass-{majorclass}.pdf", bbox_inches='tight')
+    plt.savefig(f"02_Modeling/confusion_matrix_minorclass-{majorclass}.pdf", bbox_inches='tight')
     plt.show()
     
     print(f"{majorclass} Minorclass:", le.inverse_transform(ovr_classifier_subclass.classes_))
@@ -102,5 +102,5 @@ for majorclass in adata.obs['majorclass'].cat.categories:
         bottom_features_df = all_feature_importance.sort_values(by='Coefficient', ascending=True).head(number_of_features)
         all_top_features_df = pd.concat([all_top_features_df, top_features_df, bottom_features_df], ignore_index=True)
     # End subclass
-    all_top_features_df.to_csv(f'spreadsheets/2_ovr_LogReg_minorclass-{majorclass}_AbsTop{number_of_features}Markers.txt', index=False, sep ='\t')
+    all_top_features_df.to_csv(01_QualityControl, index=False, sep ='\t')
 # End majorclass

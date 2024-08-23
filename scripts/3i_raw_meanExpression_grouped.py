@@ -8,7 +8,7 @@ import os
 
 sc.settings.n_jobs = -1
 
-adata = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad')
+adata = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
 genes = adata.var["feature_name"].astype(str).tolist()
 
 fmajorname = 'data/raw_meanExpression_majorclass.txt'

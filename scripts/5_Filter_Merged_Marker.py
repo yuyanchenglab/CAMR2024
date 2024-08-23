@@ -17,12 +17,13 @@ import seaborn as sns
 import os
 
 os.chdir('/project/hipaa_ycheng11lab/atlas/CAMR2024')
+os.makedirs('05_Filter_Merged_Markers', exist_ok = True)
 sc.settings.n_jobs = -1
 
-adata = ad.read_h5ad('data/camr_scrublet_batch_filtered.h5ad')
-subcell_raw_mean = pd.read_csv(f'data/raw_meanExpression_minorclass.txt', sep = '\t')
+adata = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
+subcell_raw_mean = pd.read_csv('data/raw_meanExpression_minorclass.txt', sep = '\t')
 
-sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "figures/5_dotplot_"
+sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "05_Filter_Merged_Markers/5_dotplot_"
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
 
 raw = True
@@ -59,11 +60,11 @@ libc = ctypes.CDLL("libc.so.6") # clearing cache
 libc.malloc_trim(0)
 
 
-merged_filtered_markers = pd.read_csv('spreadsheets/4_merged_curated-queried_markers.txt', sep = '\t')
+merged_filtered_markers = pd.read_csv('04_Merge_Curated_Markers/4_merged_curated-queried_markers.txt', sep = '\t')
 small_coef = np.logical_or(merged_filtered_markers["Minor_Coefficient"] <= 0.3, merged_filtered_markers["Major_Coefficient"] <= 0.3)
 small_coef_in_query = np.logical_and(merged_filtered_markers["Queried"] == "Queried", small_coef)
 merged_filtered_markers = merged_filtered_markers[~small_coef_in_query]
-merged_filtered_markers.to_csv('spreadsheets/5_merged_curated-queried_markers_coefficientFiltered.txt', sep ='\t', index = False)
+merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_curated-queried_markers_coefficientFiltered.txt', sep ='\t', index = False)
 
 # Add gene length
 merged_filtered_markers.index = merged_filtered_markers["Marker"]
@@ -71,7 +72,7 @@ merged_filtered_markers = merged_filtered_markers.join(adata.var.loc[adata.var["
 merged_filtered_markers.index = list(range(merged_filtered_markers.shape[0]))
 
 # Curated entries need a queried name to work with the next section
-q2n = pd.read_csv('spreadsheets/converstion_tables/4_queried_to_name.txt', sep ='\t', index_col=0)
+q2n = pd.read_csv('04_Merge_Curated_Markers/4_queried_to_name.txt', sep ='\t', index_col=0)
 merged_filtered_markers.loc[merged_filtered_markers["Queried_Name"].isnull(), "Queried_Name"] = q2n["Queried_Name"].get(merged_filtered_markers.loc[merged_filtered_markers["Queried_Name"].isnull(), "Queried_Name"])
 
 # raw counts
@@ -91,7 +92,7 @@ major_sub_mean = subcell_raw_mean_long.loc[subcell_raw_mean_long['Raw_Mean_Expre
 merged_filtered_markers = merged_filtered_markers.merge(major_sub_mean, on=['Queried_Name', 'Marker'], how = 'left')
 
 ## majorclass
-major_raw_mean = pd.read_csv(f'data/raw_meanExpression_majorclass.csv')
+major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.csv')
 major_raw_mean_long = pd.melt(major_raw_mean, id_vars='majorclass', var_name='Marker', value_name='Raw_Mean_Expression_Majorclass_Marker')
 major_raw_mean_long = major_raw_mean_long.rename(columns={'majorclass':'Major_Name'})
 major_raw_mean_long["Marker"] = major_raw_mean_long["Marker"].str.capitalize()
@@ -114,9 +115,9 @@ not_crowding = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1
 filtered_indices = np.logical_and(long_enough, np.logical_and(detectable, not_crowding))
 merged_filtered_markers = merged_filtered_markers.loc[filtered_indices]
 merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Name']) # For future
-merged_filtered_markers.to_csv('spreadsheets/5_merged_curated-queried_markers_sorted_coefficientLengthExpressionFiltered.txt', sep ='\t', index = False)
+merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_curated-queried_markers_sorted_coefficientLengthExpressionFiltered.txt', sep ='\t', index = False)
 merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-merged_filtered_markers.to_csv('spreadsheets/5_merged_curated-queried_markers_coefficientLengthExpressionFiltered.txt', sep = '\t')
+merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_curated-queried_markers_coefficientLengthExpressionFiltered.txt', sep = '\t')
 
 
 for majorclass in adata.obs['majorclass'].cat.categories:
