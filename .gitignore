@@ -9,7 +9,8 @@ notebook_state.pkl
 *.error
 *.out
 *.log
-
+*.pkl
+feature_name
 Animate_UMAP/CAMR_metadata.txt
 Animate_UMAP/animate_UMAP.2024-06-25_11-14-28-EDT.sessionInfo
 Animate_UMAP/animated_UMAP.html

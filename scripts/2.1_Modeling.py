@@ -102,5 +102,5 @@ for majorclass in adata.obs['majorclass'].cat.categories:
         bottom_features_df = all_feature_importance.sort_values(by='Coefficient', ascending=True).head(number_of_features)
         all_top_features_df = pd.concat([all_top_features_df, top_features_df, bottom_features_df], ignore_index=True)
     # End subclass
-    all_top_features_df.to_csv(01_QualityControl, index=False, sep ='\t')
+    all_top_features_df.to_csv(f'02_Modeling/2_ovr_LogReg_minorclass-{majorclass}_AbsTop{number_of_features}Markers.txt', index=False, sep ='\t')
 # End majorclass

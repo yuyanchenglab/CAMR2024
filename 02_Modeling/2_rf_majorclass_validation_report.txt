@@ -1,0 +1,18 @@
+              precision    recall  f1-score   support
+
+          AC       1.00      1.00      1.00      8191
+   Astrocyte       0.95      0.99      0.97       253
+          BC       1.00      1.00      1.00     27477
+        Cone       1.00      1.00      1.00       923
+ Endothelial       1.00      0.99      0.99       235
+          HC       1.00      0.67      0.80        21
+          MG       1.00      0.98      0.99      1493
+   Microglia       1.00      1.00      1.00      1167
+    Pericyte       1.00      0.98      0.99        86
+         RGC       1.00      1.00      1.00     12234
+         RPE       0.98      0.98      0.98        95
+         Rod       1.00      1.00      1.00      6738
+
+    accuracy                           1.00     58913
+   macro avg       0.99      0.96      0.98     58913
+weighted avg       1.00      1.00      1.00     58913
