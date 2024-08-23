@@ -114,7 +114,7 @@ not_crowding = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1
 filtered_indices = np.logical_and(long_enough, np.logical_and(detectable, not_crowding))
 merged_filtered_markers = merged_filtered_markers.loc[filtered_indices]
 merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Name']) # For future
-merged_filtered_markers.to_csv('spreadsheets/filtered_curated_ByCell_markers_with_length_rawcounts_Coefficients-0.3.txt', sep ='\t', index = False)
+merged_filtered_markers.to_csv('spreadsheets/5_merged_curated-queried_markers_sorted_coefficientLengthExpressionFiltered.txt', sep ='\t', index = False)
 merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
 merged_filtered_markers.to_csv('spreadsheets/5_merged_curated-queried_markers_coefficientLengthExpressionFiltered.txt', sep = '\t')
 
