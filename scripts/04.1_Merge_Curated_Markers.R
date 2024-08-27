@@ -39,7 +39,7 @@ set.seed(1)
 
 majorclass = c("AC", "ASTROCYTE", "BC", "CONE", "ENDOTHELIAL", "HC", "MG", "MICROGLIA", "PERICYTE", "RGC", "ROD", "RPE")
 
-majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
+ ]majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
 
 curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath)
@@ -70,7 +70,7 @@ clean_queried =
   mutate(Queried = "Queried",
          Queried_Marker = Marker, # Preserve original names as it was in original data
          Queried_Name = Name,
-         Queried_Parent_Name = Parent_Name)
+         Queried_Major_Name = Major_Name)
 
 ## Harmonize the datasets ----
 ## Queried will mainly act as the base
@@ -125,8 +125,7 @@ plot_gene_cell_venn(clean_curated, clean_queried, outPath)
 clean_merged =
   merge(clean_curated, clean_queried, by = c("Marker", "Name"), all = TRUE, suffixes = c(".Curated", ".Queried")) %>%
   summarize(.by = c(Name, Marker),
-            Parent_Name = ifelse(is.na(Parent_Name.Curated), Parent_Name.Queried, Parent_Name.Curated),
-            Curated, Queried, Queried_Name, Queried_Parent_Name,
+            Curated, Queried, Queried_Name, Queried_Major_Name,
             Minor_Coefficient, Major_Coefficient)
 
 all(unique(clean_merged$Parent_Name) %in% majorclass) # FALSE
@@ -139,7 +138,7 @@ clean_merged = get_major_name(clean_merged, verbose) # Check!!
 clean_merged = clean_merged %>%
   reframe(Name, Marker, Curated, Queried, Minor_Coefficient, Major_Name, Major_Coefficient, Queried_Name) %>%
   arrange(Major_Name, Name, Marker) %T>%
-  fwrite(paste0(outPath, "4_merged_curated-queried_markers.txt", sep = '\t')
+  fwrite(paste0(outPath, "4_merged_curated-queried_markers.txt"), sep = '\t')
 
 # break full table into files by major class
 cell_outpath = paste0(outPath, "4_merged_curated-queried_majorclass/")

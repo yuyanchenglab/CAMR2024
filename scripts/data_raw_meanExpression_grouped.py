@@ -12,7 +12,7 @@ adata = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
 genes = adata.var["feature_name"].astype(str).tolist()
 
 fmajorname = 'data/raw_meanExpression_majorclass.txt'
-if not os.path.isfile(fname):
+if not os.path.isfile(fmajorname):
   raw_feature_expression_pd = pd.DataFrame(adata.raw.X.toarray(), columns = genes)
   raw_feature_expression_pd["majorclass"] = adata.obs["majorclass"].tolist()
   raw_feature_expression_pd.groupby("majorclass").agg("mean").to_csv(fmajorname, sep = '\t')

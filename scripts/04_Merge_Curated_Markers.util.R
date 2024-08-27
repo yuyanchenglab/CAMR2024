@@ -294,7 +294,7 @@ get_major_name <- function(clean, verbose = FALSE) {
 
   if (verbose) {
     print("Removal by Step:")
-    print(na_count)
+    print(na_count) # curated_clean: 336, 89, 58, 54, 25, 12, 5, 2, 0
   }
 
   return(clean)
