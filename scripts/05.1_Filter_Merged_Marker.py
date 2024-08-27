@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # In this notebook, we're going plot the mouse retinal data and determine proper marker genes.
+# TODO: Rename this along with the other "5" scripts to indicate their new purpose of filtering using xenium.
 
 import datetime
 print(f'{datetime.datetime.now()} Analysis Setup')
@@ -35,6 +36,7 @@ if raw:
     max_col = 4
 
 # Clean subtypes
+# Move some of this work to Quality Control so ALL adata from that point on have this.
 adata.obs = adata.obs.loc[:, ["majorclass", "author_cell_type"]]
 adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str)
 is_unassigned = adata.obs["author_cell_type"] == adata.obs["majorclass"]

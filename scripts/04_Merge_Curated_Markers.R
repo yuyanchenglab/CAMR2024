@@ -2,6 +2,8 @@
 
 # JM 7/31/2024
 # How do my statistics methods compare to a literature search when looking for proper cell markers?
+# TODO Merge this with the updated script and leave input flags for command options.
+# TODO Rename this to "Harmonize Curated Markers" to match its new purpose, not merging everything together for simplicity.
 
 # Setup ----
 

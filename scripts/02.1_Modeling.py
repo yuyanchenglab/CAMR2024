@@ -3,7 +3,8 @@
 
 # JM 08/08/24
 # In this notebook, we're going to re-apply machine learning to analyze the mouse retinal data and determine proper marker genes.
-
+# TODO: Merge the original script here and move the original to archive so that all 3 analyses can be done in one script.
+# Perhaps even leave a flag to make it so that only 1 of the three is run at the users choosing.
 import datetime
 print(f'{datetime.datetime.now()} Analysis Setup')
 

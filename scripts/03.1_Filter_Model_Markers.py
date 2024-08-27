@@ -2,6 +2,8 @@
 # coding: utf-8
 
 # Marker Determination
+# TODO: Merge the original version into this so that we can run this on all datasets.
+# TODO: add command line flags to change input and output (eg plot raw or not)
 
 import sklearn as sk
 import anndata as ad
