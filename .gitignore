@@ -32,6 +32,6 @@ spreadsheets/obs.csv
 *.backup
 spreadsheets/majorclass/normalized_majorclass_mean_expression_sensitive.csv
 spreadsheets/majorclass/raw_majorclass_mean_expression_sensitive.csv
-
+00_raw
 
 
