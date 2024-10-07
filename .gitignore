@@ -33,5 +33,5 @@ spreadsheets/obs.csv
 spreadsheets/majorclass/normalized_majorclass_mean_expression_sensitive.csv
 spreadsheets/majorclass/raw_majorclass_mean_expression_sensitive.csv
 00_raw
-
+[0-9][0-9]_*/
 
