@@ -1,0 +1,8441 @@
+{
+  "metadata": {
+    "sha256_checksum": "e6577f28aae007dc67cd4079b4ab5e7a3b2ebbaee544437d32247d2c8d6c8833",
+    "ui_props": {
+      "visible": true
+    }
+  },
+  "payload": {
+    "chemistry": {
+      "decoder": "xenium_decoding_v1",
+      "version": "v1"
+    },
+    "customer": {
+      "email": "jeffrey.maurer.informatics@gmail.com",
+      "name": "Jeffrey Maurer"
+    },
+    "designer": {
+      "date_created": "2024-10-07T12:38:59.536653445-07:00",
+      "designed_by": {
+        "email": "jeffrey.maurer.informatics@gmail.com",
+        "name": "Jeffrey Maurer"
+      },
+      "version": "3.3.0"
+    },
+    "panel": {
+      "description": "Mouse Retina Run 1",
+      "identity": {
+        "design_id": "9MV3RF",
+        "name": "mRetina_91g",
+        "version": "1.0.0"
+      },
+      "num_gene_targets": 91,
+      "species": "Mouse",
+      "tissue": "Retina",
+      "type": {
+        "data": {
+          "base_panel_identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          },
+          "base_panel_num_gene_targets": 247
+        },
+        "descriptor": "add_on"
+      }
+    },
+    "spec_version": "0.1.0",
+    "targets": [
+      {
+        "codewords": [
+          497
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041828",
+            "name": "Abca8a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          493
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021536",
+            "name": "Adcy2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          481
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049744",
+            "name": "Arhgap15"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          424
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000060890",
+            "name": "Arr3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          479
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036887",
+            "name": "C1qa"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          407
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036905",
+            "name": "C1qb"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          433
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036896",
+            "name": "C1qc"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          461
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021991",
+            "name": "Cacna2d3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          459
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032532",
+            "name": "Cck"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          473
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032094",
+            "name": "Cd3d"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          430
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000003379",
+            "name": "Cd79a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          436
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000053166",
+            "name": "Cdh22"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          465
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000067220",
+            "name": "Cnga1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          400
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000044288",
+            "name": "Cnr1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          416
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000064293",
+            "name": "Cntn4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          451
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039419",
+            "name": "Cntnap2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          468
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000058897",
+            "name": "Col25a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          401
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030270",
+            "name": "Cpne9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          450
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000053007",
+            "name": "Creb5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          453
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026421",
+            "name": "Csrp1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          441
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000038642",
+            "name": "Ctss"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          474
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000115432",
+            "name": "D130009I18Rik"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          420
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000047495",
+            "name": "Dlgap2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          463
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020929",
+            "name": "Eftud2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          405
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032446",
+            "name": "Eomes"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          412
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028289",
+            "name": "Epha7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          466
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000062209",
+            "name": "Erbb4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          492
+        ],
+        "info": {
+          "gene_coverage": 1
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027643",
+            "name": "Ghrh"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          438
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046167",
+            "name": "Gldn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          478
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000000263",
+            "name": "Glra1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          476
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000038811",
+            "name": "Gngt2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          439
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039904",
+            "name": "Gpr37"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          488
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000068696",
+            "name": "Gpr88"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          418
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020524",
+            "name": "Gria1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          444
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021301",
+            "name": "Hecw1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          499
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021665",
+            "name": "Hexb"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          417
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000059203",
+            "name": "Il1rapl2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          442
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000042258",
+            "name": "Isl1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          464
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000060882",
+            "name": "Kcnd2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          432
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040896",
+            "name": "Kcnd3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          404
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000059852",
+            "name": "Kcng2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          462
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000005672",
+            "name": "Kit"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          484
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000018698",
+            "name": "Lhx1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          470
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000079018",
+            "name": "Ly6c1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          403
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021423",
+            "name": "Ly86"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          457
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000074622",
+            "name": "Mafb"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          419
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000017737",
+            "name": "Mmp9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          427
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000079419",
+            "name": "Ms4a6c"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          480
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024672",
+            "name": "Ms4a7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          495
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049001",
+            "name": "Ndnf"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          423
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000005125",
+            "name": "Ndrg1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          431
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022054",
+            "name": "Nefm"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          414
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050321",
+            "name": "Neto1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          498
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000067786",
+            "name": "Nnat"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          445
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000059146",
+            "name": "Ntrk3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          490
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046178",
+            "name": "Nxph1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          467
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000043013",
+            "name": "Onecut1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          489
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000045991",
+            "name": "Onecut2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          408
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031394",
+            "name": "Opn1mw"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          456
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021799",
+            "name": "Opn4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          402
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036353",
+            "name": "P2ry12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          475
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027168",
+            "name": "Pax6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          486
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049100",
+            "name": "Pcdh10"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          491
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034755",
+            "name": "Pcdh11x"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          406
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024575",
+            "name": "Pde6a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          426
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039943",
+            "name": "Plcb4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          434
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031688",
+            "name": "Pou4f2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          440
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000068748",
+            "name": "Ptprz1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          471
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031586",
+            "name": "Rbpms"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          446
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030324",
+            "name": "Rho"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          422
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000033208",
+            "name": "S100b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          460
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022876",
+            "name": "Samsn1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          448
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019935",
+            "name": "Slc17a8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          482
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000037771",
+            "name": "Slc32a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          411
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000054640",
+            "name": "Slc8a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          454
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000105265",
+            "name": "Sox2ot"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          421
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000051910",
+            "name": "Sox6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          415
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000005233",
+            "name": "Spc25"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          483
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000054162",
+            "name": "Spock3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          449
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020077",
+            "name": "Srgn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          496
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031965",
+            "name": "Tbx20"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          410
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021359",
+            "name": "Tfap2a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          485
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032011",
+            "name": "Thy1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          487
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020023",
+            "name": "Tmcc3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          413
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026109",
+            "name": "Tmeff2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          429
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000054675",
+            "name": "Tmem119"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          437
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049420",
+            "name": "Tmem200a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          409
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046275",
+            "name": "Trarg1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          494
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050663",
+            "name": "Trhde"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          472
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021239",
+            "name": "Vsx2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          425
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "9MV3RF",
+            "name": "mRetina_91g",
+            "version": "1.0.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000004637",
+            "name": "Wwox"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          136
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026090",
+            "name": "2010300C02Rik"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          243
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032281",
+            "name": "Acsbg1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          380
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000035783",
+            "name": "Acta2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          300
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000000530",
+            "name": "Acvrl1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          281
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036545",
+            "name": "Adamts2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          49
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000066113",
+            "name": "Adamtsl1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          366
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039167",
+            "name": "Adgrl4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          379
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000013584",
+            "name": "Aldh1a2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          378
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022309",
+            "name": "Angpt1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          106
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031075",
+            "name": "Ano1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          387
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024411",
+            "name": "Aqp4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          299
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022602",
+            "name": "Arc"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          117
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041225",
+            "name": "Arhgap12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          192
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030047",
+            "name": "Arhgap25"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          275
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031355",
+            "name": "Arhgap6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          341
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021662",
+            "name": "Arhgef28"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          154
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000048251",
+            "name": "Bcl11b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          13
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000048482",
+            "name": "Bdnf"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          354
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000025128",
+            "name": "Bhlhe22"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          264
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030103",
+            "name": "Bhlhe40"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          342
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020042",
+            "name": "Btbd11"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          390
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000009075",
+            "name": "Cabp7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          373
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000010066",
+            "name": "Cacna2d2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          29
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028222",
+            "name": "Calb1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          202
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000003657",
+            "name": "Calb2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          132
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000000805",
+            "name": "Car4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          361
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000097324",
+            "name": "Carmn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          26
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031654",
+            "name": "Cbln1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          206
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000067578",
+            "name": "Cbln4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          324
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019997",
+            "name": "Ccn2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          42
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000047139",
+            "name": "Cd24a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          389
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000044811",
+            "name": "Cd300c2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          384
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000005087",
+            "name": "Cd44"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          151
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040747",
+            "name": "Cd53"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          288
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000018774",
+            "name": "Cd68"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          63
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027435",
+            "name": "Cd93"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          219
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031841",
+            "name": "Cdh13"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          112
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050840",
+            "name": "Cdh20"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          142
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000000305",
+            "name": "Cdh4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          4
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039385",
+            "name": "Cdh6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          338
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000025370",
+            "name": "Cdh9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          312
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021919",
+            "name": "Chat"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          0
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022860",
+            "name": "Chodl"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          65
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000045613",
+            "name": "Chrm2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          207
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041378",
+            "name": "Cldn5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          267
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021097",
+            "name": "Clmn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          83
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030092",
+            "name": "Cntn6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          57
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031772",
+            "name": "Cntnap4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          56
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000067028",
+            "name": "Cntnap5b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          75
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034903",
+            "name": "Cobll1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          376
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026141",
+            "name": "Col19a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          394
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000001506",
+            "name": "Col1a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          367
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000001119",
+            "name": "Col6a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          111
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028971",
+            "name": "Cort"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          242
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039714",
+            "name": "Cplx3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          290
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032564",
+            "name": "Cpne4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          252
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022212",
+            "name": "Cpne6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          199
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000052560",
+            "name": "Cpne8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          351
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049796",
+            "name": "Crh"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          251
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032911",
+            "name": "Cspg4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          25
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000042589",
+            "name": "Cux2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          80
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029154",
+            "name": "Cwh43"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          123
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024087",
+            "name": "Cyp1b1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          283
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019929",
+            "name": "Dcn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          102
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022419",
+            "name": "Deptor"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          316
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030772",
+            "name": "Dkk3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          135
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036766",
+            "name": "Dner"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          286
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000043067",
+            "name": "Dpy19l1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          353
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000033308",
+            "name": "Dpyd"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          187
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000010476",
+            "name": "Ebf3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          103
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000054690",
+            "name": "Emcn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          155
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026235",
+            "name": "Epha4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          345
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000010461",
+            "name": "Eya4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          333
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021743",
+            "name": "Fezf2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          3
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034037",
+            "name": "Fgd5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          157
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034295",
+            "name": "Fhod3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          391
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026841",
+            "name": "Fibcd1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          195
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000075324",
+            "name": "Fign"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          363
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041559",
+            "name": "Fmod"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          121
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026193",
+            "name": "Fn1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          307
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021250",
+            "name": "Fos"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          329
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029563",
+            "name": "Foxp2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          186
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000070880",
+            "name": "Gad1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          383
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026787",
+            "name": "Gad2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          50
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036390",
+            "name": "Gadd45a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          88
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024064",
+            "name": "Galnt14"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          250
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000038860",
+            "name": "Garnl3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          325
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020932",
+            "name": "Gfap"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          188
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022103",
+            "name": "Gfra2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          171
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046352",
+            "name": "Gjb2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          178
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000056966",
+            "name": "Gjc3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          231
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021318",
+            "name": "Gli3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          109
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000109372",
+            "name": "Gm19410"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          55
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000097789",
+            "name": "Gm2115"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          296
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036402",
+            "name": "Gng12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          360
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000052229",
+            "name": "Gpr17"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          175
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000001985",
+            "name": "Grik3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          78
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046182",
+            "name": "Gsg1l"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          62
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000033910",
+            "name": "Gucy1a1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          23
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021613",
+            "name": "Hapln1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          108
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027018",
+            "name": "Hat1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          19
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000071379",
+            "name": "Hpcal1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          293
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046321",
+            "name": "Hs3st2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          100
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050783",
+            "name": "Htr1f"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          107
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020644",
+            "name": "Id2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          302
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020053",
+            "name": "Igf1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          364
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000048583",
+            "name": "Igf2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          259
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000017493",
+            "name": "Igfbp4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          45
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026185",
+            "name": "Igfbp5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          392
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000023046",
+            "name": "Igfbp6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          166
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040972",
+            "name": "Igsf21"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          2
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000018654",
+            "name": "Ikzf1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          94
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000037940",
+            "name": "Inpp4b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          31
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034402",
+            "name": "Kcnh5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          313
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000037610",
+            "name": "Kcnmb2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          368
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000098557",
+            "name": "Kctd12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          235
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000037653",
+            "name": "Kctd8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          301
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000062960",
+            "name": "Kdr"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          91
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027270",
+            "name": "Lamp5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          356
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028581",
+            "name": "Laptm5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          153
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000075602",
+            "name": "Ly6a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          131
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050447",
+            "name": "Lypd6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          306
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024558",
+            "name": "Mapk4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          263
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000043557",
+            "name": "Mdga1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          295
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027684",
+            "name": "Mecom"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          398
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027210",
+            "name": "Meis2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          205
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000061086",
+            "name": "Myl4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          276
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039057",
+            "name": "Myo16"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          150
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027977",
+            "name": "Ndst3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          349
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027971",
+            "name": "Ndst4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          189
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040536",
+            "name": "Necab1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          51
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031837",
+            "name": "Necab2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          47
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000055409",
+            "name": "Nell1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          224
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036902",
+            "name": "Neto2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          140
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000037984",
+            "name": "Neurod6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          209
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034738",
+            "name": "Nostrin"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          81
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040998",
+            "name": "Npnt"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          170
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028004",
+            "name": "Npy2r"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          340
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030551",
+            "name": "Nr2f2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          66
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000042834",
+            "name": "Nrep"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          35
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039114",
+            "name": "Nrn1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          90
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000025969",
+            "name": "Nrp2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          260
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019890",
+            "name": "Nts"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          317
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020591",
+            "name": "Ntsr2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          104
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000090061",
+            "name": "Nwd2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          289
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046719",
+            "name": "Nxph3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          8
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050121",
+            "name": "Opalin"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          144
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026525",
+            "name": "Opn3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          213
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039747",
+            "name": "Orai2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          352
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032278",
+            "name": "Paqr5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          234
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034981",
+            "name": "Parm1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          320
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024713",
+            "name": "Pcsk5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          113
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000075270",
+            "name": "Pde11a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          225
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019990",
+            "name": "Pde7b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          148
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029231",
+            "name": "Pdgfra"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          240
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027400",
+            "name": "Pdyn"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          371
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022197",
+            "name": "Pdzd2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          92
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000035357",
+            "name": "Pdzrn3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          372
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020717",
+            "name": "Pecam1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          9
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000045573",
+            "name": "Penk"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          60
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030413",
+            "name": "Pglyrp1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          358
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024867",
+            "name": "Pip5k1b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          86
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019876",
+            "name": "Pkib"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          262
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036834",
+            "name": "Plch1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          350
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000087141",
+            "name": "Plcxd2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          382
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000049148",
+            "name": "Plcxd3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          315
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031557",
+            "name": "Plekha2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          21
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000038583",
+            "name": "Pln"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          46
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000090125",
+            "name": "Pou3f1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          249
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000061718",
+            "name": "Ppp1r1b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          269
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000035456",
+            "name": "Prdm8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          141
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000010175",
+            "name": "Prox1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          280
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000023484",
+            "name": "Prph"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          36
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000073565",
+            "name": "Prr16"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          310
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000033491",
+            "name": "Prss35"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          74
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000048776",
+            "name": "Pthlh"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          397
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000005716",
+            "name": "Pvalb"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          177
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000003411",
+            "name": "Rab3b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          54
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021708",
+            "name": "Rasgrf2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          277
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034209",
+            "name": "Rasl10a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          181
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024990",
+            "name": "Rbp4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          167
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000020037",
+            "name": "Rfx4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          156
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032890",
+            "name": "Rims3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          179
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000112117",
+            "name": "Rmst"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          331
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000047496",
+            "name": "Rnf152"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          339
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000035305",
+            "name": "Ror1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          12
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036192",
+            "name": "Rorb"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          344
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000075334",
+            "name": "Rprm"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          347
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028871",
+            "name": "Rspo1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          68
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000051920",
+            "name": "Rspo2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          314
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034009",
+            "name": "Rxfp1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          210
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000038331",
+            "name": "Satb2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          201
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041592",
+            "name": "Sdk2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          40
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028883",
+            "name": "Sema3a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          247
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000040254",
+            "name": "Sema3d"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          239
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000063531",
+            "name": "Sema3e"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          184
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000052133",
+            "name": "Sema5b"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          84
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019647",
+            "name": "Sema6a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          228
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000053930",
+            "name": "Shisa6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          223
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000051504",
+            "name": "Siglech"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          1
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030583",
+            "name": "Sipa1l3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          365
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022372",
+            "name": "Sla"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          381
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029843",
+            "name": "Slc13a4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          395
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030500",
+            "name": "Slc17a6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          105
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000070570",
+            "name": "Slc17a7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          388
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036949",
+            "name": "Slc39a12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          218
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000028360",
+            "name": "Slc44a5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          385
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000021609",
+            "name": "Slc6a3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          375
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000054404",
+            "name": "Slfn5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          229
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000031558",
+            "name": "Slit2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          265
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000023064",
+            "name": "Sncg"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          332
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000060429",
+            "name": "Sntb1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          284
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000063434",
+            "name": "Sorcs3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          227
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000033006",
+            "name": "Sox10"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          256
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000063632",
+            "name": "Sox11"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          41
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000025902",
+            "name": "Sox17"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          197
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000053153",
+            "name": "Spag16"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          116
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000002111",
+            "name": "Spi1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          119
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029304",
+            "name": "Spp1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          346
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000004366",
+            "name": "Sst"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          146
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046027",
+            "name": "Stard5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          237
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039629",
+            "name": "Strip2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          244
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000074736",
+            "name": "Syndig1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          38
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000058420",
+            "name": "Syt17"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          255
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026452",
+            "name": "Syt2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          204
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027849",
+            "name": "Syt6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          362
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000030043",
+            "name": "Tacr1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          336
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000035168",
+            "name": "Tanc1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          27
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000000214",
+            "name": "Th"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          222
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000032625",
+            "name": "Thsd7a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          203
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000024642",
+            "name": "Tle4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          76
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000034310",
+            "name": "Tmem132d"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          268
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000026347",
+            "name": "Tmem163"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          99
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000036502",
+            "name": "Tmem255a"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          15
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000041272",
+            "name": "Tox"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          248
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000076498",
+            "name": "Trbc2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          257
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000023992",
+            "name": "Trem2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          308
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000029026",
+            "name": "Trp73"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          182
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000027748",
+            "name": "Trpc4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          165
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000062151",
+            "name": "Unc13c"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          124
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000046844",
+            "name": "Vat1l"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          399
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000019772",
+            "name": "Vip"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          130
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000045648",
+            "name": "Vwc2l"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          145
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000039474",
+            "name": "Wfs1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          98
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000050919",
+            "name": "Zfp366"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          233
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000043456",
+            "name": "Zfp536"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          232
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSMUSG00000022306",
+            "name": "Zfpm2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          393
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00002"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          374
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00004"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          359
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00009"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          355
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00013"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          330
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00017"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          327
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00019"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          326
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00022"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          323
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00024"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          311
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00031"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          305
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00033"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          304
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00034"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          303
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00035"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          298
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00039"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          294
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00041"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          292
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00042"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          285
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00044"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          282
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00046"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          279
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00048"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          274
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00053"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          271
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00057"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          261
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00058"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          258
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00059"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          254
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00060"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          241
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00062"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          230
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00067"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          217
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00073"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          216
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00074"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          334
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "base",
+          "identity": {
+            "design_id": "mBrain_v1.1",
+            "name": "Xenium Mouse Brain Gene Expression",
+            "version": "1.1.0"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "DeprecatedCodeword_0334"
+          },
+          "descriptor": "deprecated_codeword"
+        }
+      }
+    ]
+  }
+}
