@@ -149,51 +149,35 @@ merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_coeffi
 # merged_filtered_markers = merged_filtered_markers.sort_values(['Queried_Major_Name', 'Queried_Name']) # For now
 
 # 05.1
-# merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Name']) # For future
-# merged_filtered_markers = merged_filtered_markers.drop_duplicates()
-# merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_lengthExpression.txt', sep ='\t', index = False)
-# 
-# merged_filtered_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_lengthExpression.txt', sep ='\t')
-# 
-# # Filter
-# not_in_data = merged_filtered_markers["feature_length"].isnull()
-# ## majorclass
-# long_enough = (merged_filtered_markers["feature_length"] >= 960)
-# major_detectable = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] >= 4, axis = 1) > 0 
-# major_not_crowding = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0
-# merged_filtered_markers["major_keep"] = long_enough & (major_detectable & major_not_crowding)
-# merged_filtered_markers["is_major"] = merged_filtered_markers["Queried_Name"].isin(adata.obs["majorclass"].drop_duplicates())
-# 
-# minorToMajor = adata.obs[["author_cell_type", "majorclass"]].drop_duplicates()
-# subcell_raw_mean.index = subcell_raw_mean['author_cell_type']
-# 
-# minor_detectable = np.zeros(sum(merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns)))
-# minor_not_crowding = np.zeros(sum(merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns)))
-# for majorclass in ["AC", "BC", "Microglia", "RGC"]:
-#     sub_expr_mtx = subcell_raw_mean.loc[minorToMajor.loc[minorToMajor["majorclass"] == majorclass, "author_cell_type"], merged_filtered_markers.loc[merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns), "Marker"]]
-#     minor_detectable = minor_detectable | (np.sum(sub_expr_mtx >= 4, axis = 0) > 0)
-#     minor_not_crowding = minor_not_crowding | (np.sum(sub_expr_mtx > 100, axis = 0) == 0)
-# 
-# minor_keep = minor_detectable & minor_not_crowding
-# minor_keep.name = "minor_keep"
-# merged_filtered_markers.index = merged_filtered_markers.Marker
-# merged_filtered_markers = merged_filtered_markers.join(minor_keep, how = "left").drop_duplicates()
-# merged_filtered_markers.loc[merged_filtered_markers["minor_keep"].isnull(), "minor_keep"] = True
-# 
-# merged_filtered_markers["final_keep"] = (merged_filtered_markers["minor_keep"] & (~merged_filtered_markers["is_major"])) | (merged_filtered_markers["major_keep"] & merged_filtered_markers["is_major"])
-# merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpression.txt', sep ='\t', index = False)
-# 
-# merged_filtered_markers_filtered = merged_filtered_markers.loc[merged_filtered_markers["final_keep"]]
-# merged_filtered_markers_filtered.to_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionFiltered.txt', sep ='\t', index = False)
-# 
-# # Let's be strict here
-# not_in_data.index = merged_filtered_markers.index
-# merged_filtered_markers["final_keep"] = ((merged_filtered_markers["minor_keep"] & (~merged_filtered_markers["is_major"])) | (merged_filtered_markers["major_keep"] & merged_filtered_markers["is_major"])) & ~not_in_data
-# merged_filtered_markers_filtered = merged_filtered_markers.loc[merged_filtered_markers["final_keep"]]
-# merged_filtered_markers_filtered.to_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t', index = False)
-# 
-# merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-# # merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_curated-queried_markers_coefficientLengthExpressionFiltered.txt', sep = '\t')
+merged_filtered_markers = merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
+
+major_detectable = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] >= 4, axis = 1) > 0
+major_not_crowding = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0
+merged_filtered_markers["major_keep"] = long_enough & (major_detectable & major_not_crowding)
+merged_filtered_markers["is_major"] = merged_filtered_markers["Queried_Name"].isin(adata.obs["majorclass"].drop_duplicates())
+
+minorToMajor = adata.obs[["author_cell_type", "majorclass"]].drop_duplicates()
+subcell_raw_mean.index = subcell_raw_mean['author_cell_type']
+
+minor_detectable = np.zeros(sum(merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns)))
+minor_not_crowding = np.zeros(sum(merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns)))
+for majorclass in ["AC", "BC", "Microglia", "RGC"]:
+    sub_expr_mtx = subcell_raw_mean.loc[minorToMajor.loc[minorToMajor["majorclass"] == majorclass, "author_cell_type"], merged_filtered_markers.loc[merged_filtered_markers["Marker"].isin(subcell_raw_mean.columns), "Marker"]]
+    minor_detectable = minor_detectable | (np.sum(sub_expr_mtx >= 4, axis = 0) > 0)
+    minor_not_crowding = minor_not_crowding | (np.sum(sub_expr_mtx > 100, axis = 0) == 0)
+
+minor_keep = minor_detectable & minor_not_crowding
+minor_keep.name = "minor_keep"
+merged_filtered_markers.index = merged_filtered_markers.Marker
+merged_filtered_markers = merged_filtered_markers.join(minor_keep, how = "left").drop_duplicates()
+merged_filtered_markers["final_keep"] = (merged_filtered_markers["minor_keep"] & (~merged_filtered_markers["is_major"])) | (merged_filtered_markers["major_keep"] & merged_filtered_markers["is_major"])
+merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumAnnotated.txt', sep ='\t', index = False)
+
+not_in_data = merged_filtered_markers["feature_length"] == 0
+not_in_data.index = merged_filtered_markers.index
+merged_filtered_markers["final_keep"] = ((merged_filtered_markers["minor_keep"] & (~merged_filtered_markers["is_major"])) | (merged_filtered_markers["major_keep"] & merged_filtered_markers["is_major"])) & ~not_in_data
+merged_filtered_markers_filtered = merged_filtered_markers.loc[merged_filtered_markers["final_keep"]]
+merged_filtered_markers_filtered.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumFiltered.txt', sep ='\t', index = False)
 
 
 def clean_markers(var_names, dirty_markers, verbose=True):
