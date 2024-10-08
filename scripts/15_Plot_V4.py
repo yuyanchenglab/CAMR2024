@@ -16,40 +16,20 @@ import seaborn as sns
 import os
 
 os.chdir('/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/')
-os.makedirs('14_Add_Ups', exist_ok = True)
+os.makedirs('14_Plot_V4', exist_ok = True)
 sc.settings.n_jobs = -1
 
 adata = ad.read_h5ad('10_Make_Shiny/10_Shiny_Input.h5ad')
 
-
-all_markers = [
-'Tmcc3',
-'Anks1b',
-'Asic2',
-'Vsx2',
-'Rho',
-'Pde6a',
-'Nr2e3',
-'Cnga1',
-'Guca1b',
-'Rp1',
-'Rcvrn',
-# Second set below
-'Pax6',
-'Tfap2a',
-'Gad2',
-'Slc6a1',
-'Slc32a1',
-'Slc6a9',
-'Slc17a6',
-'Pou4f2',
-'Rbpms',
-'Onecut1',
-'Onecut2']
+resultsPath = "09_Designer_Analysis/PanelDesignV4.txt"
+markers = pd.read_csv(resultsPath, sep = '\t').sort_values(["Major_Name", "Name"]) # NOTE: Nrg1 & 2010007h06rik adjusted
+markers = pd.concat([markers.loc[markers["Name"] == markers["Major_Name"], :], markers.loc[markers["Name"] != markers["Major_Name"], :]])
+all_markers = markers["Marker"].unique().tolist()
+major_markers = markers.loc[markers["Name"] == markers["Major_Name"], "Marker"].unique().tolist()
 
 sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = ""
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
-plot_prefix = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/14_Add_Ups/AddUp_"
+plot_prefix = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/14_Plot_V4/V4_"
 
 raw = True
 data_string = "normCounts"
@@ -69,6 +49,15 @@ for raw in [False, True]:
               vmin = 0,
               show = False,
               save = f"{plot_prefix}Minor-Cell_All-Marker_{data_string}.pdf")
+  
+  for cellType in ['AC', 'BC','RGC','Microglia']:
+      sc.pl.dotplot(adata[adata.obs["majorclass"] == cellType, all_markers],
+              var_names = all_markers, gene_symbols = "feature_name",
+              groupby = "minorclass",
+              vmax = max_col,
+              vmin = 0,
+              show = False,
+              save = f"{plot_prefix}{cellType}_All-Marker_{data_string}.pdf")
 
   sc.pl.dotplot(adata[:, all_markers],
               var_names = all_markers, gene_symbols = "feature_name",
@@ -77,3 +66,11 @@ for raw in [False, True]:
               vmin = 0,
               show = False,
               save = f"{plot_prefix}Major-Cell_All-Marker_{data_string}.pdf")
+              
+  sc.pl.dotplot(adata[:, major_markers],
+              var_names = major_markers, gene_symbols = "feature_name",
+              groupby = "majorclass",
+              vmax = max_col,
+              vmin = 0,
+              show = False,
+              save = f"{plot_prefix}Major-Cell_Major-Marker_{data_string}.pdf")
