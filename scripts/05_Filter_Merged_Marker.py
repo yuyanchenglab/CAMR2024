@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# JM 08/17/24 # This is going to have the merged
+# JM 08/17/24
 # In this notebook, we're going plot the mouse retinal data and determine proper marker genes.
 
 import datetime
@@ -34,6 +34,8 @@ plot_major_cells = True
 plot_minor_markers = True
 plot_minor_cells = True
 plot_split_majorclass = True
+plot_only_target_cells = False
+plot_only_curated = False
 
 raw = True
 xenium_filtered = True
@@ -48,15 +50,8 @@ if raw:
 if xenium_filtered:
     data_string = data_string + "_xeniumFiltered"
 
-plot_occassion = ""
+plot_occassion = "" # Options: "august_grant": # 05.1, "curated_xenium_filtered": # 05.2
 data_string = data_string + f"_{plot_occassion}"
-markers = ""
-if plot_occassion == "august_grant": # 05.1
-    pass
-elif plot_occassion == "curated_xenium_filtered": # 05.2
-    pass
-else:
-    pass
 
 # Clean subtypes
 adata.obs = adata.obs.loc[:, ["majorclass", "author_cell_type"]]
@@ -130,7 +125,7 @@ merged_filtered_markers = merged_filtered_markers.merge(major_raw_mean, on = 'Ma
 
 ## Expression Filtering
 merged_filtered_markers["Detectable_Expression"] = merged_filtered_markers["Major_Detectable_Expression"] | merged_filtered_markers["Minor_Detectable_Expression"]
-merged_filtered_markers["not_crowding"] = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0
+merged_filtered_markers["not_crowding"] = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0 # If subtype is high, that should be ok
 
 # Filter
 merged_filtered_markers["xenium_filter"] = (merged_filtered_markers["long_enough"] & 
@@ -145,6 +140,10 @@ merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xenium
 # 05.2 # This is just looking at curated, xenium-filtered markers
 # merged_filtered_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t')
 # merged_filtered_markers = merged_filtered_markers.sort_values(['Queried_Major_Name', 'Queried_Name']) # For now
+
+if plot_only_curated:
+    merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
+    data_string = data_string + '_CuratedOnly'
 
 def clean_markers(var_names, dirty_markers, verbose=True):
     final_markers = []
@@ -161,11 +160,10 @@ def clean_markers(var_names, dirty_markers, verbose=True):
     return(final_markers)
 
 # 05.2
-if plot_major:
+if plot_major_markers and plot_major_cells:
     assume_correct = merged_filtered_markers["Queried_Major_Name"] == merged_filtered_markers["Queried_Name"]
     hedge_unharmonized = merged_filtered_markers["Queried_Major_Name"] == merged_filtered_markers["Name"]
     curated_majorclass_markers = merged_filtered_markers.loc[assume_correct | hedge_unharmonized]
-    curated_majorclass_markers.to_csv('05_Filter_Merged_Markers/5_curatedMarkers_majorclass_xeniumFiltered.txt', sep = '\t', index = False)
     
     final_markers = clean_markers(adata.var_names, curated_majorclass_markers["Marker"].tolist())
     
@@ -177,74 +175,101 @@ if plot_major:
                   vmin = 0,
                   show = False,
                   save = f"/project/hipaa_ycheng11lab/atlas/CAMR2024/05_Filter_Merged_Markers/figures/5_dotplot_mouseRetina_majorclass_curatedMarkers_{data_string}.pdf")
+# End plot_major_markers and plot_major_cells
 
+if plot_minor_markers and plot_minor_cells:
+    all_markers = []
+    all_target_subtypes = []
+    for majorclass in adata.obs['majorclass'].cat.categories:
+        
+        print(f'{datetime.datetime.now()} Major Class: {majorclass}')
+        
+        majorclass_original = majorclass
+        majorclass = majorclass.upper()
+        
+        is_subtype_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] != majorclass)
+        markers = merged_filtered_markers.loc[is_subtype_marker, "Marker"].tolist()
+        target_subtypes = merged_filtered_markers.loc[is_subtype_marker, "Queried_Name"].drop_duplicates(keep='first').tolist()
+        
+        if plot_major_markers:
+            is_major_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] == majorclass)
+            cell_markers = merged_filtered_markers.loc[is_major_marker, "Marker"].tolist()
+            markers = cell_markers + markers
+        
+        final_markers = clean_markers(adata.var_names, markers)
+        all_markers += final_markers
+        
+        
+        if not plot_split_majorclass:
+            continue
+        
+        if final_markers == []: # Necessary to avoid "ValueError: left cannot be >= right"
+            print(f'No minor markers available for {majorclass}!')
+            continue
+        
+        if not plot_only_target_cells:
+            all_subtypes = adata.obs.loc[adata.obs['majorclass'] == majorclass_original, "author_cell_type"].astype(str).sort_values().drop_duplicates(keep='first')
+            target_subtypes += all_subtypes[!all_subtypes.isin(target_subtypes)].tolist()
+        all_target_subtypes += target_subtypes
+        
+        sc.pl.dotplot(adata[adata.obs['majorclass'] == majorclass_original, final_markers],
+                      var_names = final_markers,
+                      groupby = 'author_cell_type',
+                      categories_order = target_subtypes,
+                      vmax = max_col,
+                      vmin = 0,
+                      show = False,
+                      save = f"mouseRetina_minorclass-{majorclass}_{data_string}.pdf")
+    # End majorclass loop
+    
+    final_markers = clean_markers(adata.var_names, all_markers)
+    sc.pl.dotplot(adata[:, final_markers],
+                      var_names = final_markers,
+                      groupby = 'author_cell_type',
+                      categories_order = all_target_subtypes,
+                      vmax = max_col,
+                      vmin = 0,
+                      show = False,
+                      save = f"mouseRetina_minorclass_{data_string}.pdf")
+# End plot_minor_markers and plot_minor_cells
 
-for majorclass in adata.obs['majorclass'].cat.categories:
+if plot_occassion == "august_grant": # 05.1
+    # Make majorclass in author_cell_type uppercase to match Name and Major_Name
+    majorclass_idx = adata.obs["author_cell_type"].str.upper().isin(adata.obs["majorclass"].astype(str).str.upper())
+    adata.obs.loc[majorclass_idx, "author_cell_type"] = adata.obs.loc[majorclass_idx, "author_cell_type"].str.upper()
     
-    print(f'{datetime.datetime.now()} Major Class: {majorclass}')
+    merged_filtered_markers_Curated = merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
+    merged_filtered_markers_AC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "AC"]
+    merged_filtered_markers_BC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "BC"]
+    merged_filtered_markers_RGC = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RGC"]
+    merged_filtered_markers_MG  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "MG"]
+    merged_filtered_markers_RPE = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RPE"]
+    merged_filtered_markers_Curated = pd.concat([merged_filtered_markers_AC,
+                                                 merged_filtered_markers_BC,
+                                                 merged_filtered_markers_RGC,
+                                                 merged_filtered_markers_MG,
+                                                 merged_filtered_markers_RPE],
+                                                ignore_index = True)
     
-    majorclass_original = majorclass
-    majorclass = majorclass.upper()
+    ordered_celltypes = merged_filtered_markers_Curated["Queried_Name"].drop_duplicates().astype('category').cat.remove_categories('RGC').dropna().tolist() + ["ROD","CONE","HC","MICROGLIA","ENDOTHELIAL"]
     
-    is_major_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] == majorclass)
-    cell_markers = merged_filtered_markers.loc[is_major_marker, "Marker"].tolist()
+    august_grant_markers = ["Ptn","Cntn6","Nxph1","Cpne4","Cbln4","Etv1","Epha3","Trhde", # AC
+                            "Neto1","Erbb4","Grik1","Nnat","Cabp5","Sox6","Cck","Cpne9","Prkca","Hcn1", # BC
+                            "Rbpms","Penk","Spp1","Coch","Opn4","Il1rapl2","Tbx20","Tac1","Cartpt", # RGC
+                            "Aqp4","Glul","Rlbp1","Slc1a3","Vim", # MG
+                            "Rpe65", # RPE
+                            "Rho", "Arr3","Lhx1","Onecut1", "Cd74", "Cldn5"] # Manual
     
-    is_subtype_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] != majorclass)
-    subtype_markers = merged_filtered_markers.loc[is_subtype_marker, "Marker"].tolist()
+    # Temporary change for this plot
+    adata.obs.loc[adata.obs["author_cell_type"].astype(str).str.contains("Microglia"), "author_cell_type"] = "MICROGLIA" # No subtypes of Microglia here
     
-    markers = cell_markers + subtype_markers
-
-    final_markers = clean_markers(adata.var_names, markers)
-
-    if final_markers == []: # Necessary to avoid "ValueError: left cannot be >= right"
-        print(f'No markers available for {majorclass}!')
-        continue
-    
-    sc.pl.dotplot(adata[adata.obs['majorclass'] == majorclass_original, final_markers],
-                  var_names = final_markers,
+    sc.pl.dotplot(adata[adata.obs['author_cell_type'].isin(ordered_celltypes), :],
+                  var_names = august_grant_markers,
                   groupby = 'author_cell_type',
-                  categories_order = adata.obs.loc[adata.obs['majorclass'] == majorclass_original, "author_cell_type"].astype(str).sort_values().drop_duplicates(keep='first').tolist(), # Only celltypes that have a marker should be present
+                  categories_order = ordered_celltypes,
                   vmax = max_col,
                   vmin = 0,
                   show = False,
-                  save = f"mouseRetina_minorclass-{majorclass}_filteredMergedMarkers_{data_string}.pdf")
-# End majorclass
-
-# Make majorclass in author_cell_type uppercase to match Name and Major_Name
-majorclass_idx = adata.obs["author_cell_type"].str.upper().isin(adata.obs["majorclass"].astype(str).str.upper())
-adata.obs.loc[majorclass_idx, "author_cell_type"] = adata.obs.loc[majorclass_idx, "author_cell_type"].str.upper()
-
-merged_filtered_markers_Curated = merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
-merged_filtered_markers_AC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "AC"]
-merged_filtered_markers_BC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "BC"]
-merged_filtered_markers_RGC = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RGC"]
-merged_filtered_markers_MG  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "MG"]
-merged_filtered_markers_RPE = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RPE"]
-merged_filtered_markers_Curated = pd.concat([merged_filtered_markers_AC,
-                                             merged_filtered_markers_BC,
-                                             merged_filtered_markers_RGC,
-                                             merged_filtered_markers_MG,
-                                             merged_filtered_markers_RPE],
-                                            ignore_index = True)
-
-ordered_celltypes = merged_filtered_markers_Curated["Queried_Name"].drop_duplicates().astype('category').cat.remove_categories('RGC').dropna().tolist() + ["ROD","CONE","HC","MICROGLIA","ENDOTHELIAL"]
-
-august_grant_markers = ["Ptn","Cntn6","Nxph1","Cpne4","Cbln4","Etv1","Epha3","Trhde", # AC
-                        "Neto1","Erbb4","Grik1","Nnat","Cabp5","Sox6","Cck","Cpne9","Prkca","Hcn1", # BC
-                        "Rbpms","Penk","Spp1","Coch","Opn4","Il1rapl2","Tbx20","Tac1","Cartpt", # RGC
-                        "Aqp4","Glul","Rlbp1","Slc1a3","Vim", # MG
-                        "Rpe65", # RPE
-                        "Rho", "Arr3","Lhx1","Onecut1", "Cd74", "Cldn5"] # Manual
-
-# Temporary change for this plot
-adata.obs.loc[adata.obs["author_cell_type"].astype(str).str.contains("Microglia"), "author_cell_type"] = "MICROGLIA" # No subtypes of Microglia here
-
-sc.pl.dotplot(adata[adata.obs['author_cell_type'].isin(ordered_celltypes), :],
-              var_names = august_grant_markers,
-              groupby = 'author_cell_type',
-              categories_order = ordered_celltypes,
-              vmax = max_col,
-              vmin = 0,
-              show = False,
-              figsize = (12,10),
-              save = f"mouseRetina_filteredMergedMarkers_curated_{data_string}.pdf")
+                  figsize = (12,10),
+                  save = f"mouseRetina_curated_{data_string}.pdf")
+# End August Grant
