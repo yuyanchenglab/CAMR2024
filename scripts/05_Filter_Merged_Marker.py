@@ -3,6 +3,7 @@
 
 # JM 08/17/24
 # In this notebook, we're going plot the mouse retinal data and determine proper marker genes.
+# Also apply xenium filters to the curated data
 
 import datetime
 print(f'{datetime.datetime.now()} Analysis Setup')
@@ -37,8 +38,7 @@ plot_split_majorclass = True
 plot_only_target_cells = False
 plot_only_curated = False
 
-raw = True
-xenium_filtered = True
+raw = False
 
 data_string = "normCounts"
 max_col = 3
@@ -47,38 +47,33 @@ if raw:
     max_col = 4
     adata.X = adata.raw.X
 
-if xenium_filtered:
-    data_string = data_string + "_xeniumFiltered"
-
-plot_occassion = "" # Options: "august_grant": # 05.1, "curated_xenium_filtered": # 05.2
-data_string = data_string + f"_{plot_occassion}"
+# plot_occassion = "" # Options: "august_grant": # 05.1, "curated_xenium_filtered": # 05.2
+# data_string = data_string + f"_{plot_occassion}"
 
 # Clean subtypes
-adata.obs = adata.obs.loc[:, ["majorclass", "author_cell_type"]]
-adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str)
+adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str) # From category
 is_unassigned = adata.obs["author_cell_type"] == adata.obs["majorclass"]
 is_subtype = adata.obs["author_cell_type"].isin(["AC", "BC", "Microglia", "RGC"])
 unassigned_subtypes = adata.obs["author_cell_type"].loc[is_unassigned & is_subtype]
 adata.obs.loc[is_unassigned & is_subtype, "author_cell_type"] = ["Unassigned_" + uv for uv in unassigned_subtypes]
-adata.obs["minorclass"] = adata.obs["author_cell_type"].astype(str)
-adata.obs["Name"] = adata.obs["author_cell_type"].astype(str) # This should be fed through q2n
+adata.obs["minorclass"] = adata.obs["author_cell_type"]
+adata.obs["Name"] = adata.obs["author_cell_type"] # This should be fed through q2n
 adata.obs["Major_Name"] = adata.obs["majorclass"].astype(str) # This should be fed through q2n
 
 # Shrink adata footprint
-adata.raw = None
-adata.var = adata.var.loc[:, ["gene_symbols", "feature_name", "feature_length"]]
-adata.var["Ensembl"] = adata.var.index.astype(str)
+adata.raw = None # 5GB saved?
+adata.var["Ensembl"] = adata.var.index.tolist()
 adata.var["feature_name"] = adata.var["feature_name"].astype(str).str.capitalize()
 adata.var["feature_length"] = adata.var["feature_length"].astype(int)
 adata.var_names = adata.var["feature_name"].astype(str).tolist() # No need to manually adjust index
-# adata.var_names_make_unique() # Why is this like this?
+adata.var_names_make_unique() # Unnecessary for this data
 
 
 # Work starts here
 
 
 # Coefficient Marking
-merged_filtered_markers = pd.read_csv('04_Merge_Curated_Markers/4_merged_curated-queried_markers.txt', sep = '\t').drop_duplicates()
+merged_filtered_markers = pd.read_csv('04_Merge_Curated_Markers/4_merged_curated-queried_cell_markers.txt', sep = '\t').drop_duplicates()
 small_coef = np.logical_or(merged_filtered_markers["Minor_Coefficient"] <= coefficient_threshold, merged_filtered_markers["Major_Coefficient"] <= coefficient_threshold)
 merged_filtered_markers["small_coef_in_query"] = np.logical_and(merged_filtered_markers["Queried"] == "Queried", small_coef)
 
