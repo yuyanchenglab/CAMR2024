@@ -15,12 +15,12 @@ library(eulerr)
 library(magrittr)
 
 analysisName = "4_Merge_Curated_Markers"
-analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
+analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
-source("scripts/4_Merge_Curated_Markers.util.R")
+source("scripts/04_Merge_Curated_Markers.util.R")
 
 curatedPath = "data/CuratedMouseRetinaMarkers.txt"
-queriedMajorPath = "03_Marker_Expression/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
+queriedMajorPath = "03_Filter_Model_Markers/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
 
 outPath = paste0(analysisPath, "04_Merge_Curated_Markers/")
 dir.create(outPath, showWarnings = FALSE)
@@ -39,12 +39,12 @@ set.seed(1)
 
 majorclass = c("AC", "ASTROCYTE", "BC", "CONE", "ENDOTHELIAL", "HC", "MG", "MICROGLIA", "PERICYTE", "RGC", "ROD", "RPE")
 
- ]majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
+majorclass_with_minor = c("AC", "BC", "Microglia", "RGC")
 
 curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath)
 queriedMinor <- majorclass_with_minor %>%
-  sapply(\(major) { fread(paste0("03_Marker_Expression/3_ovr_LogReg_minorclass-", major, "_xeniumFiltered.txt")) },
+  sapply(\(major) { fread(paste0("03_Filter_Model_Markers/3_ovr_LogReg_minorclass-", major, "_xeniumFiltered.txt"), drop = 1) },
          USE.NAMES = TRUE, simplify = FALSE) %>%
   rbindlist()
 
@@ -66,7 +66,7 @@ queriedMinor[, Minor_Coefficient := abs(Minor_Coefficient)] # Any binary regress
 setnames(queriedMajor, "Coefficient", "Major_Coefficient")
 
 clean_queried =
-  rbindlist(list(queriedMajor, queriedMinor), fill = TRUE) %>%
+  rbindlist(list(queriedMajor, queriedMinor), fill = TRUE) %>% # No overlap with this data, Unassigned
   mutate(Queried = "Queried",
          Queried_Marker = Marker, # Preserve original names as it was in original data
          Queried_Name = Name,
@@ -76,11 +76,11 @@ clean_queried =
 ## Queried will mainly act as the base
 ## Curated will conform to base.
 
-cell_clobber_check() # 173, 140, 16
+cell_clobber_check() # 173, 123, 16
 
 ### Gene Harmony ----
 
-clean_curated = markers_to_mouse(clean_curated, verbose)
+clean_curated = markers_to_mouse(clean_curated, verbose) # 1 gene with a typo
 clean_queried = markers_to_mouse(clean_queried, verbose)
 
 clean_curated = clean_genes(clean_curated, verbose) # Lost two unique genes from typos
@@ -88,28 +88,28 @@ clean_curated = clean_genes(clean_curated, verbose) # Lost two unique genes from
 ### Cell Harmony ----
 
 clean_curated = depluralize(clean_curated, verbose)
-cell_clobber_check() # 173, 140, 20
+cell_clobber_check() # 173, 123, 20
 
 clean_queried = set_name_case(clean_queried)
 clean_curated = set_name_case(clean_curated)
-cell_clobber_check() # 173, 140, 20
+cell_clobber_check() # 173, 123, 20
 
 clean_curated = set_cellname_manually(clean_curated, CURATE2QUERY, verbose)
-cell_clobber_check() # 173, 140, 28 = 20 + length(CURATE2QUERY)
+cell_clobber_check() # 173, 123, 29 = 20 + length(CURATE2QUERY)
 
 clean_curated = clean_curated %>% filter(!duplicated(paste0(Name, Marker, Parent_Name))) # Remove odd duplicate
 
 # Back to Query
 
 clean_queried = query_sub(clean_queried)
-cell_clobber_check() # 173, 140, 107
+cell_clobber_check() # 173, 123, 96
 
 clean_queried = set_cellname_manually(clean_queried, QUERY2CURATE, verbose)
-cell_clobber_check() # 173, 139, 128
+cell_clobber_check() # 173, 122, 113
 
 # Any random cell types need manual adjustment?
 clean_queried$Name %>% unique() %>% # "NOVEL_10","NT-OODSGC","NOVEL_13","OODS_CCK_14","DV-OODSGC","NOVEL_24","NOVEL_30","UNASSIGNED_AC","UNASSIGNED_BC","UNASSIGNED_RGC","UNASSIGNED_MICROGLIA"
-  setdiff(c(clean_curated$Parent_Name, clean_curated$Name) %>% unique()) # Yes, the above 11 do
+  setdiff(c(clean_curated$Parent_Name, clean_curated$Name) %>% unique()) # Yes, the above 9 do
 
 # Stop and Review ----
 
@@ -123,13 +123,13 @@ plot_gene_cell_venn(clean_curated, clean_queried, outPath)
 ## Merge ----
 
 clean_merged =
-  merge(clean_curated, clean_queried, by = c("Marker", "Name"), all = TRUE, suffixes = c(".Curated", ".Queried")) %>%
+  merge(clean_curated, clean_queried, by = c("Marker", "Name"), all = TRUE) %>%
   summarize(.by = c(Name, Marker),
-            Curated, Queried, Queried_Name, Queried_Major_Name,
-            Minor_Coefficient, Major_Coefficient)
+            Major_Name, Curated, Queried, Queried_Name, Queried_Major_Name,
+            Minor_Coefficient, Major_Coefficient, Parent_Name)
 
-all(unique(clean_merged$Parent_Name) %in% majorclass) # FALSE
-all(majorclass %in% unique(clean_merged$Parent_Name)) # TRUE
+all(unique(clean_merged$Major_Name) %in% majorclass) # FALSE
+all(majorclass %in% unique(clean_merged$Major_Name)) # TRUE
 
 clean_merged = get_major_name(clean_merged, verbose) # Check!!
 
