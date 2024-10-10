@@ -18,12 +18,12 @@ import seaborn as sns
 import os
 
 os.chdir('/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/')
-os.makedirs('05_Filter_Merged_Markers', exist_ok = True)
+os.makedirs('05_Filter_Curated_Markers', exist_ok = True)
 sc.settings.n_jobs = -1
 
 adata = ad.read_h5ad('01_QualityControl/1_camr_scrublet_batch_filtered.h5ad')
 
-sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "05_Filter_Merged_Markers/figures/5_dotplot_"
+sc.plotting.DotPlot.DEFAULT_SAVE_PREFIX = "05_Filter_Curated_Markers/figures/5_dotplot_"
 sc.plotting.DotPlot.DEFAULT_LARGEST_DOT = 200.0
 
 coefficient_threshold = 0.3
@@ -141,9 +141,9 @@ curated_markers["Xenium_Filter"] = (curated_markers["Long_Enough"] &
                                     curated_markers["Detectable_Expression"] &
                                     ~curated_markers["Optical_Crowding_Risk"])
 curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-curated_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
+curated_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
 filtered_markers = curated_markers.loc[curated_markers["Xenium_Filter"]]
-filtered_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
+filtered_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
 
 if plot_only_curated:
     data_string = data_string + '_CuratedOnly'
@@ -180,7 +180,7 @@ if plot_major_markers and plot_major_cells:
                   vmax = max_col,
                   vmin = 0,
                   show = False,
-                  save = f"/project/hipaa_ycheng11lab/atlas/CAMR2024/05_Filter_Merged_Markers/figures/5_dotplot_mouseRetina_majorclass_curatedMarkers_{data_string}.pdf")
+                  save = f"/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/05_Filter_Curated_Markers/figures/5_dotplot_mouseRetina_majorclass_curatedMarkers_{data_string}.pdf")
 # End plot_major_markers and plot_major_cells
 
 if plot_minor_markers and plot_minor_cells:
