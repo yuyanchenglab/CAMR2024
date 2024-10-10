@@ -51,9 +51,10 @@ if raw:
 # data_string = data_string + f"_{plot_occassion}"
 
 # Clean subtypes
-adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str) # From category
+adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str).str.upper() # From category
+adata.obs["majorclass"] = adata.obs["majorclass"].astype(str).str.upper() # From category
 is_unassigned = adata.obs["author_cell_type"] == adata.obs["majorclass"]
-is_subtype = adata.obs["author_cell_type"].isin(["AC", "BC", "Microglia", "RGC"])
+is_subtype = adata.obs["author_cell_type"].isin(["AC", "BC", "MICROGLIA", "RGC"])
 unassigned_subtypes = adata.obs["author_cell_type"].loc[is_unassigned & is_subtype]
 adata.obs.loc[is_unassigned & is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
 adata.obs["minorclass"] = adata.obs["author_cell_type"]
@@ -76,26 +77,44 @@ adata.var_names_make_unique() # Unnecessary for this data
 curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
 
 # Add gene length
+curated_markers["Marker"] = curated_markers["Marker"].str.capitalize() # Make sure the below join keeps all rows
 curated_markers.index = curated_markers["Marker"] # Make sure the below join keeps all rows
 curated_markers = curated_markers.join(adata.var[["feature_length", "Ensembl"]])
 curated_markers["missing_length"] = curated_markers["feature_length"].isnull()
 curated_markers[curated_markers["missing_length"], "feature_length"] = 0
 curated_markers["Long_Enough"] = curated_markers["feature_length"] >= length_threshold
-curated_markers.index = list(range(curated_markers.shape[0]))
+curated_markers.index = list(range(curated_markers.shape[0])) # Move this to after minorclass merges?
 
 # minorclass
 ## Pre-process expression table names
 subcell_raw_mean = pd.read_csv('data/raw_meanExpression_minorclass.txt', sep = '\t')
-is_subtype = subcell_raw_mean["author_cell_type"].isin(["AC", "BC", "Microglia", "RGC"])
+subcell_raw_mean["author_cell_type"].str.upper()
+is_subtype = subcell_raw_mean["author_cell_type"].isin(["AC", "BC", "MICROGLIA", "RGC"])
 unassigned_subtypes = subcell_raw_mean.loc[is_subtype, "author_cell_type"]
 subcell_raw_mean.loc[is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
 
-## Process table
+## Process table and detection
 subcell_raw_mean_long = pd.melt(subcell_raw_mean, id_vars='author_cell_type', var_name='Marker', value_name='Raw_Mean_Expression_Minorclass_Target')
 subcell_raw_mean_long = subcell_raw_mean_long.rename(columns={'author_cell_type':'Queried_Name'})
 subcell_raw_mean_long["Marker"] = subcell_raw_mean_long["Marker"].str.capitalize()
 subcell_raw_mean_long["Detectable_Minor_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
 curated_markers = curated_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
+
+## Optical crowding
+minorToMajor = adata.obs[["author_cell_type", "majorclass"]].drop_duplicates()
+subcell_raw_mean.index = subcell_raw_mean['author_cell_type']
+
+minor_crowding = np.zeros(sum(curated_markers["Marker"].isin(subcell_raw_mean.columns)))
+included_markers = curated_markers.loc[curated_markers["Marker"].isin(subcell_raw_mean.columns), "Marker"]
+for majorclass in ["AC", "BC", "MICROGLIA", "RGC"]:
+    minorclasses = minorToMajor.loc[minorToMajor["majorclass"] == majorclass, "author_cell_type"] # Why is below line needed given the 'clean_genes()' from last script? How well does 'upper' fix this?
+    sub_expr_mtx = subcell_raw_mean.loc[minorclasses, included_markers]
+    minor_crowding = minor_not_crowding & (np.sum(sub_expr_mtx > 100, axis = 0) > 0)
+
+minor_crowding.name = "Minor_Crowding_Risk" # Is this not a numpy array?
+curated_markers.index = curated_markers["Marker"]
+curated_markers = curated_markers.join(minor_crowding, how = "left").drop_duplicates() # Drop duplicate necessary?
+curated_markers.loc[curated_markers["Minor_Crowding_Risk"].isnull(), "Minor_Crowding_Risk"] = True # Be alittle leaky
 
 # majorclass expression
 major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.txt', sep = '\t')
@@ -111,27 +130,26 @@ major_raw_mean.columns = major_raw_mean.iloc[0] # majorclass in first column bec
 major_raw_mean["Marker"] = major_raw_mean.index.astype(str).str.capitalize()
 major_raw_mean = major_raw_mean.drop(major_raw_mean.index[0])
 curated_markers = curated_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
+curated_markers["Major_Crowding_Risk"] = np.sum(curated_markers.loc[:, adata.obs["majorclass"].unique()] > 100, axis = 1) > 0 # If subtype is high, that should be ok?
 
-## Expression Filtering
+# Combine Major and Minor
 curated_markers["Detectable_Expression"] = curated_markers["Detectable_Major_Expression"] | curated_markers["Detectable_Minor_Expression"]
-curated_markers["Optical_Crowding_Risk"] = np.sum(curated_markers.loc[:, adata.obs["majorclass"].unique()] > 100, axis = 1) > 0 # If subtype is high, that should be ok?
+curated_markers["Optical_Crowding_Risk"] = curated_markers["Major_Crowding_Risk"] | curated_markers["Minor_Crowding_Risk"]
 
 # Filter
-curated_markers["xenium_filter"] = (curated_markers["Long_Enough"] &
+curated_markers["Xenium_Filter"] = (curated_markers["Long_Enough"] &
                                     curated_markers["Detectable_Expression"] &
                                     ~curated_markers["Optical_Crowding_Risk"])
 curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
 curated_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
-curated_markers = curated_markers.loc[curated_markers["xenium_filter"]]
-curated_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
-
-# 05.2 # This is just looking at curated, xenium-filtered markers
-# curated_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t')
-# curated_markers = curated_markers.sort_values(['Queried_Major_Name', 'Queried_Name']) # For now
+filtered_markers = curated_markers.loc[curated_markers["Xenium_Filter"]]
+filtered_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
 
 if plot_only_curated:
-    merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
     data_string = data_string + '_CuratedOnly'
+else: # Road less travelled
+    queried_markers = pd.read_csv("04_Merge_Curated_Markers/minor_by_major/4_queried.txt", sep = '\t')
+    filtered_markers = filtered_markers.join(queried_markers)
 
 def clean_markers(var_names, dirty_markers, verbose=True):
     final_markers = []
@@ -149,9 +167,9 @@ def clean_markers(var_names, dirty_markers, verbose=True):
 
 # 05.2
 if plot_major_markers and plot_major_cells:
-    assume_correct = merged_filtered_markers["Queried_Major_Name"] == merged_filtered_markers["Queried_Name"]
-    hedge_unharmonized = merged_filtered_markers["Queried_Major_Name"] == merged_filtered_markers["Name"]
-    curated_majorclass_markers = merged_filtered_markers.loc[assume_correct | hedge_unharmonized]
+    assume_correct = filtered_markers["Queried_Major_Name"] == filtered_markers["Queried_Name"]
+    hedge_unharmonized = filtered_markers["Queried_Major_Name"] == filtered_markers["Name"]
+    curated_majorclass_markers = filtered_markers.loc[assume_correct | hedge_unharmonized]
     
     final_markers = clean_markers(adata.var_names, curated_majorclass_markers["Marker"].tolist())
     
@@ -175,13 +193,13 @@ if plot_minor_markers and plot_minor_cells:
         majorclass_original = majorclass
         majorclass = majorclass.upper()
         
-        is_subtype_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] != majorclass)
-        markers = merged_filtered_markers.loc[is_subtype_marker, "Marker"].tolist()
-        target_subtypes = merged_filtered_markers.loc[is_subtype_marker, "Queried_Name"].drop_duplicates(keep='first').tolist()
+        is_subtype_marker = np.logical_and(filtered_markers["Major_Name"] == majorclass, filtered_markers["Name"] != majorclass)
+        markers = filtered_markers.loc[is_subtype_marker, "Marker"].tolist()
+        target_subtypes = filtered_markers.loc[is_subtype_marker, "Queried_Name"].drop_duplicates(keep='first').tolist()
         
         if plot_major_markers:
-            is_major_marker = np.logical_and(merged_filtered_markers["Major_Name"] == majorclass, merged_filtered_markers["Name"] == majorclass)
-            cell_markers = merged_filtered_markers.loc[is_major_marker, "Marker"].tolist()
+            is_major_marker = np.logical_and(filtered_markers["Major_Name"] == majorclass, filtered_markers["Name"] == majorclass)
+            cell_markers = filtered_markers.loc[is_major_marker, "Marker"].tolist()
             markers = cell_markers + markers
         
         final_markers = clean_markers(adata.var_names, markers)
@@ -222,24 +240,21 @@ if plot_minor_markers and plot_minor_cells:
 # End plot_minor_markers and plot_minor_cells
 
 if plot_occassion == "august_grant": # 05.1
-    # Make majorclass in author_cell_type uppercase to match Name and Major_Name
-    majorclass_idx = adata.obs["author_cell_type"].str.upper().isin(adata.obs["majorclass"].astype(str).str.upper())
-    adata.obs.loc[majorclass_idx, "author_cell_type"] = adata.obs.loc[majorclass_idx, "author_cell_type"].str.upper()
     
-    merged_filtered_markers_Curated = merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
-    merged_filtered_markers_AC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "AC"]
-    merged_filtered_markers_BC  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "BC"]
-    merged_filtered_markers_RGC = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RGC"]
-    merged_filtered_markers_MG  = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "MG"]
-    merged_filtered_markers_RPE = merged_filtered_markers_Curated.loc[merged_filtered_markers_Curated["Major_Name"] == "RPE"]
-    merged_filtered_markers_Curated = pd.concat([merged_filtered_markers_AC,
-                                                 merged_filtered_markers_BC,
-                                                 merged_filtered_markers_RGC,
-                                                 merged_filtered_markers_MG,
-                                                 merged_filtered_markers_RPE],
-                                                ignore_index = True)
+    filtered_curated_markers = merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
+    filtered_markers_AC  = filtered_curated_markers.loc[filtered_curated_markers["Major_Name"] == "AC"]
+    filtered_markers_BC  = filtered_curated_markers.loc[filtered_curated_markers["Major_Name"] == "BC"]
+    filtered_markers_RGC = filtered_curated_markers.loc[filtered_curated_markers["Major_Name"] == "RGC"]
+    filtered_markers_MG  = filtered_curated_markers.loc[filtered_curated_markers["Major_Name"] == "MG"]
+    filtered_markers_RPE = filtered_curated_markers.loc[filtered_curated_markers["Major_Name"] == "RPE"]
+    filtered_curated_markers = pd.concat([filtered_markers_AC,
+                                         filtered_markers_BC,
+                                         filtered_markers_RGC,
+                                         filtered_markers_MG,
+                                         filtered_markers_RPE],
+                                        ignore_index = True)
     
-    ordered_celltypes = merged_filtered_markers_Curated["Queried_Name"].drop_duplicates().astype('category').cat.remove_categories('RGC').dropna().tolist() + ["ROD","CONE","HC","MICROGLIA","ENDOTHELIAL"]
+    ordered_celltypes = filtered_curated_markers["Queried_Name"].drop_duplicates().astype('category').cat.remove_categories('RGC').dropna().tolist() + ["ROD","CONE","HC","MICROGLIA","ENDOTHELIAL"]
     
     august_grant_markers = ["Ptn","Cntn6","Nxph1","Cpne4","Cbln4","Etv1","Epha3","Trhde", # AC
                             "Neto1","Erbb4","Grik1","Nnat","Cabp5","Sox6","Cck","Cpne9","Prkca","Hcn1", # BC
@@ -247,9 +262,6 @@ if plot_occassion == "august_grant": # 05.1
                             "Aqp4","Glul","Rlbp1","Slc1a3","Vim", # MG
                             "Rpe65", # RPE
                             "Rho", "Arr3","Lhx1","Onecut1", "Cd74", "Cldn5"] # Manual
-    
-    # Temporary change for this plot
-    adata.obs.loc[adata.obs["author_cell_type"].astype(str).str.contains("Microglia"), "author_cell_type"] = "MICROGLIA" # No subtypes of Microglia here
     
     sc.pl.dotplot(adata[adata.obs['author_cell_type'].isin(ordered_celltypes), :],
                   var_names = august_grant_markers,
