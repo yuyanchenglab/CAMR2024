@@ -72,78 +72,80 @@ adata.var_names_make_unique() # Unnecessary for this data
 
 # Work starts here
 
-
-# Coefficient Marking # Jumping the shark, don't merge until the wet lab does it.
-curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
-
-# Add gene length
-curated_markers["Marker"] = curated_markers["Marker"].str.capitalize() # Make sure the below join keeps all rows
-curated_markers.index = curated_markers["Marker"] # Make sure the below join keeps all rows
-curated_markers = curated_markers.join(adata.var[["feature_length", "Ensembl"]])
-curated_markers["missing_length"] = curated_markers["feature_length"].isnull()
-curated_markers[curated_markers["missing_length"], "feature_length"] = 0
-curated_markers["Long_Enough"] = curated_markers["feature_length"] >= length_threshold
-curated_markers.index = list(range(curated_markers.shape[0])) # Move this to after minorclass merges?
-
-# minorclass
-## Pre-process expression table names
-subcell_raw_mean = pd.read_csv('data/raw_meanExpression_minorclass.txt', sep = '\t')
-subcell_raw_mean["author_cell_type"].str.upper()
-is_subtype = subcell_raw_mean["author_cell_type"].isin(["AC", "BC", "MICROGLIA", "RGC"])
-unassigned_subtypes = subcell_raw_mean.loc[is_subtype, "author_cell_type"]
-subcell_raw_mean.loc[is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
-
-## Process table and detection
-subcell_raw_mean_long = pd.melt(subcell_raw_mean, id_vars='author_cell_type', var_name='Marker', value_name='Raw_Mean_Expression_Minorclass_Target')
-subcell_raw_mean_long = subcell_raw_mean_long.rename(columns={'author_cell_type':'Queried_Name'})
-subcell_raw_mean_long["Marker"] = subcell_raw_mean_long["Marker"].str.capitalize()
-subcell_raw_mean_long["Detectable_Minor_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
-curated_markers = curated_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
-
-## Optical crowding
-minorToMajor = adata.obs[["author_cell_type", "majorclass"]].drop_duplicates()
-subcell_raw_mean.index = subcell_raw_mean['author_cell_type']
-
-minor_crowding = np.zeros(sum(curated_markers["Marker"].isin(subcell_raw_mean.columns)))
-included_markers = curated_markers.loc[curated_markers["Marker"].isin(subcell_raw_mean.columns), "Marker"]
-for majorclass in ["AC", "BC", "MICROGLIA", "RGC"]:
-    minorclasses = minorToMajor.loc[minorToMajor["majorclass"] == majorclass, "author_cell_type"] # Why is below line needed given the 'clean_genes()' from last script? How well does 'upper' fix this?
-    sub_expr_mtx = subcell_raw_mean.loc[minorclasses, included_markers]
-    minor_crowding = minor_not_crowding & (np.sum(sub_expr_mtx > 100, axis = 0) > 0)
-
-minor_crowding.name = "Minor_Crowding_Risk" # Is this not a numpy array?
-curated_markers.index = curated_markers["Marker"]
-curated_markers = curated_markers.join(minor_crowding, how = "left").drop_duplicates() # Drop duplicate necessary?
-curated_markers.loc[curated_markers["Minor_Crowding_Risk"].isnull(), "Minor_Crowding_Risk"] = True # Be alittle leaky
-
-# majorclass expression
-major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.txt', sep = '\t')
-major_raw_mean_long = pd.melt(major_raw_mean, id_vars='majorclass', var_name='Marker', value_name='Raw_Mean_Expression_Majorclass_Target')
-major_raw_mean_long = major_raw_mean_long.rename(columns={'majorclass':'Major_Name'}) # Major_Queried name?
-major_raw_mean_long["Marker"] = major_raw_mean_long["Marker"].str.capitalize()
-major_raw_mean_long["Detectable_Major_Expression"] = major_raw_mean_long["Raw_Mean_Expression_Majorclass_Target"] >= raw_expression_threshold
-curated_markers = curated_markers.merge(major_raw_mean_long, on=['Major_Name', 'Marker'], how = 'left')
-
-## all majorclass expression
-major_raw_mean = major_raw_mean.T
-major_raw_mean.columns = major_raw_mean.iloc[0] # majorclass in first column becomes first row
-major_raw_mean["Marker"] = major_raw_mean.index.astype(str).str.capitalize()
-major_raw_mean = major_raw_mean.drop(major_raw_mean.index[0])
-curated_markers = curated_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
-curated_markers["Major_Crowding_Risk"] = np.sum(curated_markers.loc[:, adata.obs["majorclass"].unique()] > 100, axis = 1) > 0 # If subtype is high, that should be ok?
-
-# Combine Major and Minor
-curated_markers["Detectable_Expression"] = curated_markers["Detectable_Major_Expression"] | curated_markers["Detectable_Minor_Expression"]
-curated_markers["Optical_Crowding_Risk"] = curated_markers["Major_Crowding_Risk"] | curated_markers["Minor_Crowding_Risk"]
-
-# Filter
-curated_markers["Xenium_Filter"] = (curated_markers["Long_Enough"] &
-                                    curated_markers["Detectable_Expression"] &
-                                    ~curated_markers["Optical_Crowding_Risk"])
-curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-curated_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
-filtered_markers = curated_markers.loc[curated_markers["Xenium_Filter"]]
-filtered_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
+if os.path.isfile('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt'):
+    filtered_markers = pd.read_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
+else:
+    # Coefficient Marking # Jumping the shark, don't merge until the wet lab does it.
+    curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
+    
+    # Add gene length
+    curated_markers["Marker"] = curated_markers["Marker"].str.capitalize() # Make sure the below join keeps all rows
+    curated_markers.index = curated_markers["Marker"] # Make sure the below join keeps all rows
+    curated_markers = curated_markers.join(adata.var[["feature_length", "Ensembl"]])
+    curated_markers["missing_length"] = curated_markers["feature_length"].isnull()
+    curated_markers[curated_markers["missing_length"], "feature_length"] = 0
+    curated_markers["Long_Enough"] = curated_markers["feature_length"] >= length_threshold
+    curated_markers.index = list(range(curated_markers.shape[0])) # Move this to after minorclass merges?
+    
+    # minorclass
+    ## Pre-process expression table names
+    subcell_raw_mean = pd.read_csv('data/raw_meanExpression_minorclass.txt', sep = '\t')
+    subcell_raw_mean["author_cell_type"].str.upper()
+    is_subtype = subcell_raw_mean["author_cell_type"].isin(["AC", "BC", "MICROGLIA", "RGC"])
+    unassigned_subtypes = subcell_raw_mean.loc[is_subtype, "author_cell_type"]
+    subcell_raw_mean.loc[is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
+    
+    ## Process table and detection
+    subcell_raw_mean_long = pd.melt(subcell_raw_mean, id_vars='author_cell_type', var_name='Marker', value_name='Raw_Mean_Expression_Minorclass_Target')
+    subcell_raw_mean_long = subcell_raw_mean_long.rename(columns={'author_cell_type':'Queried_Name'})
+    subcell_raw_mean_long["Marker"] = subcell_raw_mean_long["Marker"].str.capitalize()
+    subcell_raw_mean_long["Detectable_Minor_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
+    curated_markers = curated_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
+    
+    ## Optical crowding
+    minorToMajor = adata.obs[["author_cell_type", "majorclass"]].drop_duplicates()
+    subcell_raw_mean.index = subcell_raw_mean['author_cell_type']
+    
+    minor_crowding = np.zeros(sum(curated_markers["Marker"].isin(subcell_raw_mean.columns)))
+    included_markers = curated_markers.loc[curated_markers["Marker"].isin(subcell_raw_mean.columns), "Marker"]
+    for majorclass in ["AC", "BC", "MICROGLIA", "RGC"]:
+        minorclasses = minorToMajor.loc[minorToMajor["majorclass"] == majorclass, "author_cell_type"] # Why is below line needed given the 'clean_genes()' from last script? How well does 'upper' fix this?
+        sub_expr_mtx = subcell_raw_mean.loc[minorclasses, included_markers]
+        minor_crowding = minor_not_crowding & (np.sum(sub_expr_mtx > 100, axis = 0) > 0)
+    
+    minor_crowding.name = "Minor_Crowding_Risk" # Is this not a numpy array?
+    curated_markers.index = curated_markers["Marker"]
+    curated_markers = curated_markers.join(minor_crowding, how = "left").drop_duplicates() # Drop duplicate necessary?
+    curated_markers.loc[curated_markers["Minor_Crowding_Risk"].isnull(), "Minor_Crowding_Risk"] = True # Be alittle leaky
+    
+    # majorclass expression
+    major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.txt', sep = '\t')
+    major_raw_mean_long = pd.melt(major_raw_mean, id_vars='majorclass', var_name='Marker', value_name='Raw_Mean_Expression_Majorclass_Target')
+    major_raw_mean_long = major_raw_mean_long.rename(columns={'majorclass':'Major_Name'}) # Major_Queried name?
+    major_raw_mean_long["Marker"] = major_raw_mean_long["Marker"].str.capitalize()
+    major_raw_mean_long["Detectable_Major_Expression"] = major_raw_mean_long["Raw_Mean_Expression_Majorclass_Target"] >= raw_expression_threshold
+    curated_markers = curated_markers.merge(major_raw_mean_long, on=['Major_Name', 'Marker'], how = 'left')
+    
+    ## all majorclass expression
+    major_raw_mean = major_raw_mean.T
+    major_raw_mean.columns = major_raw_mean.iloc[0] # majorclass in first column becomes first row
+    major_raw_mean["Marker"] = major_raw_mean.index.astype(str).str.capitalize()
+    major_raw_mean = major_raw_mean.drop(major_raw_mean.index[0])
+    curated_markers = curated_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
+    curated_markers["Major_Crowding_Risk"] = np.sum(curated_markers.loc[:, adata.obs["majorclass"].unique()] > 100, axis = 1) > 0 # If subtype is high, that should be ok?
+    
+    # Combine Major and Minor
+    curated_markers["Detectable_Expression"] = curated_markers["Detectable_Major_Expression"] | curated_markers["Detectable_Minor_Expression"]
+    curated_markers["Optical_Crowding_Risk"] = curated_markers["Major_Crowding_Risk"] | curated_markers["Minor_Crowding_Risk"]
+    
+    # Filter
+    curated_markers["Xenium_Filter"] = (curated_markers["Long_Enough"] &
+                                        curated_markers["Detectable_Expression"] &
+                                        ~curated_markers["Optical_Crowding_Risk"])
+    curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
+    curated_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
+    filtered_markers = curated_markers.loc[curated_markers["Xenium_Filter"]]
+    filtered_markers.to_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
 
 if plot_only_curated:
     data_string = data_string + '_CuratedOnly'
