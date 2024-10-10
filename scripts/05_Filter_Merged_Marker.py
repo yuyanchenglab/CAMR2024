@@ -72,22 +72,20 @@ adata.var_names_make_unique() # Unnecessary for this data
 # Work starts here
 
 
-# Coefficient Marking
-merged_filtered_markers = pd.read_csv('04_Merge_Curated_Markers/4_merged_curated-queried_cell_markers.txt', sep = '\t').drop_duplicates()
-small_coef = np.logical_or(merged_filtered_markers["Minor_Coefficient"] <= coefficient_threshold, merged_filtered_markers["Major_Coefficient"] <= coefficient_threshold)
-merged_filtered_markers["small_coef_in_query"] = np.logical_and(merged_filtered_markers["Queried"] == "Queried", small_coef)
+# Coefficient Marking # Jumping the shark, don't merge until the wet lab does it.
+curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
 
 # Add gene length
-merged_filtered_markers.index = merged_filtered_markers["Marker"] # Make sure the below join keeps all rows
-merged_filtered_markers = merged_filtered_markers.join(adata.var)
-merged_filtered_markers["missing_length"] = merged_filtered_markers["feature_length"].isnull()
-merged_filtered_markers[merged_filtered_markers["missing_length"], "feature_length"] = 0
-merged_filtered_markers["long_enough"] = merged_filtered_markers["feature_length"] >= length_threshold
-merged_filtered_markers.index = list(range(merged_filtered_markers.shape[0]))
+curated_markers.index = curated_markers["Marker"] # Make sure the below join keeps all rows
+curated_markers = curated_markers.join(adata.var)
+curated_markers["missing_length"] = curated_markers["feature_length"].isnull()
+curated_markers[curated_markers["missing_length"], "feature_length"] = 0
+curated_markers["long_enough"] = curated_markers["feature_length"] >= length_threshold
+curated_markers.index = list(range(curated_markers.shape[0]))
 
 # CURATED entries need a queried name to work with the next section
 q2n = pd.read_csv('04_Merge_Curated_Markers/4_queried_to_name.txt', sep ='\t', index_col=0)
-merged_filtered_markers.loc[merged_filtered_markers["Queried_Name"].isnull(), "Queried_Name"] = q2n["Queried_Name"].get(merged_filtered_markers.loc[merged_filtered_markers["Queried_Name"].isnull(), "Queried_Name"])
+curated_markers.loc[curated_markers["Queried_Name"].isnull(), "Queried_Name"] = q2n["Queried_Name"].get(curated_markers.loc[curated_markers["Queried_Name"].isnull(), "Queried_Name"])
 
 # minorclass
 ## Pre-process expression table names
@@ -101,7 +99,7 @@ subcell_raw_mean_long = pd.melt(subcell_raw_mean, id_vars='author_cell_type', va
 subcell_raw_mean_long = subcell_raw_mean_long.rename(columns={'author_cell_type':'Queried_Name'})
 subcell_raw_mean_long["Marker"] = subcell_raw_mean_long["Marker"].str.capitalize()
 subcell_raw_mean_long["Minor_Detectable_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
-merged_filtered_markers = merged_filtered_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
+curated_markers = curated_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
 
 # majorclass expression
 major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.txt', sep = '\t')
@@ -109,32 +107,32 @@ major_raw_mean_long = pd.melt(major_raw_mean, id_vars='majorclass', var_name='Ma
 major_raw_mean_long = major_raw_mean_long.rename(columns={'majorclass':'Major_Name'}) # Major_Queried name?
 major_raw_mean_long["Marker"] = major_raw_mean_long["Marker"].str.capitalize()
 major_raw_mean_long["Major_Detectable_Expression"] = major_raw_mean_long["Raw_Mean_Expression_Majorclass_Target"] >= raw_expression_threshold
-merged_filtered_markers = merged_filtered_markers.merge(major_raw_mean_long, on=['Major_Name', 'Marker'], how = 'left')
+curated_markers = curated_markers.merge(major_raw_mean_long, on=['Major_Name', 'Marker'], how = 'left')
 
 ## all majorclass expression
 major_raw_mean = major_raw_mean.T
 major_raw_mean.columns = major_raw_mean.iloc[0]
 major_raw_mean["Marker"] = major_raw_mean.index.astype(str).str.capitalize()
 major_raw_mean = major_raw_mean.drop(major_raw_mean.index[0])
-merged_filtered_markers = merged_filtered_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
+curated_markers = curated_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
 
 ## Expression Filtering
-merged_filtered_markers["Detectable_Expression"] = merged_filtered_markers["Major_Detectable_Expression"] | merged_filtered_markers["Minor_Detectable_Expression"]
-merged_filtered_markers["not_crowding"] = np.sum(merged_filtered_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0 # If subtype is high, that should be ok
+curated_markers["Detectable_Expression"] = curated_markers["Major_Detectable_Expression"] | curated_markers["Minor_Detectable_Expression"]
+curated_markers["not_crowding"] = np.sum(curated_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0 # If subtype is high, that should be ok
 
 # Filter
-merged_filtered_markers["xenium_filter"] = (merged_filtered_markers["long_enough"] & 
-                                            merged_filtered_markers["Detectable_Expression"] &
-                                            merged_filtered_markers["not_crowding"] &
-                                            ~merged_filtered_markers["small_coef_in_query"])
-merged_filtered_markers = merged_filtered_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumAnnotated.txt', sep = '\t')
-merged_filtered_markers = merged_filtered_markers.loc[filtered_indices]
-merged_filtered_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumFiltered.txt', sep = '\t')
+curated_markers["xenium_filter"] = (curated_markers["long_enough"] & 
+                                            curated_markers["Detectable_Expression"] &
+                                            curated_markers["not_crowding"] &
+                                            ~curated_markers["small_coef_in_query"])
+curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
+curated_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumAnnotated.txt', sep = '\t')
+curated_markers = curated_markers.loc[filtered_indices]
+curated_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumFiltered.txt', sep = '\t')
 
 # 05.2 # This is just looking at curated, xenium-filtered markers
-# merged_filtered_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t')
-# merged_filtered_markers = merged_filtered_markers.sort_values(['Queried_Major_Name', 'Queried_Name']) # For now
+# curated_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t')
+# curated_markers = curated_markers.sort_values(['Queried_Major_Name', 'Queried_Name']) # For now
 
 if plot_only_curated:
     merged_filtered_markers.loc[merged_filtered_markers["Curated"] == "Curated"]
