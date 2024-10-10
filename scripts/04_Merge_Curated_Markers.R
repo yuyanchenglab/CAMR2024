@@ -17,7 +17,7 @@ library(eulerr)
 library(magrittr)
 
 analysisName = "04_Merge_Curated_Markers"
-analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
+analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
 source("scripts/04_Merge_Curated_Markers.util.R")
 
@@ -49,7 +49,7 @@ majorclass_with_minor = c("AC", "BC", "MICROGLIA", "RGC")
 curated <- fread(curatedPath)
 queriedMajor <- fread(queriedMajorPath)
 queriedMinor <- fread(queriedMinorPath)
-major2Minor <- fread(major2MinorPath, header = TRUE, select = c("author_cell_type", "majorclass"))
+major2Minor <- fread(major2MinorPath, header = TRUE, select = c("minorclass", "majorclass"))
 
 # Munge ----
 
@@ -86,10 +86,10 @@ clean_queried =
          Queried_Major_Name = Major_Name)
 
 major2Minor %<>%
-  reframe(Name = author_cell_type,
+  reframe(Name = minorclass,
           Major_Name = majorclass,
-          Queried_Name = author_cell_type,
-          Queried_Major_Name = majorclass) %>% asDT()
+          Queried_Name = minorclass,
+          Queried_Major_Name = majorclass)
 setDT(major2Minor)
 major2Minor[toupper(Name) %in% majorclass_with_minor, Name := paste0("UNASSIGNED_", Name)]
 
@@ -97,7 +97,7 @@ major2Minor[toupper(Name) %in% majorclass_with_minor, Name := paste0("UNASSIGNED
 ## Queried will mainly act as the base as it matches original data.
 ## Curated will conform to base.
 
-cell_clobber_check() # 173, 48, 9
+cell_clobber_check() # 173, 49, 9
 
 ### Gene Harmony ----
 
@@ -109,15 +109,15 @@ clean_curated = clean_genes(clean_curated, verbose) # 247 -> 245, Lost two uniqu
 ### Cell Harmony ----
 
 clean_curated = depluralize(clean_curated, verbose) # 114, 317 parents
-cell_clobber_check() # 173, 48, 13
+cell_clobber_check() # 173, 49, 13
 
 clean_queried = set_name_case(clean_queried)
 clean_curated = set_name_case(clean_curated)
 major2Minor = set_name_case(major2Minor)
-cell_clobber_check() # 173, 48, 13
+cell_clobber_check() # 173, 49, 13
 
 clean_curated = set_cellname_manually(clean_curated, CURATE2QUERY, verbose)
-cell_clobber_check() # 173, 48, 21 = 13 + length(CURATE2QUERY)
+cell_clobber_check() # 173, 49, 21 = 13 + length(CURATE2QUERY)
 
 clean_curated = clean_curated %>% filter(!duplicated(paste0(Name, Marker, Parent_Name))) # Remove odd duplicate
 
@@ -125,12 +125,11 @@ clean_curated = clean_curated %>% filter(!duplicated(paste0(Name, Marker, Parent
 
 clean_queried = query_sub(clean_queried)
 major2Minor = query_sub(major2Minor)
-cell_clobber_check() # 173, 48, 37
+cell_clobber_check() # 173, 49, 37
 
 clean_queried = set_cellname_manually(clean_queried, QUERY2CURATE, verbose)
 major2Minor = set_cellname_manually(major2Minor, QUERY2CURATE, verbose)
-major2Minor[, Parent_Name := NULL]
-cell_clobber_check() # 173, 48, 45
+cell_clobber_check() # 173, 48, 45 # Merged two together
 
 # Any random cell types need manual adjustment?
 q_names = clean_queried$Name %>% unique()# "NOVEL_13" "UNASSIGNED_RGC" "UNASSIGNED_MICROGLIA"
@@ -155,25 +154,25 @@ clean_curated = get_major_name(clean_curated, verbose)
 all(majorclass %in% unique(clean_curated$Major_Name)) # TRUE
 
 ## Harmonize Query Name ----
-major2Minor[, Major_Name := toupper(Major_Name)]
+
 fwrite(major2Minor, paste0(outPath, "4_queried_to_name.txt"), sep = '\t')
 
 clean_curated %<>% reframe(Name, Parent_Name, Marker, Major_Name)
 
-clean_curated = major2Minor[clean_curated, on = c("Name", "Major_Name")]
+clean_curated = major2Minor[clean_curated, on = c("Name", "Major_Name")] # Major_Name in Parent
 setDT(clean_curated)
-clean_curated
-clean_curated[Name %in% majorclass, Queried_Name := Parent_Name]
-clean_curated[Name %in% majorclass, Queried_Major_Name := Parent_Name]
-clean_curated
+
+clean_curated[Name %in% majorclass, Queried_Name := Name]
+clean_curated[Name %in% majorclass, Queried_Major_Name := Name]
+
 clean_curated[Major_Name %in% majorclass, Queried_Major_Name := Major_Name]
-clean_curated
 
 ## Finished ----
 
 clean_curated = clean_curated %>%
   reframe(Name, Major_Name, Marker, Queried_Name, Queried_Major_Name) %>%
-  arrange(Major_Name, Name, Marker) %T>%
+  arrange(Major_Name, Name, Marker) %>%
+  distinct() %T>%
   fwrite(paste0(outPath, "4_harmonized_curated_markers.txt"), sep = '\t')
 
 ### Search space overlap with curated ----
@@ -185,7 +184,7 @@ curated_markers = unique(clean_curated$Marker)
 data.frame(Curated = curated_markers,
            All_Genes = curated_markers %in% all_genes,
            Highly_Variable = curated_markers %in% variable_genes) %>%
-  fwrite(paste0(outPath, "4_curated_markers_in_data.txt"), sep = '\t')
+  fwrite(paste0(outPath, "4_curated_markers_in_data.txt"), sep = '\t') # Same when sorted
 
 ### Queried_Name to Name for plotting ----
 

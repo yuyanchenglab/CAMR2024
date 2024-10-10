@@ -144,7 +144,11 @@ depluralize <- function(clean, verbose = FALSE) {
 
 set_name_case <- function(clean) {
   clean$Name = toupper(clean$Name)
-  clean$Parent_Name = toupper(clean$Parent_Name)
+  if ("Parent_Name" %in% names(clean)) {
+    clean$Parent_Name = toupper(clean$Parent_Name)
+  } else if ("Major_Name" %in% names(clean)) {
+    clean$Major_Name = toupper(clean$Major_Name)
+  }
   return(clean)
 }
 
@@ -174,16 +178,25 @@ set_cellname_manually <- function(clean, dictionary, verbose = FALSE) {
     # Test
     print(cbind(from = clean$Name[clean$Name %in% names(dictionary)],
           to   = dictionary[match(clean$Name, names(dictionary)) %>% na.omit()]) %>% data.frame() %>% distinct())
-    print(cbind(from = clean$Parent_Name[clean$Parent_Name %in% names(dictionary)],
-          to   = dictionary[match(clean$Parent_Name, names(dictionary)) %>% na.omit()]) %>% data.frame() %>% distinct())
+    if ("Parent_Name" %in% names(clean)) {
+      print(cbind(from = clean$Parent_Name[clean$Parent_Name %in% names(dictionary)],
+            to   = dictionary[match(clean$Parent_Name, names(dictionary)) %>% na.omit()]) %>% data.frame() %>% distinct())
+    } else if ("Major_Name" %in% names(clean)) {
+      print(cbind(from = clean$Major_Name[clean$Major_Name %in% names(dictionary)],
+                  to   = dictionary[match(clean$Major_Name, names(dictionary)) %>% na.omit()]) %>% data.frame() %>% distinct())
+    }
   }
 
     # Do
   clean$Name[clean$Name %in% names(dictionary)] =
     dictionary[match(clean$Name, names(dictionary)) %>% na.omit()]
+  if ("Parent_Name" %in% names(clean)) {
   clean$Parent_Name[clean$Parent_Name %in% names(dictionary)] =
     dictionary[match(clean$Parent_Name, names(dictionary)) %>% na.omit()]
-
+  } else if ("Major_Name" %in% names(clean)) {
+    clean$Major_Name[clean$Major_Name %in% names(dictionary)] =
+      dictionary[match(clean$Major_Name, names(dictionary)) %>% na.omit()]
+  }
   return(clean)
 }
 
@@ -237,7 +250,7 @@ check_QUERY2CURATE <- function() {
 
 query_sub <- function(clean) {
   clean$Name = sub("AC_", "AC", clean$Name)
-  clean$Name = sub("([0-9]+)_(.*)", "\\2_\\1", clean$Name)
+  clean$Name = sub("([0-9]+)_(.*)", "\\2_\\1", clean$Name) # Needed for RGC subtypes only?
 
   return(clean)
 }
@@ -264,13 +277,15 @@ plot_gene_cell_venn <- function(clean_curated, clean_queried, plotPath) {
 # TODO: Adjust for previous pipeline changes
 get_major_name <- function(clean, verbose = FALSE) {
 
-  clean$Major_Name = NA
+  if ("Major_Name" %notin% names(clean)) {
+    clean$Major_Name = NA
+  }
 
-  na_count = c(total = nrow(clean))
+  na_count = c(total = nrow(clean), total_na = sum(is.na(clean$Major_Name))) # ,303
 
   parent_is_majorclass = clean$Parent_Name %in% majorclass
   clean$Major_Name[parent_is_majorclass] = clean$Parent_Name[parent_is_majorclass] %>% toupper()
-  na_count = c(na_count, Parent_Name = sum(is.na(clean$Major_Name))) # 89
+  na_count = c(na_count, Parent_Name = sum(is.na(clean$Major_Name))) # 89, 76
 
   is_majorclass = is.na(clean$Major_Name) & clean$Name %in% majorclass
   clean$Major_Name[is_majorclass] = clean$Name[is_majorclass] %>% toupper()
@@ -291,8 +306,8 @@ get_major_name <- function(clean, verbose = FALSE) {
   clean$Major_Name[is.na(clean$Major_Name) & grepl("MICROGLIA", clean$Name)] = "MICROGLIA"
   na_count = c(na_count, Microglia = sum(is.na(clean$Major_Name))) # 2
 
-  clean$Major_Name[is.na(clean$Major_Name)] = "MONOCYTE"
-  na_count = c(na_count, Monocyte = sum(is.na(clean$Major_Name))) # 0!
+  clean$Major_Name[is.na(clean$Major_Name)] = "MELANOCYTE"
+  na_count = c(na_count, Melanocyte = sum(is.na(clean$Major_Name))) # 0!
 
   if (verbose) {
     print("Removal by Step:")
