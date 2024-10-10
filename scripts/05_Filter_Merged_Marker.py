@@ -55,7 +55,7 @@ adata.obs["author_cell_type"] = adata.obs["author_cell_type"].astype(str) # From
 is_unassigned = adata.obs["author_cell_type"] == adata.obs["majorclass"]
 is_subtype = adata.obs["author_cell_type"].isin(["AC", "BC", "Microglia", "RGC"])
 unassigned_subtypes = adata.obs["author_cell_type"].loc[is_unassigned & is_subtype]
-adata.obs.loc[is_unassigned & is_subtype, "author_cell_type"] = ["Unassigned_" + uv for uv in unassigned_subtypes]
+adata.obs.loc[is_unassigned & is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
 adata.obs["minorclass"] = adata.obs["author_cell_type"]
 adata.obs["Name"] = adata.obs["author_cell_type"] # This should be fed through q2n
 adata.obs["Major_Name"] = adata.obs["majorclass"].astype(str) # This should be fed through q2n
@@ -77,28 +77,24 @@ curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_mar
 
 # Add gene length
 curated_markers.index = curated_markers["Marker"] # Make sure the below join keeps all rows
-curated_markers = curated_markers.join(adata.var)
+curated_markers = curated_markers.join(adata.var[["feature_length", "Ensembl"]])
 curated_markers["missing_length"] = curated_markers["feature_length"].isnull()
 curated_markers[curated_markers["missing_length"], "feature_length"] = 0
-curated_markers["long_enough"] = curated_markers["feature_length"] >= length_threshold
+curated_markers["Long_Enough"] = curated_markers["feature_length"] >= length_threshold
 curated_markers.index = list(range(curated_markers.shape[0]))
-
-# CURATED entries need a queried name to work with the next section
-q2n = pd.read_csv('04_Merge_Curated_Markers/4_queried_to_name.txt', sep ='\t', index_col=0)
-curated_markers.loc[curated_markers["Queried_Name"].isnull(), "Queried_Name"] = q2n["Queried_Name"].get(curated_markers.loc[curated_markers["Queried_Name"].isnull(), "Queried_Name"])
 
 # minorclass
 ## Pre-process expression table names
 subcell_raw_mean = pd.read_csv('data/raw_meanExpression_minorclass.txt', sep = '\t')
 is_subtype = subcell_raw_mean["author_cell_type"].isin(["AC", "BC", "Microglia", "RGC"])
 unassigned_subtypes = subcell_raw_mean.loc[is_subtype, "author_cell_type"]
-subcell_raw_mean.loc[is_subtype, "author_cell_type"] = ["Unassigned_" + uv for uv in unassigned_subtypes]
+subcell_raw_mean.loc[is_subtype, "author_cell_type"] = ["UNASSIGNED_" + uv for uv in unassigned_subtypes]
 
 ## Process table
 subcell_raw_mean_long = pd.melt(subcell_raw_mean, id_vars='author_cell_type', var_name='Marker', value_name='Raw_Mean_Expression_Minorclass_Target')
 subcell_raw_mean_long = subcell_raw_mean_long.rename(columns={'author_cell_type':'Queried_Name'})
 subcell_raw_mean_long["Marker"] = subcell_raw_mean_long["Marker"].str.capitalize()
-subcell_raw_mean_long["Minor_Detectable_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
+subcell_raw_mean_long["Detectable_Minor_Expression"] = subcell_raw_mean_long['Raw_Mean_Expression_Minorclass_Target'] >= raw_expression_threshold
 curated_markers = curated_markers.merge(subcell_raw_mean_long, on=['Queried_Name', 'Marker'], how = 'left')
 
 # majorclass expression
@@ -106,29 +102,28 @@ major_raw_mean = pd.read_csv('data/raw_meanExpression_majorclass.txt', sep = '\t
 major_raw_mean_long = pd.melt(major_raw_mean, id_vars='majorclass', var_name='Marker', value_name='Raw_Mean_Expression_Majorclass_Target')
 major_raw_mean_long = major_raw_mean_long.rename(columns={'majorclass':'Major_Name'}) # Major_Queried name?
 major_raw_mean_long["Marker"] = major_raw_mean_long["Marker"].str.capitalize()
-major_raw_mean_long["Major_Detectable_Expression"] = major_raw_mean_long["Raw_Mean_Expression_Majorclass_Target"] >= raw_expression_threshold
+major_raw_mean_long["Detectable_Major_Expression"] = major_raw_mean_long["Raw_Mean_Expression_Majorclass_Target"] >= raw_expression_threshold
 curated_markers = curated_markers.merge(major_raw_mean_long, on=['Major_Name', 'Marker'], how = 'left')
 
 ## all majorclass expression
 major_raw_mean = major_raw_mean.T
-major_raw_mean.columns = major_raw_mean.iloc[0]
+major_raw_mean.columns = major_raw_mean.iloc[0] # majorclass in first column becomes first row
 major_raw_mean["Marker"] = major_raw_mean.index.astype(str).str.capitalize()
 major_raw_mean = major_raw_mean.drop(major_raw_mean.index[0])
 curated_markers = curated_markers.merge(major_raw_mean, on = 'Marker', how = 'left')
 
 ## Expression Filtering
-curated_markers["Detectable_Expression"] = curated_markers["Major_Detectable_Expression"] | curated_markers["Minor_Detectable_Expression"]
-curated_markers["not_crowding"] = np.sum(curated_markers.loc[:, 'AC':'Rod'] > 100, axis = 1) == 0 # If subtype is high, that should be ok
+curated_markers["Detectable_Expression"] = curated_markers["Detectable_Major_Expression"] | curated_markers["Detectable_Minor_Expression"]
+curated_markers["Optical_Crowding_Risk"] = np.sum(curated_markers.loc[:, adata.obs["majorclass"].unique()] > 100, axis = 1) > 0 # If subtype is high, that should be ok?
 
 # Filter
-curated_markers["xenium_filter"] = (curated_markers["long_enough"] & 
-                                            curated_markers["Detectable_Expression"] &
-                                            curated_markers["not_crowding"] &
-                                            ~curated_markers["small_coef_in_query"])
+curated_markers["xenium_filter"] = (curated_markers["Long_Enough"] &
+                                    curated_markers["Detectable_Expression"] &
+                                    ~curated_markers["Optical_Crowding_Risk"])
 curated_markers = curated_markers.sort_values(['Major_Name', 'Queried_Name']) # For now
-curated_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumAnnotated.txt', sep = '\t')
-curated_markers = curated_markers.loc[filtered_indices]
-curated_markers.to_csv('05_Filter_Merged_Markers/5_merged_markers_xeniumFiltered.txt', sep = '\t')
+curated_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumAnnotated.txt', sep = '\t')
+curated_markers = curated_markers.loc[curated_markers["xenium_filter"]]
+curated_markers.to_csv('05_Filter_Merged_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
 
 # 05.2 # This is just looking at curated, xenium-filtered markers
 # curated_markers = pd.read_csv('05_Filter_Merged_Markers/5_curated_markers_annotatedKeep_lengthExpressionMissingFiltered.txt', sep ='\t')
