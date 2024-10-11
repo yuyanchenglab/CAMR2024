@@ -13,13 +13,12 @@ library(RColorBrewer)
 library(magrittr)
 library(ChengLabThemes)
 
-analysisName = "06_Immune_Final_Checks"
-analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
+analysisName = "06_Curated_Immune"
+analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
 
-plotPath = paste0(analysisPath, analysisName, "/")
-outPath = plotPath
-dir.create(plotPath, showWarnings = FALSE)
+outPath = paste0(analysisPath, analysisName, "/V3_Checks/")
+dir.create(outPath, showWarnings = FALSE)
 
 ## Reproducibility ----
 
@@ -41,8 +40,7 @@ all_cells = c("Plasma B cell", "B cell", "T cell", # Lymphocyte
 
 immune_cell_names = c("B CELL", "T CELL", "NK CELL", "MONOCYTE", "NEUTROPHIL", "MACROPHAGE", "DENDRITIC CELL")
 
-ccData = readRDS("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/checkpoint.RDS")
-# ccMetadata = fread("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/metadata.txt")
+ccData = readRDS("/project/ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/checkpoint.RDS")
 clean_curated = fread("09_Designer_Analysis/PanelDesignerV3.txt")
 
 # Gene Harmony ----
@@ -64,7 +62,7 @@ clean_curated$Marker[clean_curated$Marker == "2010007h06rik"] = "2010007H06Rik"
 
 # Major ---
 
-## Harmonize ----
+# Harmonize ----
 
 # clean_curated$Major_Name %>% unique() %>% dput()
 
@@ -193,10 +191,14 @@ ccData$Major_Name[ccData$Major_Name %in% names(data_harmony)] =
 # setdiff(mnc, mnd)
 # intersect(mnc, mnd) # majorclass_for_plotting
 
+# Filter ----
+
 which_correct = ccData$majorclass %in% c("RGC", "Astrocyte", "Muller glia")
 ccData$Major_Name[which_correct] = toupper(ccData$majorclass[which_correct])
 ccData$Major_Name[grep("MICROGLIA", ccData$Major_Name)] = "MICROGLIA"
 ccData = subset(ccData, subset = Major_Name %notin% c("HORIZONTAL CELL", "MAST CELL", "SMOOTH MUSCLE CELL", "EPITHELIAL CELL"))
+
+# Plot ----
 
 p = DotPlot(ccData, features = unique(clean_curated$Marker), group.by = "Major_Name") +
   SparseBubbleTheme() +

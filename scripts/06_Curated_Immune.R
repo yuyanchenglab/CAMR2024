@@ -11,15 +11,15 @@ library(ggplot2)
 library(stringr)
 library(RColorBrewer)
 library(magrittr)
+library(scales)
 library(ChengLabThemes)
 
 analysisName = "06_Curated_Immune"
-analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
+analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
 
-plotPath = paste0(analysisPath, "06_Curated_Immune/")
-outPath = plotPath
-dir.create(plotPath, showWarnings = FALSE)
+outPath = paste0(analysisPath, analysisName, "/")
+dir.create(outPath, showWarnings = FALSE)
 
 ## Reproducibility ----
 
@@ -41,8 +41,7 @@ all_cells = c("Plasma B cell", "B cell", "T cell", # Lymphocyte
 
 immune_cell_names = c("B CELL", "T CELL", "NK CELL", "MONOCYTE", "NEUTROPHIL", "MACROPHAGE", "DENDRITIC CELL")
 
-ccData = readRDS("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/checkpoint.RDS")
-# ccMetadata = fread("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/metadata.txt")
+ccData = readRDS("/project/ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/checkpoint.RDS")
 clean_curated = fread("04_Harmonize_Curated_Markers/4_harmonized_curated_markers.txt")
 
 # Gene Harmony ----
@@ -162,7 +161,7 @@ data_harmony =
     matrix(nrow = 2) %>% t() %>%
     { setNames(.[,2], .[,1]) }
 }
-select(clean_curated, Name, Major_Name) %>% distinct() %>% filter(Major_Name == "IMMUNE") %>% select(Name) %>% dput()
+# select(clean_curated, Name, Major_Name) %>% distinct() %>% filter(Major_Name == "IMMUNE") %>% select(Name) %>% dput()
 
 curated_Major_Name =
   c("B CELL", "B CELL",
@@ -187,11 +186,11 @@ clean_curated$Major_Name[clean_curated$Name %in% names(curated_Major_Name)] =
 ccData$Major_Name[ccData$Major_Name %in% names(data_harmony)] =
   data_harmony[ccData$Major_Name[ccData$Major_Name %in% names(data_harmony)]]
 
-mnd = unique(ccData$Major_Name)
-mnc = unique(clean_curated$Major_Name)
-setdiff(mnd, mnc)
-setdiff(mnc, mnd)
-intersect(mnc, mnd) # majorclass_for_plotting
+# mnd = unique(ccData$Major_Name)
+# mnc = unique(clean_curated$Major_Name)
+# setdiff(mnd, mnc)
+# setdiff(mnc, mnd)
+# intersect(mnc, mnd) # majorclass_for_plotting
 
 which_correct = ccData$majorclass %in% c("RGC", "Astrocyte", "Muller glia")
 ccData$Major_Name[which_correct] = toupper(ccData$majorclass[which_correct])
@@ -225,15 +224,16 @@ clean_curated %<>%
   fwrite(paste0(outPath, "6_curated_markers.txt"), sep = '\t')
 extended_immune_cell_names = c(immune_cell_names, "MON/MAC","MON/DC")
 ccImmune = subset(ccData, subset = Major_Name %in% extended_immune_cell_names)
+ccImmune$constant = "Immune Markers" # For plotting later
 saveRDS(ccImmune, paste0(outPath, "6_immune.RDS"))
-
-clean_curated = fread(paste0(outPath, "6_curated_markers.txt"))
-ccImmune = readRDS(paste0(outPath, "6_immune.RDS"))
 
 immune_curated = clean_curated %>%
   filter(Major_Name %in% immune_cell_names)  %T>%
   fwrite(paste0(outPath, "6_curated_immune_markers.txt"), sep = '\t')
 
+## Annotate ----
+
+### Length ----
 library(org.Mm.eg.db)
 library(TxDb.Mmusculus.UCSC.mm10.knownGene)
 org = org.Mm.eg.db
@@ -249,7 +249,9 @@ marker_lengths = txl %>%
   summarise_all(max)
 immune_curated$tx_length = marker_lengths$tx_len[match(immune_curated$Marker, marker_lengths$SYMBOL)]
 
-# Make sure this is raw
+### Expression ----
+
+# Didn't AverageExpression() throw errors at one point?
 Major_Expression = AverageExpression(ccImmune,features = immune_curated$Marker, assays = "RNA",
                                      group.by = "Major_Name", layer = "counts")
 Major_Expression = cbind(Marker = rownames(Major_Expression$RNA),
@@ -261,9 +263,8 @@ immune_curated_filtered = immune_curated %>%
   fwrite(paste0(outPath, "6_immune_curated_markers_xeniumAnnotated.txt"), sep = '\t') %>%
   filter(
     max_expr < 100,
-    max_expr >= 2,
-    tx_length >= 960
-  ) %T>%
+    max_expr >= 2, # v2 chemistry
+    tx_length >= 960) %T>%
   fwrite(paste0(outPath, "6_immune_curated_markers_xeniumFiltered.txt"), sep = '\t')
 
 p = DotPlot(ccImmune, features = unique(immune_curated_filtered$Marker), group.by = "Major_Name") +
@@ -271,10 +272,8 @@ p = DotPlot(ccImmune, features = unique(immune_curated_filtered$Marker), group.b
   labs(x = "", y = "") +
   theme(axis.ticks = element_blank(),
         panel.grid = element_line(color = "gray90", linetype = "dashed"))
-ggsave(paste0(plotPath, "6_dotplot_majorclass_xeniumFiltered_normExpression.pdf"), p, height = 4, width = 10)
+ggsave(paste0(outPath, "6_dotplot_majorclass_xeniumFiltered_normExpression.pdf"), p, height = 4, width = 10)
 
-library(scales)
-ccImmune$constant = "Immune Markers"
 p = DotPlot(ccImmune, features = unique(immune_curated_filtered$Marker),
             group.by = "Major_Name", assay = "RNA", scale = FALSE, split.by = "constant", col.min = 4, col.max = 12) +
   SparseBubbleTheme() +
@@ -283,23 +282,11 @@ p = DotPlot(ccImmune, features = unique(immune_curated_filtered$Marker),
         panel.grid = element_line(color = "gray90", linetype = "dashed")) +
   scale_color_continuous(limits = c(4,12), oob = scales::oob_squish) +
   guides(color = guide_colorbar(title = "Average Raw\nExpression"))
-ggsave(paste0(plotPath, "6_dotplot_majorclass_xeniumFiltered_rawExpression.pdf"), p, height = 4, width = 10)
-
-
-Major_Expression = AverageExpression(ccImmune,features = immune_curated$Marker, assays = "RNA",
-                                     group.by = "Major_Name", layer = "counts")
-Major_Expression = cbind(Marker = rownames(Major_Expression$RNA),
-                         as.data.frame(Major_Expression$RNA),
-                         max_expr = apply(Major_Expression$RNA, 1, max))
-Major_Expression
-# Minor ---
-
-## Harmonize ----
-
-## Plot ----
+ggsave(paste0(outPath, "6_dotplot_majorclass_xeniumFiltered_rawExpression.pdf"), p, height = 4, width = 10)
 
 # Scratch ----
 
+if (FALSE) {
 ccData$Major_Name = toupper(ccData$majorclass)
 original_harmonizing_table =
 c("MULLER GLIA", "MG",
@@ -316,4 +303,5 @@ c("MULLER GLIA", "MG",
   "PLASMA B CELL", "B CELL",
   # "PERICYTE",
   "BIPOLAR CELL", "BC",
-  "HORIZONTAL CELL", "HC") %>%
+  "HORIZONTAL CELL", "HC")
+}
