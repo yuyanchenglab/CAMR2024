@@ -3,26 +3,17 @@
 # future experiments. It will also be used to downsample each cluster of cells
 # to get a possibly clearer picture of the genes that work best in our biology.
 
-# Load the h5ad file using scanpy
 import scanpy as sc
 import os
 
-os.chdir('/project/hipaa_ycheng11lab/atlas/CAMR2024')
-newpath = '/project/hipaa_ycheng11lab/atlas/CAMR2024/08_xenium_panel_formatter/'
-if not os.path.exists(newpath):
-    os.makedirs(newpath)
+os.chdir('/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/')
+newpath = '/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/08_xenium_panel_formatter/'
+os.makedirs(newpath, exist_ok = True))
 
-# Edit the file path in this command to point to the h5ad file on your computer
 ad = sc.read_h5ad("00_raw/d0183df5-815d-48c2-bcfe-fbf9b716505c.h5ad")
-
-# rewrite with the chunked work in the get_marker_genes.ipynb, or run on big worker node.
 raw_ad = ad.raw.to_adata()
-
-# Print information for the first row
-#raw_ad.var.head(1)
 raw_ad.var["ensemblid"] = raw_ad.var_names
 
-# Import libraries
 import pandas as pd
 import scipy
 import zipfile
@@ -33,7 +24,6 @@ import random
 
 random.seed(1234)
 
-# Define function
 def h5ad_to_10x(ad,
                 gene_id_key="gene_id",
                 gene_name_key="gene_name",
@@ -100,10 +90,3 @@ os.system("unzip -l matrix.zip")
 #152739258                     4 files
 
 # Now you are ready to upload the .zip file to the Xenium Panel Designer to build your panel.
-
-
-
-
-
-
-
