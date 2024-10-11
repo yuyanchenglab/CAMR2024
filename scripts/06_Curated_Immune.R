@@ -43,7 +43,7 @@ immune_cell_names = c("B CELL", "T CELL", "NK CELL", "MONOCYTE", "NEUTROPHIL", "
 
 ccData = readRDS("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/checkpoint.RDS")
 # ccMetadata = fread("/project/hipaa_ycheng11lab/jfmaurer/pub-rgcs_cellChat/data/metadata.txt")
-clean_curated = fread("04_Merge_Curated_Markers/4_harmonized_curated_markers.txt")
+clean_curated = fread("04_Harmonize_Curated_Markers/4_harmonized_curated_markers.txt")
 
 # Gene Harmony ----
 

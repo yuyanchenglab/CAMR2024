@@ -16,17 +16,17 @@ library(ggVennDiagram) # upset plot
 library(eulerr)
 library(magrittr)
 
-analysisName = "04_Merge_Curated_Markers"
+analysisName = "04_Harmonize_Curated_Markers"
 analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
-source("scripts/04_Merge_Curated_Markers.util.R")
+source("scripts/04_Harmonize_Curated_Markers.util.R")
 
 curatedPath = "data/CuratedMouseRetinaMarkers.txt"
 queriedMajorPath = "03_Filter_Model_Markers/3_ovr_LogReg_majorclass_xeniumFiltered.txt"
 queriedMinorPath = "03_Filter_Model_Markers/3_ovr_LogReg_minorclass_xeniumFiltered.txt"
 major2MinorPath = "02_Modeling/2_minorToMajorClass.txt"
 
-outPath = paste0(analysisPath, "04_Merge_Curated_Markers/")
+outPath = paste0(analysisPath, "04_Harmonize_Curated_Markers/")
 dir.create(outPath, showWarnings = FALSE)
 plotPath = paste0(outPath, "figures/")
 dir.create(plotPath, showWarnings = FALSE)

@@ -36,7 +36,7 @@ markers = list()
 markers[["V1"]] = read_excel(resultsPath, sheet="V1")
 markers[["V2"]] = read_excel(resultsPath, sheet="V2")
 
-q2n = fread("04_Merge_Curated_Markers/4_queried_to_name.txt")
+q2n = fread("04_Harmonize_Curated_Markers/4_queried_to_name.txt")
 q2n[, Name := toupper(Name)]
 q2n[, Queried_Name := toupper(Queried_Name)]
 

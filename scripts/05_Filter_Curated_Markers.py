@@ -76,7 +76,7 @@ if os.path.isfile('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.tx
     filtered_markers = pd.read_csv('05_Filter_Curated_Markers/5_curated_markers_xeniumFiltered.txt', sep = '\t')
 else:
     # Coefficient Marking # Jumping the shark, don't merge until the wet lab does it.
-    curated_markers = pd.read_csv('04_Merge_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
+    curated_markers = pd.read_csv('04_Harmonize_Curated_Markers/4_harmonized_curated_markers.txt', sep = '\t').drop_duplicates()
     
     # Add gene length
     curated_markers["Marker"] = curated_markers["Marker"].str.capitalize() # Make sure the below join keeps all rows
@@ -150,7 +150,7 @@ else:
 if plot_only_curated:
     data_string = data_string + '_CuratedOnly'
 else: # Road less travelled
-    queried_markers = pd.read_csv("04_Merge_Curated_Markers/minor_by_major/4_queried.txt", sep = '\t')
+    queried_markers = pd.read_csv("04_Harmonize_Curated_Markers/minor_by_major/4_queried.txt", sep = '\t')
     filtered_markers = filtered_markers.join(queried_markers)
 
 def clean_markers(var_names, dirty_markers, verbose=True):
