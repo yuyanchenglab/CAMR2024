@@ -14,8 +14,8 @@ library(magrittr)
 library(readxl)
 library(ChengLabThemes)
 
-analysisName = "09_Designer_Analysis"
-analysisPath = "/project/hipaa_ycheng11lab/atlas/CAMR2024/"
+analysisName = "09_Designer_Output_Analysis"
+analysisPath = "/project/ycheng11lab/jfmaurer/mouse_retina_atlas_chen_2024/"
 setwd(analysisPath)
 
 outPath = paste0(analysisPath, analysisName, "/")
@@ -31,16 +31,18 @@ set.seed(1)
 
 # Data ----
 
+# This is basically a copy of our Mouse Retina Cell Marker Google Sheet
 resultsPath = paste0(outPath, "PanelDesignerInputOutput.xlsx")
 markers = list()
 markers[["V1"]] = read_excel(resultsPath, sheet="V1")
 markers[["V2"]] = read_excel(resultsPath, sheet="V2")
 
+# Analysis ----
+## Harmonize Names ----
+
 q2n = fread("04_Harmonize_Curated_Markers/4_queried_to_name.txt")
 q2n[, Name := toupper(Name)]
 q2n[, Queried_Name := toupper(Queried_Name)]
-
-# Analysis ----
 
 change_idx = markers[["V1"]]$Name %in% q2n$Queried_Name & markers[["V1"]]$Name != markers[["V1"]]$Major_Name
 old_names = markers[["V1"]]$Name[change_idx]
@@ -50,7 +52,7 @@ change_idx = markers[["V2"]]$Name %in% q2n$Queried_Name & markers[["V2"]]$Name !
 old_names = markers[["V2"]]$Name[change_idx]
 markers[["V2"]]$Name[change_idx] = q2n$Name[match(old_names, q2n$Queried_Name)]
 
-saveRDS(markers, paste0(outPath, "PanelOutput.RDS"))
+## Look at the stats ----
 
 qc_markers = markers[["V2"]] %>%
   filter(V2_Probecount > 0) %T>%
@@ -66,12 +68,11 @@ markers[["V1"]]$Marker[markers[["V1"]]$Major_Name == "ROD"] %in% qc_markers$Mark
 markers[["V1"]]$Marker[markers[["V1"]]$Major_Name == "EPITHELIAL"] %in% qc_markers$Marker # 0
 markers[["V1"]]$Marker[markers[["V1"]]$Name == "DENDRITIC CELL"] %in% qc_markers$Marker # 2
 
+# Plot cell by marker count ----
+
 p = ggplot(major_marker_counts, aes(x = reorder(Major_Name, -count), y = count)) +
   geom_col() +
-  histogram_theme() +
-  theme(
-    axis.text.x = element_text(angle = 30, hjust = 1)
-  ) +
+  histogram_theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   labs(y = "Major Class Markers", x = "")
 ggsave(paste0(outPath, "Panel_Markers_Major.Bar.png"), p, height = 3, width = 5)
 
@@ -86,20 +87,13 @@ for (major in unique(minor_marker_counts$Major_Name)) {
   p = ggplot(minor_marker_counts %>% filter(Major_Name == major),
              aes(x = reorder(Name, -count), y = count)) +
     geom_col() +
-    histogram_theme() +
-    theme(
-      axis.text.x = element_text(angle = 30, hjust = 1)
-    ) +
+    histogram_theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
     labs(y = paste(major, "Minor Class Markers"), x = "")
   ggsave(paste0(outPath, "Panel_Markers_Major.", major, ".Bar.png"), p, height = 3, width = 10)
-}
-
-# Fill color and stack by Marker
+} # Fill color and stack by Marker?
 
 # Scratch ----
 
 if (FALSE) {
-  # How many majorclasses are formatted correctly?
-  # markers %>% filter(grepl("majorclass|immune", Source)) %>% reframe(a = Major_Name != Name) %>% {which(.$a)}
 
 }
